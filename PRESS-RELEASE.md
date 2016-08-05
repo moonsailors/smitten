@@ -1,4 +1,4 @@
-# Project Name #
+# Smitten #
 
 <!--
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -17,28 +17,28 @@ Once the project moves into development, the press release can be used as a touc
  -->
 
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  > Smitten
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  > Sweet deeds and loving gestures in tune with your partner's cycle, show her you care with Smitten.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  >  Have you ever felt at a loss for how to express your love during her hardest time of the month? Smitten is designed to give you insight on what your partner needs, when she needs it, and the tools to do it well.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > During that time of the month, it's hard to express how you feel.  Your partner really wants to help you out, but just doesn't know how.  Because he/she is always smitten with you no matter how crabby you are.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > Enter Smitten. By tracking moods and recording wishes, Smitten provides a clear map of her needs.  Smitten has a collection of tools to help you get what she needs when she needs it.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > You thought sliced bread was nice,....wait till you see this!
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Download our app from the App Store or Google Play
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > Smitten saved my marriage!  I no longer sleep on the couch.
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Run to your app store, Don't let another month pass by!
