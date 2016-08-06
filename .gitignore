@@ -3,3 +3,5 @@ node_modules
 npm-debug.log
 .flooignore
 .floo
+client_secret.json
+rethinkdb_data
