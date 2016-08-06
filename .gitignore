@@ -1,7 +1,7 @@
 .DS_Store
 node_modules
-npm-debug.log
 .flooignore
 .floo
-client_secret.json
 rethinkdb_data
+server/client_secret.json
+
