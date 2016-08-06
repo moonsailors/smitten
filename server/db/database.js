@@ -1,9 +1,5 @@
-var thinky = require('thinky')({
-  host: '127.0.0.1',
-  port: 28015
-});
-
-var r = thinky.r;
+var config = require('./config');
+var thinky = require('thinky')(config);
 
 var type = thinky.type;
 
@@ -26,5 +22,5 @@ Relationship.hasMany(User, 'users', 'id', 'relationshipId');
 module.exports = {
   User: User,
   Relationship: Relationship,
-  r: r
+  thinky: thinky
 };
