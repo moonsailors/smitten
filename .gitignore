@@ -4,4 +4,5 @@ node_modules
 .floo
 rethinkdb_data
 server/client_secret.json
+npm-debug.log
 
