@@ -23,4 +23,4 @@ module.exports = {
   User: User,
   Relationship: Relationship,
   thinky: thinky
-};
+}
