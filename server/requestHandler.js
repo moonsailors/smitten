@@ -1,20 +1,13 @@
+// API authorization information
+var client = require('./client_secret.json');
+
 var google = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
-var amazon = require('amazon-product-api');
-var client = require('./client_secret.json');
 var request = require('request');
 
 var oauth2Client = new OAuth2(client.web.client_id, client.web.client_secret, client.web.redirect_uris[1]);
-<<<<<<< b8e6c1461dd6c0850ddba64498a63d32034eb356
+
 var calendar = google.calendar('v3');
-||||||| merged common ancestors
-=======
-var amazonClient = amazon.createClient({
-  awsId: 'client.amazon.access_key_id',
-  awsSecret: 'client.amazon.secret_access_key',
-  awsTag: 'hthr.prk@gmail.com'
-});
->>>>>>> (feat) Add request handler for searching Amazon
 
 // generate a url that asks permissions for Google+ and Google Calendar scopes
 var scopes = [
@@ -22,6 +15,18 @@ var scopes = [
 ];
 
 var calendarUrl = "https://www.googleapis.com/calendar/v3/calendars";
+
+// Amazon API authorization
+var amazon = require('amazon-product-api');
+var amazonClient = amazon.createClient({
+  // please update 'client_secret.json' with appropriate ID, secret, and tag.
+  awsId: client.amazon.access_key_id,
+  awsSecret: client.amazon.secret_access_key,
+  // http://docs.aws.amazon.com/AWSECommerceService/latest/DG/becomingAssociate.html
+  // amazon says this awsTag is also known as an Associate ID.  I haven't been able to find
+  // any certain answers on whether or not this equates to my email address associated with the account.
+  awsTag: client.amazon.associate_tag
+});
 
 module.exports = {
 
@@ -50,7 +55,6 @@ module.exports = {
 
     });
     res.redirect('/');
-<<<<<<< b8e6c1461dd6c0850ddba64498a63d32034eb356
   },
 
   calendarCreate: function(req, res, next){
@@ -67,19 +71,8 @@ module.exports = {
       console.log("Smitten calendar created ", event);
     });
 
-  }
-||||||| merged common ancestors
-  }
-=======
   },
->>>>>>> (feat) Add request handler for searching Amazon
 
-<<<<<<< b8e6c1461dd6c0850ddba64498a63d32034eb356
-
-
-
-||||||| merged common ancestors
-=======
   amazonSearchItem: function(req, res, next) {
     amazonClient.itemSearch({
       keywords: req.body.keywords,
@@ -90,5 +83,4 @@ module.exports = {
       console.log(errString);
     });
   }
->>>>>>> (feat) Add request handler for searching Amazon
 };
