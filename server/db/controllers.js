@@ -2,6 +2,7 @@ var db = require('./database.js');
 
 var User = db.User,
     Relationship = db.Relationship,
+    Wish = db.Wish,
     thinky = db. thinky,
     r = thinky.r,
     Query = thinky.qyery;
@@ -114,33 +115,70 @@ var updateRelationship = function(email, params){
       console.error(err);
       throw err;
     })
-}
+};
 
-var addWishToRelationship = function(email, wish){
-  getRelationshipByEmail(email)
-    .then(function(relationship){
-      relationship.wishlist.push(wish);
-      return Relationship.get(relationship.id).update({whislist: relationship.wishlist}).run();
-    })
-    .error(function(err){
-      console.error(err);
-      throw err;
-    });
-}
-
-//this is dubius because of objects !equaling objects
-var removeWishFromRelationship = function(email, wishToRemove){
-  getRelationshipByEmail(email)
-    .then(function(relationship){
-      relationship.wishlist.splice(relationship.wishlist.indexOf(wishToRemove),1);
-      return Relationship.get(relationship.id).update({wishlist: relationship.wishlist}).run();
-    })
-    .error(function(err){
-      console.error(err);
-      throw err;
-    });
-}
+//Wishlist CRUD
 /********************************************/
+
+//create wish
+var createWish = function(email, params){
+  return getUserByEmail(email)
+    .then(function(user){
+      params.relationshipId = user.relationshipId;
+      params.creatorId = user.id;
+      return new Wish(params).save();
+    })
+    .error(function(err){
+      console.error(err);
+      throw err;
+    });
+};
+
+var getUserWishes = function(email){
+  return getUserByEmail(email)
+    .then(function(user){
+      return Wish.filter({creatorId: user.id}).run();
+    })
+    .error(function(err){
+      console.error(err);
+      throw err;
+    });
+}
+
+var getRelationshipWishes = function(email){
+  return getRelationshipByEmail(email)
+    .then(function(relationship){
+      return Wish.filter({relationshipId: relationship.id}).run();
+    })
+    .error(function(err){
+      console.error(err);
+      throw err;
+    })
+}
+
+//update wish (assuming id is present)
+var updateWish = function(id, params){
+  return Wish.get(id).update(params)
+    .run()
+    .error(function(err){
+      console.error(err);
+      throw err;
+    });
+};
+
+var deleteWish = function(id){
+  return Wish.get(id).getJoin({creator: true, relationship: true}).run()
+    .then(function(wish){
+      return wish.delete();
+    })
+    .error(function(err){
+      console.error(err);
+      throw err;
+    });
+}
+
+/********************************************/
+
 module.exports = {
   createUser: createUser,
   getUserByEmail: getUserByEmail,
@@ -148,7 +186,5 @@ module.exports = {
   deleteUser: deleteUser,
   createRelationship: createRelationship,
   getRelationshipByEmail: getRelationshipByEmail,
-  updateRelationship: updateRelationship,
-  addWishToRelationship: addWishToRelationship,
-  removeWishFromRelationship: removeWishFromRelationship
+  updateRelationship: updateRelationship
 }
