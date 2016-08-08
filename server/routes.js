@@ -7,4 +7,7 @@ module.exports = function (app, express){
   app.get('/googleOAuth/', requestHandler.googleRedirect);
 
   app.get('/api/calendarCreate', requestHandler.calendarCreate);
+
+  app.post('/api/amazonSearch', requestHandler.amazonSearchItem);
+
 };
