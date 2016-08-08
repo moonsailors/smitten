@@ -122,9 +122,10 @@ var updateRelationship = function(email, params){
 
 //create wish
 var createWish = function(email, params){
-  return getRelationshipByEmail(email)
-    .then(function(relationship){
-      params.relationshipId = relationship.id;
+  return getUserByEmail(email)
+    .then(function(user){
+      params.relationshipId = user.relationshipId;
+      params.creatorId = user.id;
       return new Wish(params).save();
     })
     .error(function(err){
@@ -166,11 +167,17 @@ var updateWish = function(id, params){
 };
 
 var deleteWish = function(id){
-  return Wish.get(id).getJoin({creator: true, relationship: true})delete()
+  return Wish.get(id).getJoin({creator: true, relationship: true}).run()
+    .then(function(wish){
+      return wish.delete();
+    })
+    .error(function(err){
+      console.error(err);
+      throw err;
+    });
 }
 
 /********************************************/
-
 
 module.exports = {
   createUser: createUser,
