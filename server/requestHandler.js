@@ -69,7 +69,7 @@ module.exports = {
 
   },
 
-  // currently hardcoded to search by keyword only
+  // currently hardcoded to search only by keyword
   amazonSearchItem: function(req, res, next) {
     amazonClient.itemSearch({
       keywords: req.body.keywords,
