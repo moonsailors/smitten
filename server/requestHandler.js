@@ -19,12 +19,8 @@ var calendarUrl = "https://www.googleapis.com/calendar/v3/calendars";
 // Amazon API authorization
 var amazon = require('amazon-product-api');
 var amazonClient = amazon.createClient({
-  // please update 'client_secret.json' with appropriate ID, secret, and tag.
   awsId: client.amazon.access_key_id,
   awsSecret: client.amazon.secret_access_key,
-  // http://docs.aws.amazon.com/AWSECommerceService/latest/DG/becomingAssociate.html
-  // amazon says this awsTag is also known as an Associate ID.  I haven't been able to find
-  // any certain answers on whether or not this equates to my email address associated with the account.
   awsTag: client.amazon.associate_tag
 });
 
@@ -73,6 +69,7 @@ module.exports = {
 
   },
 
+  // currently hardcoded to search by keyword only
   amazonSearchItem: function(req, res, next) {
     amazonClient.itemSearch({
       keywords: req.body.keywords,
