@@ -12,6 +12,7 @@ var scopes = [
 ];
 
 var calendarUrl = "https://www.googleapis.com/calendar/v3/calendars";
+var calenderId;
 
 module.exports = {
 
@@ -54,8 +55,28 @@ module.exports = {
         console.log("calendar error: ", err);
       }
       console.log("Smitten calendar created ", event);
+      //add calendarID "event.id" entry to Users table
+      calendarId = event.id;
+      //updateRelationship (email, {calendarId: event.id})
     });
 
+  },
+
+  calendarJoin: function(req,res, next){
+
+    //list the acl rules of the calendar
+    calendar.acl.list({
+      auth: oauth2Client,
+      resource: {
+        summary: 'Smitten'
+      }
+    }, function(err, event){
+      if(err){
+        console.log("calendar Join error: ", err);
+      }
+      console.log("ACL list ", event);
+      //add calendarID "event.id" entry to Users table
+    });
   }
 
 
