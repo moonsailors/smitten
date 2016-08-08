@@ -15,7 +15,6 @@ var User = thinky.createModel("User", {
 var Relationship = thinky.createModel("Relationship", {
   id: type.string(),
   calendarId: type.string(),
-  // wishlist: type.array()
 });
 
 var Wish = thinky.createModel("Wish", {
