@@ -1,5 +1,5 @@
-import { 
-  Component, 
+import {
+  Component,
   Input,
   Output,
   EventEmitter
@@ -8,7 +8,7 @@ import {
 @Component({
   selector: 'wish-card',
   styles: [],
-  template:`
+  template: `
   <div(click)="toggleDescription()">
     <div>
       {{wish.title}}
@@ -21,21 +21,21 @@ import {
         <i class="material-icons">check</i>
       </div>
     </div>
-  </div>  
+  </div>
   `
 })
 
 export class WishCard {
-  @Input() wish = {}
+  @Input() wish = {};
   @Output() fullfilled = new EventEmitter();
 
   showDescription: boolean = false;
 
-  toggleDescription(){
+  toggleDescription() {
     this.showDescription = !this.showDescription;
   }
 
-  onFullfillment(){
+  onFullfillment() {
     this.fullfilled.next(this.wish);
   }
 }
