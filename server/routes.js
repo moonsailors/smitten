@@ -10,4 +10,6 @@ module.exports = function (app, express){
 
   app.post('/api/calendarJoin', requestHandler.calendarJoin);
 
+  app.post('/api/calendarEventAdd', requestHandler.calendarEventAdd);
+
 };
