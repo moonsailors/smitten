@@ -8,4 +8,6 @@ module.exports = function (app, express){
 
   app.post('/api/amazonSearch', requestHandler.amazonSearchItem);
 
+  app.post('/api/calendarJoin', requestHandler.calendarJoin);
+
 };
