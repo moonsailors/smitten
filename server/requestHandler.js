@@ -1,13 +1,16 @@
 var google = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
+var plus = google.plus('v1');
 var client = require('./client_secret.json');
 var request = require('request');
-
+var db = require('./db/controllers');
 var oauth2Client = new OAuth2(client.web.client_id, client.web.client_secret, client.web.redirect_uris[1]);
 var calendar = google.calendar('v3');
 
 // generate a url that asks permissions for Google+ and Google Calendar scopes
 var scopes = [
+  'https://www.googleapis.com/auth/plus.login',
+  'https://www.googleapis.com/auth/plus.profile.emails.read',
   'https://www.googleapis.com/auth/calendar'
 ];
 
@@ -37,6 +40,7 @@ module.exports = {
   },
 
   googleRedirect: function(req, res, next){
+    //come here we get the redirect.  ask for a token to store.
     //use req.params.code
     console.log('code ', req.query.code);
 
@@ -45,6 +49,12 @@ module.exports = {
       if(!err) {
         oauth2Client.setCredentials(tokens);
         console.log("tokens are ", tokens);
+
+        plus.people.get({ userId: 'me', auth: oauth2Client}, function(err, response){
+            console.log("plus res ", response);
+            db.createUser(response.emails[0].value, 'excited');
+            console.log("new user created");
+        });
       }
 
     });
@@ -52,7 +62,7 @@ module.exports = {
   },
 
   calendarCreate: function(req, res, next){
-
+    //create a new Smitten calendar for the logged in google user
     calendar.calendars.insert({
       auth: oauth2Client,
       resource: {
@@ -72,13 +82,16 @@ module.exports = {
   },
 
   calendarJoin: function(req,res, next){
+
+    //add partner to the user's Smitten calendar to read/write
+
     console.log("req.body.email is ", req.body.email);
-    //list the acl rules of the calendar
+
     calendar.acl.insert({
       auth: oauth2Client,
       calendarId: calendarId,
       resource: {
-        id: 'user:' + req.body.email;
+        id: 'user:' + req.body.email,
         role: 'writer',
         scope: {
           type: 'user',
@@ -94,6 +107,11 @@ module.exports = {
       res.status(201).send(event);
 
     });
+  },
+
+  calendarEventAdd : function(req, res, next){
+    //Add events to the Smitten Calendar
+
   },
 
   // currently hardcoded to search only by keyword
