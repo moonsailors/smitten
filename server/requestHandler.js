@@ -16,6 +16,7 @@ var scopes = [
 
 var calendarUrl = "https://www.googleapis.com/calendar/v3/calendars";
 var calenderId;
+var currentEmail;
 
 // Amazon API authorization
 var amazon = require('amazon-product-api');
@@ -53,6 +54,7 @@ module.exports = {
         plus.people.get({ userId: 'me', auth: oauth2Client}, function(err, response){
             console.log("plus res ", response);
             db.createUser(response.emails[0].value, 'excited');
+            currentEmail = response.emails[0].value;
             console.log("new user created");
         });
       }
@@ -75,7 +77,15 @@ module.exports = {
       console.log("Smitten calendar created ", event);
       //add calendarID "event.id" entry to Users table
       calendarId = event.id;
-      //updateRelationship (email, {calendarId: event.id})
+
+      //add the calendar id to a relationship
+      //attach that relationshipid to a user
+
+      db.createRelationship(event.id)
+      .then(function(relationship){
+        updateUser(currentEmail, {relationshipId: relationship.id});
+      });
+
       res.status(200).send(event);
     });
 
@@ -86,6 +96,15 @@ module.exports = {
     //add partner to the user's Smitten calendar to read/write
 
     console.log("req.body.email is ", req.body.email);
+    //create new user with incoming email
+    db.createUser(req.body.email, 'excited')
+    .then(function(){
+      return db.getRelationshipByEmail(currentEmail);
+    })
+    .then(function(relationship){
+      updateUser(req.body.email, {relationshipId: relationship.id});
+    });
+
 
     calendar.acl.insert({
       auth: oauth2Client,
