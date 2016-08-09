@@ -9,22 +9,31 @@ var User = db.User,
 
 //USER CRUD
 /*************************************/
-//Create
-//callback(result, req, res);
-var createUser = function(email, mood){
-  var user = new User({
-    email: email,
-    mood: mood
-  });
-  return user.save();
-};
-
 //Retrieve
 var getUserByEmail = function(email){
   return User.filter({email: email}).run()
     .then(function(user){
       if(!(user.length < 1)){
         return User.get(user[0].id).run();
+      }
+    })
+    .error(function(err){
+      console.error(err);
+      throw err;
+    })
+};
+
+//Create
+//callback(result, req, res);
+var createUser = function(email, mood){
+  return getUserByEmail(email)
+    .then(function(user){
+      if(user === undefined){
+        var user = new User({
+          email: email,
+          mood: mood
+        });
+        return user.save();
       }
     })
     .error(function(err){
@@ -65,28 +74,13 @@ var deleteUser = function(email){
 //Realtionship CRUD
 /********************************************/
 //Create
-var createRelationship = function(email1, email2, calendarId){
+var createRelationship = function(calendarId){
   var user1Id, user2Id, relationshipId;
 
-  return getUserByEmail(email1)
-    .then(function(user){
-      user1Id = user.id;
-      return getUserByEmail(email2);
-    })
-    .then(function(user){
-      user2Id = user.id;
-      return new Relationship({
-        calendarId: calendarId,
-        wishlist: []
-      }).save()
-    })
-    .then(function(relationship){
-      relationshipId = relationship.id;
-      return User.get(user1Id).update({relationshipId: relationshipId}).run();
-    })
-    .then(function(){
-      return User.get(user2Id).update({relationshipId: relationshipId}).run();
-    })
+  return new Relationship({
+      calendarId: calendarId,
+      wishlist: []
+    }).save()
     .error(function(err){
       console.error(err);
       throw err;
@@ -178,6 +172,7 @@ var deleteWish = function(id){
 }
 
 /********************************************/
+
 
 module.exports = {
   createUser: createUser,
