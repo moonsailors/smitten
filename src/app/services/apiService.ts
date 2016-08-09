@@ -51,7 +51,7 @@ export class ApiService {
       .map(this.getJson);
   }
 
-  put(path: string, body): Observable<any>{
+  put(path: string, body): Observable<any> {
     return this.http.put(`${this.api_url}/${path}`, body);
   }
 }

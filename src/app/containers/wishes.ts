@@ -8,7 +8,7 @@ import { WishService } from '../services';
     WishCard
   ],
   styles: [],
-  template:`
+  template: `
     <div>
       <div>
         <wish-card
@@ -26,15 +26,13 @@ import { WishService } from '../services';
 export class Wishes {
   wishes = [];
 
-  constructor(private wishService: WishService, email: string){
+  constructor(private wishService: WishService, email: string) {
     this.wishService.getRelationshipWishes(email)
       .subscribe(res => this.wishes = res.data);
   }
 
-  onFullfillment(wish, i){
+  onFullfillment(wish, i) {
     this.wishService.deleteWish(wish.id);
     this.wishes.splice(i, 1);
   }
-
-
 }
