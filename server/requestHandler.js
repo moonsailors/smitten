@@ -13,6 +13,7 @@ var scopes = [
 
 var calendarUrl = "https://www.googleapis.com/calendar/v3/calendars";
 var calenderId;
+<<<<<<< HEAD
 
 // Amazon API authorization
 var amazon = require('amazon-product-api');
@@ -21,6 +22,8 @@ var amazonClient = amazon.createClient({
   awsSecret: client.amazon.secret_access_key,
   awsTag: client.amazon.associate_tag
 });
+=======
+>>>>>>> 8e5c772c303639a3f1cf82a60e7dd7e200f4397a
 
 module.exports = {
 
