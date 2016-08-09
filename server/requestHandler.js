@@ -53,6 +53,7 @@ module.exports = {
 
         plus.people.get({ userId: 'me', auth: oauth2Client}, function(err, response){
             console.log("plus res ", response);
+            //create new user account in DB with email
             db.createUser(response.emails[0].value, 'excited');
             currentEmail = response.emails[0].value;
             console.log("new user created");
@@ -97,6 +98,7 @@ module.exports = {
 
     console.log("req.body.email is ", req.body.email);
     //create new user with incoming email
+    //connect them to a relationship
     db.createUser(req.body.email, 'excited')
     .then(function(){
       return db.getRelationshipByEmail(currentEmail);
@@ -130,6 +132,39 @@ module.exports = {
 
   calendarEventAdd : function(req, res, next){
     //Add events to the Smitten Calendar
+    var calId;
+    console.log("event ", req.body.event);
+    db.getRelationshipByEmail(currentEmail)
+    .then(function(relationship){
+      calId = relationship.calendarId;
+      console.log("calId ", calId);
+    });
+
+    var event = {
+    'summary': 'Google I/O 2015',
+    'location': '800 Howard St., San Francisco, CA 94103',
+    'description': 'A chance to hear more about Google\'s developer products.',
+    'start': {
+      'dateTime': '2016-08-10T09:00:00-07:00',
+      'timeZone': 'America/Los_Angeles',
+    },
+    'end': {
+      'dateTime': '2016-08-10T17:00:00-07:00',
+      'timeZone': 'America/Los_Angeles',
+    }};
+
+    calendar.events.insert({
+      auth: oauth2Client,
+      calendarId: calendarId,
+      resource: event,
+    }, function(err, event) {
+      if (err) {
+        console.log('There was an error contacting the Calendar service: ' + err);
+        return;
+      }
+      console.log('Event created: %s', event.htmlLink);
+      res.status(201).send(event.htmlLink);
+    });
 
   },
 
