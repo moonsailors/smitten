@@ -10,6 +10,7 @@ var calendar = google.calendar('v3');
 // generate a url that asks permissions for Google+ and Google Calendar scopes
 var scopes = [
   'https://www.googleapis.com/auth/plus.login',
+  'https://www.googleapis.com/auth/plus.profile.emails.read',
   'https://www.googleapis.com/auth/calendar'
 ];
 
@@ -48,15 +49,12 @@ module.exports = {
       if(!err) {
         oauth2Client.setCredentials(tokens);
         console.log("tokens are ", tokens);
-        plus.people.get({ userId: 'me', auth: oauth2Client }, function(err, response) {
-          // handle err and response
-          if(err){
-            console.log("plus error ", err);
-          } else{
+
+        plus.people.get({ userId: 'me', auth: oauth2Client}, function(err, response){
             console.log("plus res ", response);
-          }
+            db.createUser(response.emails[0].value, 'excited');
+            console.log("new user created");
         });
-        db.createUser('email', 'mood');
       }
 
     });
