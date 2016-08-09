@@ -58,25 +58,37 @@ module.exports = {
       //add calendarID "event.id" entry to Users table
       calendarId = event.id;
       //updateRelationship (email, {calendarId: event.id})
+      res.status(200).send(event);
     });
 
   },
 
   calendarJoin: function(req,res, next){
-
+    console.log("req.body.email is ", req.body.email);
     //list the acl rules of the calendar
-    calendar.acl.list({
+    calendar.acl.insert({
       auth: oauth2Client,
+      calendarId: calendarId,
       resource: {
-        summary: 'Smitten'
+        id: 'user:' + req.body.email;
+        role: 'writer',
+        scope: {
+          type: 'user',
+          value: req.body.email
+        }
       }
+
     }, function(err, event){
       if(err){
         console.log("calendar Join error: ", err);
       }
-      console.log("ACL list ", event);
-      //add calendarID "event.id" entry to Users table
+      console.log("insert user  ", event);
+      res.status(201).send(event);
+
     });
+
+
+
   }
 
 
