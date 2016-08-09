@@ -37,6 +37,7 @@ module.exports = {
   },
 
   googleRedirect: function(req, res, next){
+    //come here we get the redirect.  ask for a token to store.
     //use req.params.code
     console.log('code ', req.query.code);
 
@@ -52,7 +53,7 @@ module.exports = {
   },
 
   calendarCreate: function(req, res, next){
-
+    //create a new Smitten calendar for the logged in google user
     calendar.calendars.insert({
       auth: oauth2Client,
       resource: {
@@ -72,8 +73,11 @@ module.exports = {
   },
 
   calendarJoin: function(req,res, next){
+
+    //add partner to the user's Smitten calendar to read/write
+
     console.log("req.body.email is ", req.body.email);
-    //list the acl rules of the calendar
+
     calendar.acl.insert({
       auth: oauth2Client,
       calendarId: calendarId,
@@ -94,6 +98,11 @@ module.exports = {
       res.status(201).send(event);
 
     });
+  },
+
+  calendarEventAdd : function(req, res, next){
+    //Add events to the Smitten Calendar
+
   },
 
   // currently hardcoded to search only by keyword
