@@ -13,6 +13,14 @@ var scopes = [
 
 var calendarUrl = "https://www.googleapis.com/calendar/v3/calendars";
 
+// Amazon API authorization
+var amazon = require('amazon-product-api');
+var amazonClient = amazon.createClient({
+  awsId: client.amazon.access_key_id,
+  awsSecret: client.amazon.secret_access_key,
+  awsTag: client.amazon.associate_tag
+});
+
 module.exports = {
 
   googleLogin: function(req, res, next){
@@ -56,9 +64,19 @@ module.exports = {
       console.log("Smitten calendar created ", event);
     });
 
+  },
+
+  // currently hardcoded to search only by keyword
+  amazonSearchItem: function(req, res, next) {
+
+    amazonClient.itemSearch({
+      keywords: req.body.keywords,
+    }).then(function(results) {
+      console.log(results);
+    }).catch(function(err) {
+      errString = JSON.stringify(err);
+      console.log(errString);
+    });
+
   }
-
-
-
-
 };
