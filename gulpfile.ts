@@ -19,8 +19,10 @@ gulp.task('clean', (cb) => {
  */
 gulp.task('tslint', () => {
     return gulp.src("src/**/*.ts")
-        .pipe(tslint())
-        .pipe(tslint.report('prose'));
+        .pipe(tslint({
+            formatter: "verbose"
+        }))
+        .pipe(tslint.report());
 });
 
 /**
