@@ -76,7 +76,7 @@ var createRelationship = function(email1, email2, calendarId){
     .then(function(user){
       user2Id = user.id;
       return new Relationship({
-        calendarId: 'smooth operator',
+        calendarId: calendarId,
         wishlist: []
       }).save()
     })
