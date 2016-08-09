@@ -1,13 +1,15 @@
 var google = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
+var plus = google.plus('v1');
 var client = require('./client_secret.json');
 var request = require('request');
-
+var db = require('./db/controllers');
 var oauth2Client = new OAuth2(client.web.client_id, client.web.client_secret, client.web.redirect_uris[1]);
 var calendar = google.calendar('v3');
 
 // generate a url that asks permissions for Google+ and Google Calendar scopes
 var scopes = [
+  'https://www.googleapis.com/auth/plus.login',
   'https://www.googleapis.com/auth/calendar'
 ];
 
@@ -46,6 +48,15 @@ module.exports = {
       if(!err) {
         oauth2Client.setCredentials(tokens);
         console.log("tokens are ", tokens);
+        plus.people.get({ userId: 'me', auth: oauth2Client }, function(err, response) {
+          // handle err and response
+          if(err){
+            console.log("plus error ", err);
+          } else{
+            console.log("plus res ", response);
+          }
+        });
+        db.createUser('email', 'mood');
       }
 
     });
@@ -82,7 +93,7 @@ module.exports = {
       auth: oauth2Client,
       calendarId: calendarId,
       resource: {
-        id: 'user:' + req.body.email;
+        id: 'user:' + req.body.email,
         role: 'writer',
         scope: {
           type: 'user',
