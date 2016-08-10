@@ -4,30 +4,26 @@
 
     <!-- 1. Load libraries -->
     <!-- Polyfill(s) for older browsers -->
+    <script src="lib/es6-shim/es6-shim.min.js"></script>
     <script src="lib/zone.js/dist/zone.js"></script>
     <script src="lib/reflect-metadata/Reflect.js"></script>
     <script src="lib/systemjs/dist/system.src.js"></script>
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
     <!-- 2. Configure SystemJS -->
-   <!--  <script src="systemjs.config.js"></script>
+    <script src="systemjs.config.js"></script>
     <script>
-        System.import('app/main.js')
+        System.import('app')
                 .then(null, console.error.bind(console));
-    </script> -->
+    </script>
     <!-- <base href="/"></head> -->
-     <script src='app/main.js'></script>
+   <!--  <script src="app/main.js"></script> -->
 
   </head>
 
   <body>
 
     <app></app>
-
-    <iframe
-      src="https://calendar.google.com/calendar/embed?src=0ih8lo5nemro5m1fvs5iq14bqc%40group.calendar.google.com&ctz=America/Los_Angeles"
-      style="border: 0" width="800" height="600" frameborder="0" scrolling="no">
-    </iframe>
 
   </body>
 </html>

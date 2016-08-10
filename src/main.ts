@@ -3,7 +3,11 @@ import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import { provideRouter } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HTTP_PROVIDERS } from '@angular/http';
-import { App, providers, routes } from './';
+import { App, WishService, CalendarService, ApiService, routes } from './app';
+
+console.log("services are ", WishService, CalendarService, ApiService);
+console.log("App ", App);
+console.log("routes", routes);
 
 bootstrap(App, [
   ...HTTP_PROVIDERS,
@@ -11,5 +15,5 @@ bootstrap(App, [
   provideForms(),
   provideRouter(routes),
   { provide: LocationStrategy, useClass: HashLocationStrategy },
-  ...providers
+  WishService, CalendarService, ApiService
 ]);
