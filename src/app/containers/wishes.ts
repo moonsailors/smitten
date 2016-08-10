@@ -12,7 +12,7 @@ import { WishService } from '../services';
     <div>
       <div>
         <wish-card
-          [wish]="wish"
+          [wishes]="wishes"
           *ngFor="let wish of wishes; let i = index"
           (fullfilled)="onFullfillment($event, i)"
         >

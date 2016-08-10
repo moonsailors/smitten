@@ -6,6 +6,7 @@ const tsc = require("gulp-typescript");
 const sourcemaps = require('gulp-sourcemaps');
 const tsProject = tsc.createProject("tsconfig.json");
 const tslint = require('gulp-tslint');
+const injectModules = require('gulp-inject-modules');
 
 /**
  * Remove build directory.
@@ -42,7 +43,8 @@ gulp.task("compile", ["tslint"], () => {
  */
 gulp.task("resources", () => {
     return gulp.src(["src/**/*", "!**/*.ts"])
-        .pipe(gulp.dest("build"));
+        .pipe(gulp.dest("build"))
+        .pipe(injectModules());
 });
 
 /**

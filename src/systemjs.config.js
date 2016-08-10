@@ -2,14 +2,14 @@
 
     // map tells the System loader where to look for things
     var map = {
-        'app': '', // 'dist',
+        'app': 'app', // 'dist',
         'rxjs': 'lib/rxjs',
         '@angular': 'lib/@angular'
     };
 
     // packages tells the System loader how to load when no filename and/or no extension
     var packages = {
-        'app': {main: 'main.js', defaultExtension: 'js'},
+        'app': {main: 'app.js', defaultExtension: 'js'},
         'rxjs': {defaultExtension: 'js'}
     };
 
@@ -17,6 +17,7 @@
         '@angular/common',
         '@angular/compiler',
         '@angular/core',
+        '@angular/forms',
         '@angular/http',
         '@angular/platform-browser',
         '@angular/platform-browser-dynamic',
