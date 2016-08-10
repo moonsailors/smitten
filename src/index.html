@@ -10,12 +10,14 @@
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
     <!-- 2. Configure SystemJS -->
-    <script src="systemjs.config.js"></script>
+   <!--  <script src="systemjs.config.js"></script>
     <script>
-        System.import('app')
+        System.import('app/main.js')
                 .then(null, console.error.bind(console));
-    </script>
-    <base href="/"></head>
+    </script> -->
+    <!-- <base href="/"></head> -->
+     <script src='app/main.js'></script>
+
   </head>
 
   <body>
@@ -26,6 +28,6 @@
       src="https://calendar.google.com/calendar/embed?src=0ih8lo5nemro5m1fvs5iq14bqc%40group.calendar.google.com&ctz=America/Los_Angeles"
       style="border: 0" width="800" height="600" frameborder="0" scrolling="no">
     </iframe>
-    <!-- <script src="./build/main.js"></script> -->
+
   </body>
 </html>
