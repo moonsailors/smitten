@@ -84,7 +84,7 @@ module.exports = {
 
       db.createRelationship(event.id)
       .then(function(relationship){
-        updateUser(currentEmail, {relationshipId: relationship.id});
+        db.updateUser(currentEmail, {relationshipId: relationship.id});
       });
 
       res.status(200).send(event);
@@ -95,37 +95,41 @@ module.exports = {
   calendarJoin: function(req,res, next){
 
     //add partner to the user's Smitten calendar to read/write
-
+    var calID;
     console.log("req.body.email is ", req.body.email);
     //create new user with incoming email
     //connect them to a relationship
-    db.createUser(req.body.email, 'excited')
+    db.createUser('fontip05@gmail.com', 'excited')
     .then(function(){
       return db.getRelationshipByEmail(currentEmail);
     })
     .then(function(relationship){
-      updateUser(req.body.email, {relationshipId: relationship.id});
-    });
+      db.updateUser('fontip05@gmail.com', {relationshipId: relationship.id});
+      calID = relationship.calendarId;
+      console.log("calID ", calID);
+    })
+    .then(function(){
 
-
-    calendar.acl.insert({
-      auth: oauth2Client,
-      calendarId: calendarId,
-      resource: {
-        id: 'user:' + req.body.email,
-        role: 'writer',
-        scope: {
-          type: 'user',
-          value: req.body.email
+      calendar.acl.insert({
+        auth: oauth2Client,
+        calendarId: calID,
+        resource: {
+          id: 'user:' + 'fontip05@gmail.com',
+          role: 'writer',
+          scope: {
+            type: 'user',
+            value: 'fontip05@gmail.com'
+          }
         }
-      }
 
-    }, function(err, event){
-      if(err){
-        console.log("calendar Join error: ", err);
-      }
-      console.log("insert user  ", event);
-      res.status(201).send(event);
+      }, function(err, event){
+        if(err){
+          console.log("calendar Join error: ", err);
+        }
+        console.log("insert user  ", event);
+        res.status(201).send(event);
+
+      });
 
     });
   },
@@ -134,11 +138,7 @@ module.exports = {
     //Add events to the Smitten Calendar
     var calId;
     console.log("event ", req.body.event);
-    db.getRelationshipByEmail(currentEmail)
-    .then(function(relationship){
-      calId = relationship.calendarId;
-      console.log("calId ", calId);
-    });
+
 
     var event = {
     'summary': 'Google I/O 2015',
@@ -153,17 +153,24 @@ module.exports = {
       'timeZone': 'America/Los_Angeles',
     }};
 
-    calendar.events.insert({
-      auth: oauth2Client,
-      calendarId: calendarId,
-      resource: event,
-    }, function(err, event) {
-      if (err) {
-        console.log('There was an error contacting the Calendar service: ' + err);
-        return;
-      }
-      console.log('Event created: %s', event.htmlLink);
-      res.status(201).send(event.htmlLink);
+    db.getRelationshipByEmail(currentEmail)
+    .then(function(relationship){
+      calId = relationship.calendarId;
+      console.log("calId ", calId);
+    })
+    .then(function(){
+      calendar.events.insert({
+        auth: oauth2Client,
+        calendarId: calId,
+        resource: event,
+      }, function(err, event) {
+        if (err) {
+          console.log('There was an error contacting the Calendar service: ' + err);
+          return;
+        }
+        console.log('Event created: %s', event.htmlLink);
+        res.status(201).send(event.htmlLink);
+      });
     });
 
   },
