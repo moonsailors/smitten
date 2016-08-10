@@ -1,18 +1,16 @@
 import { Component } from '@angular/core';
+// import { Main } from './containers';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
-  selector: 'main-container',
+  selector: 'app',
   directives: [
     ...ROUTER_DIRECTIVES
   ],
   template: `
     <div>
-      <main class="main">
-        <router-outlet></router-outlet>
-      </main>
-    <div>
+      <router-outlet></router-outlet>
+    </div>
   `
 })
-
-export class Main {}
+export class App {}
