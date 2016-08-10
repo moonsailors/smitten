@@ -9,8 +9,10 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
   template:`
     <div>
       <main class="main">
-        M
+        <router-outlet></router-outlet>
       </main>
     <div>
   `
 })
+
+export class Main {}
