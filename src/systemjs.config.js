@@ -2,7 +2,7 @@
 
     // map tells the System loader where to look for things
     var map = {
-        'app': 'app', // 'dist',
+        'app': '', // 'dist',
         'rxjs': 'lib/rxjs',
         '@angular': 'lib/@angular'
     };
@@ -33,7 +33,8 @@
 
     var config = {
         map: map,
-        packages: packages
+        packages: packages,
+        baseURL: '/'
     };
 
     // filterSystemConfig - index.html's chance to modify config before we register it.

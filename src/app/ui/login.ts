@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'login',
   styles: [],
   template: 'login.component.html'
-});
+})
 
 export class AppBar {}
