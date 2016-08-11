@@ -4,12 +4,14 @@ module.exports = function (app, express){
 
   app.get('/api/googleLogin', requestHandler.googleLogin);
   app.get('/googleOAuth/', requestHandler.googleRedirect);
-  app.get('/api/calendarCreate', requestHandler.calendarCreate);
-
   app.post('/api/amazonSearch', requestHandler.amazonSearchItem);
 
-  app.post('/api/calendarJoin', requestHandler.calendarJoin);
 
-  app.post('/api/calendarEventAdd', requestHandler.calendarEventAdd);
+
+  app.get('/api/calendar/create', requestHandler.calendarCreate);
+
+  app.post('/api/calendar/join', requestHandler.calendarJoin);
+
+  app.post('/api/calendar/eventAdd', requestHandler.calendarEventAdd);
 
 };

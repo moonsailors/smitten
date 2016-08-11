@@ -8,18 +8,18 @@ import { Component,
   styles: [],
   template: `
     <div>
-      <h2>Are you a div?</h2>
+      <h2>{{event.summary}}</h2>
       <form (ngSubmit)="addEvent()">
         Event
-        <input type="text" name="event" placeholder="...add and event">
+        <input type="text" [(ngModel)]="event.summary" name="event" placeholder="...add and event">
         Description
-        <input type="text" name="description" placeholder="...add a description">
+        <input type="text" [(ngModel)]="event.description" name="description" placeholder="...add a description">
         Location
-        <input type="text" name="location" placeholder="...do we want to know?">
+        <input type="text" [(ngModel)]="event.location" name="location" placeholder="...do we want to know?">
         Start Time
-        <input type="datetime" name="start" placeholder="from">
+        <input type="datetime" [(ngModel)]="event.start.datetime" name="start" placeholder="from">
         End Time
-        <input type="datetime" name="end" placeholder="to">
+        <input type="datetime" [(ngModel)]="event.end.datetime" name="end" placeholder="to">
         <button type="submit">Add Event</button>
       </form>
     </div>
@@ -27,7 +27,40 @@ import { Component,
 })
 
 export class CalendarInput {
-  @Output () addEvent =  new EventEmitter();
+  @Output () emitAddition =  new EventEmitter();
+
+  event = {
+    summary: '',
+    location: '',
+    description: '',
+    start: {
+      datetime: '',
+      timeZone: 'Eastern'
+    },
+    end: {
+      datetime: '',
+      timeZone: 'Eastern'
+    }
+  };
+
+  addEvent() {
+    console.log("hit add Event");
+    var event = {
+      'summary': 'Google I/O 2015',
+      'location': '800 Howard St., San Francisco, CA 94103',
+      'description': 'A chance to hear more about Google\'s developer products.',
+      'start': {
+        'dateTime': '2016-08-20T09:00:00-07:00',
+        'timeZone': 'America/Los_Angeles',
+      },
+      'end': {
+        'dateTime': '2016-08-20T17:00:00-07:00',
+        'timeZone': 'America/Los_Angeles'
+      }
+    };
+    this.emitAddition.next(event);
+  };
+
 
 
 };
