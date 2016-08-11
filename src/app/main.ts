@@ -3,7 +3,9 @@ import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import { provideRouter } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HTTP_PROVIDERS } from '@angular/http';
-import { App, WishService, CalendarService, ApiService, routes } from './app';
+import { routes } from './routes';
+import { App } from './app';
+import { WishService, CalendarService, ApiService } from './services/index';
 
 console.log("services are ", WishService, CalendarService, ApiService);
 console.log("App ", App);

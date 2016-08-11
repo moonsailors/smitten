@@ -9,7 +9,7 @@
 
     // packages tells the System loader how to load when no filename and/or no extension
     var packages = {
-        'app': {main: 'app.js', defaultExtension: 'js'},
+        'app': {main: 'main.js', defaultExtension: 'js'},
         'rxjs': {defaultExtension: 'js'}
     };
 
@@ -34,8 +34,7 @@
 
     var config = {
         map: map,
-        packages: packages,
-        baseURL: '/'
+        packages: packages
     };
 
     // filterSystemConfig - index.html's chance to modify config before we register it.

@@ -1,5 +1,5 @@
 import { RouterConfig } from '@angular/router';
-import { Main, Wishes } from './containers';
+import { Main, Wishes } from './containers/index';
 
 export const routes: RouterConfig = [
   {
