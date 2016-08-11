@@ -1,2 +1,2 @@
 export { WishCard } from './wish-card';
-export { Calendar } from './calendar';
+export { CalendarInput } from './calendarInput';

@@ -145,11 +145,11 @@ module.exports = {
     'location': '800 Howard St., San Francisco, CA 94103',
     'description': 'A chance to hear more about Google\'s developer products.',
     'start': {
-      'dateTime': '2016-08-10T09:00:00-07:00',
+      'dateTime': '2016-08-20T09:00:00-07:00',
       'timeZone': 'America/Los_Angeles',
     },
     'end': {
-      'dateTime': '2016-08-10T17:00:00-07:00',
+      'dateTime': '2016-08-20T17:00:00-07:00',
       'timeZone': 'America/Los_Angeles',
     }};
 

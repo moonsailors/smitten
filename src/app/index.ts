@@ -1,8 +1,8 @@
 export { App } from './app';
 export { routes } from './routes';
 export { WishService, CalendarService, ApiService } from './services/index';
-export { Wishes, Main } from './containers/index';
-export { WishCard, Calendar } from './ui/index';
+export { Wishes, Main, Calendar } from './containers/index';
+export { WishCard, CalendarInput } from './ui/index';
 
 // import * as services from './services';
 // console.log("services are ", services);
