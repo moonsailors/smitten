@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   styles: [],
   template: `
     <div>
-      <amazon-search-bar></amazon-search-bar>
+      <amazon-search-input></amazon-search-input>
       <amazon-search-results></amazon-search-results>
     </div>
   `
