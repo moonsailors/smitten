@@ -2,30 +2,52 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'login-input',
-  styles: [],
+  styles: [`
+      body {
+        background-image:url(heart-broken.jpeg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      .container {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .login {
+        float:left;
+        margin: 10px;
+        padding: 10px;
+        max-width:300px;
+        height: 300px;
+      }
+      .field {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -100px 0 0 -150px;
+      }
+      legend {
+        font-size: 250%;
+      }
+    `
+  ],
   template: `
-  <section class="container">
-    <div class="login">
-      <h1>Login to Smitten</h1>
-        <form method="post" action="index.html">
-          <p><input type="text" name="login" value="" placeholder="Username or Email"></p>
-          <p><input type="password" name="password" value="" placeholder="Password"></p>
-          <p class="remember_me">
-            <label>
-              <input type="checkbox" name="remember_me" id="remember_me">
-              Remember me on this computer
-            </label>
-          </p>
-          <p class="submit"><input type="submit" name="commit" value="Login">
-          </p>
+    <body>
+      <div class="login">
+        <div>
+        <form>
+          <fieldset class="field">
+            <legend>Login to Smitten</legend>
+            <container id="container">
+            <p class="submit"><input type="submit" name="commit" value="Sign in with Google"></p>
+            <p><input type="text" name="login" value="" placeholder="Partner Email"></p>
+            <p class="link-partner"><input type="submit" name="commit" value="Link partner account"></p>
+            </container>
+          </fieldset>
         </form>
-    </div>
-
-    <div class="login-help">
-    <p>Forgot your password? <a href="index.html">Click here to reset it</a>.</p>
-  </div>
-  </section>
+        </div>
+      </div>
+    </body>
   `
 })
 
-export class LoginInput {};
+export class LoginInput {}
