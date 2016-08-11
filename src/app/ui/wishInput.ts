@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
     Shalom
     <form (ngSubmit)="onWishSubmit()">
       <input type="text" [(ngModel)]="wish.title" name="title" placeholder="...add a title">
-      <input type="text" [(ngModel)]="wish.title" name="description" placeholder="...add a description">
+      <input type="text" [(ngModel)]="wish.description" name="description" placeholder="...add a description">
       <button type="submit">Add</button>
     </form>
   </div>
