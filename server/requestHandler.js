@@ -182,7 +182,7 @@ module.exports = {
       console.log(results);
     })
     .catch(function(err) {
-      errString = JSON.stringify(err);
+      var errString = JSON.stringify(err);
       console.log(errString);
     });
 
