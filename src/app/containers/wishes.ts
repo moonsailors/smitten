@@ -10,6 +10,7 @@ import { WishService } from '../services/index';
   styles: [],
   template: `
     <div>
+    <h3>Hello bitches</h3>
       <div>
         <wish-card
           [wishes]="wishes"
