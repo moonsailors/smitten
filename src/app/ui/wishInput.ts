@@ -6,9 +6,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   template: `
   <div>
     Shalom
-    <form>
-      <input type="text" placeholder="...add a description">
-
+    <form (ngSubmit)="onWishSubmit()">
+      <input type="text" [(ngModel)]="wish.title" name="title" placeholder="...add a title">
+      <input type="text" [(ngModel)]="wish.title" name="description" placeholder="...add a description">
+      <button type="submit">Add</button>
     </form>
   </div>
   `
@@ -19,7 +20,10 @@ export class WishInput {
 
   wish = {
     title: "",
-    description: ""
+    description: "",
+  }
 
-  };
+  onWishSubmit(){
+    this.createWish.next(this.wish);
+  }
 }
