@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { WishCard } from '../ui';
-import { WishService } from '../services';
+import { WishCard } from '../ui/index';
+import { WishService } from '../services/index';
 
 @Component({
   selector: 'wishes-container',
