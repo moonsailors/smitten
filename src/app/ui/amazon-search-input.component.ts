@@ -13,7 +13,6 @@ import { Component } from '@angular/core';
       <button (click)="showResults(true)">Search</button>
     </form>
     <div *ngIf="areResultsVisible">
-<<<<<<< 0357458e7e4358bff36387e1587588fc0da211c7
       <ul>
         <li>
           <img src="https://images-na.ssl-images-amazon.com/images/I/514G31DI2JL._AC_US174_.jpg">
@@ -36,21 +35,6 @@ import { Component } from '@angular/core';
           <p><a href="http://amzn.to/2aZZsEH">MARS Chocolate Favorites Fun Size Candy Bars Variety</a></p>
         </li>
       </ul>
-=======
-      <img src="https://images-na.ssl-images-amazon.com/images/I/514G31DI2JL._AC_US174_.jpg">
-
-
-      <img src="https://images-na.ssl-images-amazon.com/images/I/518dbDwAncL._AC_US174_.jpg">
-
-
-      <img src="https://images-na.ssl-images-amazon.com/images/I/61qVDP4hZXL._AC_US174_.jpg">
-
-
-      <img src="https://images-na.ssl-images-amazon.com/images/I/513KacwBpML._AC_US174_.jpg">
-
-
-      <img src="https://images-na.ssl-images-amazon.com/images/I/514yrlYsvML._AC_US174_.jpg">
->>>>>>> (feat)Add upstream flow from wish input
     </div>
   `
 })
