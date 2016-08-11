@@ -21,9 +21,10 @@ export class WishInput {
   wish = {
     title: "",
     description: "",
-  }
+  };
 
-  onWishSubmit(){
+  onWishSubmit() {
+    console.log('hit onWishSubmit', this.wish);
     this.createWish.next(this.wish);
-  }
+  };
 }
