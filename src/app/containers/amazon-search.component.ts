@@ -17,3 +17,4 @@ import { AmazonSearchResultsComponent, AmazonSearchInputComponent } from '../ui/
 })
 
 export class AmazonSearchComponent {};
+

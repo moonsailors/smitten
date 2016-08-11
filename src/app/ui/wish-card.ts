@@ -17,9 +17,7 @@ import {
       <div>
         {{wish.description}}
       </div>
-      <div class="icon"(click)="onFullfillment()">
-        <i class="material-icons">check</i>
-      </div>
+      <button (click)="onFullfillment()">fulfill</button>
     </div>
   </div>
   `
@@ -29,11 +27,11 @@ export class WishCard {
   @Input() wish = {};
   @Output() fullfilled = new EventEmitter();
 
-  showDescription: boolean = false;
+  showDescription: boolean = true;
 
-  toggleDescription() {
-    this.showDescription = !this.showDescription;
-  }
+  // toggleDescription() {
+  //   this.showDescription = !this.showDescription;
+  // }
 
   onFullfillment() {
     this.fullfilled.next(this.wish);

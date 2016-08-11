@@ -13,9 +13,9 @@ import { WishService } from '../services/index';
     <div>
     <h3>Ahoy Sailors!  What do you Need?</h3>
       <div>
-        <wish-input></wish-input>
+        <wish-input (createWish)="onCreateWish($event)"></wish-input>
         <wish-card
-          [wishes]="wishes"
+          [wish]="wish"
           *ngFor="let wish of wishes; let i = index"
           (fullfilled)="onFullfillment($event, i)"
         >
@@ -27,15 +27,17 @@ import { WishService } from '../services/index';
 })
 
 export class Wishes {
-  wishes = [
-    {title: "example", description: "example"},
-    {title: "example", description: "example"},
-    {title: "example", description: "example"}
-  ];
+  wishes = [];
 
   constructor(private wishService: WishService) {
     // this.wishService.getRelationshipWishes(email)
     //   .subscribe(res => this.wishes = res.data);
+  }
+
+  onCreateWish(wish) {
+    console.log('hit on createWish', wish);
+    this.wishes.push(wish);
+    console.log(this.wishes);
   }
 
   onFullfillment(wish, i) {
