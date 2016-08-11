@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
+import { AmazonSearchResultsComponent, AmazonSearchInputComponent } from '../ui/index';
 
 @Component({
   selector: 'amazon-search',
+  directives: [
+    AmazonSearchResultsComponent,
+    AmazonSearchInputComponent
+  ],
   styles: [],
   template: `
     <div>
@@ -11,4 +16,4 @@ import { Component } from '@angular/core';
   `
 })
 
-export class AmazonSearchComponent {}
+export class AmazonSearchComponent {};
