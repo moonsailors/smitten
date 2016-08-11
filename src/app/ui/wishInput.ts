@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   <div>
     Shalom
     <form>
-      <input type="text" placeholde="...add a description">
+      <input type="text" placeholder="...add a description">
 
     </form>
   </div>
@@ -19,7 +19,7 @@ export class WishInput {
 
   wish = {
     title: "",
-    description: "",
+    description: ""
 
-  }
+  };
 }

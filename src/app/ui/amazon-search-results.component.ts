@@ -8,4 +8,4 @@ import { Component } from '@angular/core';
   `
 })
 
-export class AmazonSearchResultsComponent {}
+export class AmazonSearchResultsComponent {};
