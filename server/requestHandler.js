@@ -175,15 +175,14 @@ module.exports = {
 
   },
 
-  // currently hardcoded to search only by keyword
   amazonSearchItem: function(req, res, next) {
 
-    amazonClient.itemSearch({
-      keywords: req.body.keywords,
-    }).then(function(results) {
+    amazonClient.itemSearch(req.body)
+    .then(function(results) {
       console.log(results);
-    }).catch(function(err) {
-      errString = JSON.stringify(err);
+    })
+    .catch(function(err) {
+      var errString = JSON.stringify(err);
       console.log(errString);
     });
 
