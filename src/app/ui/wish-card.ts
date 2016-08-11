@@ -9,7 +9,7 @@ import {
   selector: 'wish-card',
   styles: [],
   template: `
-  <div(click)="toggleDescription()">
+  <div (click)="toggleDescription()">
     <div>
       {{wish.title}}
     </div>

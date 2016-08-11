@@ -30,7 +30,7 @@ export class Wishes {
     {title: "example", description: "example"}
   ];
 
-  constructor(private wishService: WishService, email: string) {
+  constructor(private wishService: WishService) {
     // this.wishService.getRelationshipWishes(email)
     //   .subscribe(res => this.wishes = res.data);
   }
