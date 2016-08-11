@@ -12,10 +12,11 @@ console.log("App ", App);
 console.log("routes", routes);
 
 bootstrap(App, [
-  ...HTTP_PROVIDERS,
+  HTTP_PROVIDERS,
   disableDeprecatedForms(),
   provideForms(),
   provideRouter(routes),
   { provide: LocationStrategy, useClass: HashLocationStrategy },
   WishService, CalendarService, ApiService
-]);
+])
+.catch(console.error);

@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
-import { WishCard } from '../ui/index';
+import { WishCard, WishInput } from '../ui/index';
 import { WishService } from '../services/index';
 
 @Component({
   selector: 'wishes-container',
   directives: [
-    WishCard
+    WishCard,
+    WishInput
   ],
   styles: [],
   template: `
     <div>
-    <h3>Hello bitches</h3>
+    <h3>Ahoy Sailors!  What do you Need?</h3>
       <div>
+        <wish-input></wish-input>
         <wish-card
           [wishes]="wishes"
           *ngFor="let wish of wishes; let i = index"
