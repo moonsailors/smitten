@@ -53,15 +53,41 @@ module.exports = {
 
         plus.people.get({ userId: 'me', auth: oauth2Client}, function(err, response){
             console.log("plus res ", response);
-            //create new user account in DB with email
-            db.createUser(response.emails[0].value, 'excited');
             currentEmail = response.emails[0].value;
-            console.log("new user created");
-        });
-      }
 
-    });
-    res.redirect('/');
+            db.getUserByEmail(currentEmail)
+              .then(function(user){
+                  //if user doesn't exist, create new user
+                  //and redirect to login
+                  console.log('returned user, ', user);
+                if(!user){
+                  db.createUser(currentEmail, 'excited')
+                    .then(function(user){
+                      //redirect to login
+                      console.log('created new user, ', user)
+                      res.redirect('/login');
+                    })
+                    .catch(function(err){
+                      console.error(err);
+                    });
+                } else {
+                  //if user does exist and has relationship
+                  //redirect to '/'
+                  if(user.relationshipId){
+                    res.redirect('/');
+                  }
+
+                  //if user does exist and doesn't have relationship
+                  //redirect to login
+
+                }
+              })
+              .catch(function(err){
+                console.error(err);
+              });
+        }); //plus.people.get
+      } //end of if !err
+    }); //getToken
   },
 
   calendarCreate: function(req, res, next){
