@@ -36,7 +36,7 @@ module.exports = {
       scope: scopes // If you only need one scope you can pass it as string
     });
     console.log("url is ", url);
-    res.redirect(url);
+    res.status(200).send(url);
 
   },
 
@@ -137,7 +137,7 @@ module.exports = {
   calendarEventAdd : function(req, res, next){
     //Add events to the Smitten Calendar
     var calId;
-    console.log("event ", req.body.event);
+    console.log("event ", req.body);
 
 
     var event = {

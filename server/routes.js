@@ -2,7 +2,7 @@ var requestHandler = require('./requestHandler.js');
 
 module.exports = function (app, express){
 
-  app.get('/api/googleLogin', requestHandler.googleLogin);
+  app.get('/api/google/login', requestHandler.googleLogin);
   app.get('/googleOAuth/', requestHandler.googleRedirect);
   app.post('/api/amazonSearch', requestHandler.amazonSearchItem);
 

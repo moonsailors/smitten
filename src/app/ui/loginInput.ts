@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component,
+          Input,
+          Output,
+          EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'login-input',
@@ -38,7 +41,7 @@ import { Component } from '@angular/core';
           <fieldset class="field">
             <legend>Login to Smitten</legend>
             <container id="container">
-            <p class="submit"><input type="submit" name="commit" value="Sign in with Google"></p>
+            <p class="submit"><input type="submit" (click)="loginUser()" name="commit" value="Sign in with Google"></p>
             <p><input type="text" name="login" value="" placeholder="Partner Email"></p>
             <p class="link-partner"><input type="submit" name="commit" value="Link partner account"></p>
             </container>
@@ -50,4 +53,15 @@ import { Component } from '@angular/core';
   `
 })
 
-export class LoginInput {}
+export class LoginInput {
+    @Output () emitLogin =  new EventEmitter();
+
+    user = {};
+
+    loginUser() {
+      console.log("hit loginUser");
+      this.emitLogin.next(this.user);
+
+    };
+
+};
