@@ -64,7 +64,7 @@ module.exports = {
                   db.createUser(currentEmail, 'excited')
                     .then(function(user){
                       //redirect to login
-                      console.log('created new user, ', user)
+                      console.log('created new user, ', user);
                       res.redirect('/login');
                     })
                     .catch(function(err){
@@ -75,11 +75,11 @@ module.exports = {
                   //redirect to '/'
                   if(user.relationshipId){
                     res.redirect('/');
-                  }
-
+                  } else {
                   //if user does exist and doesn't have relationship
                   //redirect to login
-
+                    res.redirect('/login');
+                  }
                 }
               })
               .catch(function(err){
@@ -125,12 +125,12 @@ module.exports = {
     console.log("req.body.email is ", req.body.email);
     //create new user with incoming email
     //connect them to a relationship
-    db.createUser('fontip05@gmail.com', 'excited')
+    db.createUser(req.body.email, 'excited')
     .then(function(){
       return db.getRelationshipByEmail(currentEmail);
     })
     .then(function(relationship){
-      db.updateUser('fontip05@gmail.com', {relationshipId: relationship.id});
+      db.updateUser(req.body.email, {relationshipId: relationship.id});
       calID = relationship.calendarId;
       console.log("calID ", calID);
     })
@@ -140,11 +140,11 @@ module.exports = {
         auth: oauth2Client,
         calendarId: calID,
         resource: {
-          id: 'user:' + 'fontip05@gmail.com',
+          id: 'user:' + req.body.email,
           role: 'writer',
           scope: {
             type: 'user',
-            value: 'fontip05@gmail.com'
+            value: req.body.email
           }
         }
 
