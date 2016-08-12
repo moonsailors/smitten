@@ -17,6 +17,17 @@ export class  LoginService {
         console.log("res body ", res._body);
         window.location.href = res._body;
       });
+  };
+
+  googlePartner(event: Object) {
+    console.log("hit googlePartner");
+    console.log("path is ", `${this.path}/join`);
+      this.apiService.post(`${this.path}/join`, event)
+      .subscribe(res => {
+        console.log("calID is ", res.body);
+        // redirect to calendar page
+        window.location.href = 'http://localhost:3000/';
+      });
   }
 
 };

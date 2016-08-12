@@ -173,6 +173,8 @@ var deleteWish = function(id){
 
 /********************************************/
 
+// r.dbDrop('smitten').run();
+
 
 module.exports = {
   createUser: createUser,

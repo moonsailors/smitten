@@ -42,8 +42,8 @@ import { Component,
             <legend>Login to Smitten</legend>
             <container id="container">
             <p class="submit"><input type="submit" (click)="loginUser()" name="commit" value="Sign in with Google"></p>
-            <p><input type="text" name="login" value="" placeholder="Partner Email"></p>
-            <p class="link-partner"><input type="submit" name="commit" value="Link partner account"></p>
+            <p><input type="text" name="login" [(ngModel)]="partner.email" value="" placeholder="Partner Email"></p>
+            <p class="link-partner" (click)="addPartner()"><input type="submit" name="commit" value="Link partner account"></p>
             </container>
           </fieldset>
         </form>
@@ -55,13 +55,21 @@ import { Component,
 
 export class LoginInput {
     @Output () emitLogin =  new EventEmitter();
+    @Output () emitPartner = new EventEmitter();
 
     user = {};
+    partner = {
+      email: ''
+    };
 
     loginUser() {
       console.log("hit loginUser");
       this.emitLogin.next(this.user);
+    };
 
+    addPartner() {
+      console.log("partner email is ", this.partner.email);
+      this.emitPartner.next(this.partner);
     };
 
 };

@@ -53,19 +53,46 @@ module.exports = {
 
         plus.people.get({ userId: 'me', auth: oauth2Client}, function(err, response){
             console.log("plus res ", response);
-            //create new user account in DB with email
-            db.createUser(response.emails[0].value, 'excited');
             currentEmail = response.emails[0].value;
-            console.log("new user created");
-        });
-      }
 
-    });
-    res.redirect('/');
+            db.getUserByEmail(currentEmail)
+              .then(function(user){
+                  //if user doesn't exist, create new user
+                  //and redirect to login
+                  console.log('returned user, ', user);
+                if(!user){
+                  db.createUser(currentEmail, 'excited')
+                    .then(function(user){
+                      //redirect to create calendar
+                      console.log('created new user, ', user);
+                      res.redirect('/api/calendar/create')
+                    })
+                    .catch(function(err){
+                      console.error(err);
+                    });
+                } else {
+                  //if user does exist and has relationship
+                  //redirect to '/'
+                  if(user.relationshipId){
+                    res.redirect('/');
+                  } else {
+                  //if user does exist and doesn't have relationship
+                  //redirect to login
+                    res.redirect('http://localhost:3000/#/login');
+                  }
+                }
+              })
+              .catch(function(err){
+                console.error(err);
+              });
+        }); //plus.people.get
+      } //end of if !err
+    }); //getToken
   },
 
   calendarCreate: function(req, res, next){
     //create a new Smitten calendar for the logged in google user
+    console.log("in calendarCreate");
     calendar.calendars.insert({
       auth: oauth2Client,
       resource: {
@@ -87,24 +114,26 @@ module.exports = {
         db.updateUser(currentEmail, {relationshipId: relationship.id});
       });
 
-      res.status(200).send(event);
+      //redirect to login
+      res.redirect('http://localhost:3000/#/login');
     });
 
   },
 
-  calendarJoin: function(req,res, next){
+  googleJoin: function(req,res, next){
 
     //add partner to the user's Smitten calendar to read/write
     var calID;
     console.log("req.body.email is ", req.body.email);
     //create new user with incoming email
     //connect them to a relationship
-    db.createUser('fontip05@gmail.com', 'excited')
+
+    db.createUser(req.body.email, 'excited')
     .then(function(){
       return db.getRelationshipByEmail(currentEmail);
     })
     .then(function(relationship){
-      db.updateUser('fontip05@gmail.com', {relationshipId: relationship.id});
+      db.updateUser(req.body.email, {relationshipId: relationship.id});
       calID = relationship.calendarId;
       console.log("calID ", calID);
     })
@@ -114,11 +143,11 @@ module.exports = {
         auth: oauth2Client,
         calendarId: calID,
         resource: {
-          id: 'user:' + 'fontip05@gmail.com',
+          id: 'user:' + req.body.email,
           role: 'writer',
           scope: {
             type: 'user',
-            value: 'fontip05@gmail.com'
+            value: req.body.email
           }
         }
 
@@ -127,7 +156,7 @@ module.exports = {
           console.log("calendar Join error: ", err);
         }
         console.log("insert user  ", event);
-        res.status(201).send(event);
+        res.status(201).send(calID);
 
       });
 
