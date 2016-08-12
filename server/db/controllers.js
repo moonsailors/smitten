@@ -176,6 +176,7 @@ var deletePost = function(id){
 // r.dbDrop('smitten').run();
 
 
+
 module.exports = {
   createUser: createUser,
   getUserByEmail: getUserByEmail,
