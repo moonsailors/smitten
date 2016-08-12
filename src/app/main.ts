@@ -4,19 +4,20 @@ import { provideRouter } from '@angular/router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HTTP_PROVIDERS } from '@angular/http';
 import { routes } from './routes';
+import { providers } from './index';
 import { App } from './app';
-import { WishService, CalendarService, ApiService } from './services/index';
+// import { WishService, CalendarService, ApiService } from './services/index';
 
-console.log("services are ", WishService, CalendarService, ApiService);
+// console.log("services are ", WishService, CalendarService, ApiService);
 console.log("App ", App);
 console.log("routes", routes);
 
 bootstrap(App, [
-  HTTP_PROVIDERS,
+  ...HTTP_PROVIDERS,
   disableDeprecatedForms(),
   provideForms(),
   provideRouter(routes),
   { provide: LocationStrategy, useClass: HashLocationStrategy },
-  WishService, CalendarService, ApiService
+  ...providers
 ])
 .catch(console.error);
