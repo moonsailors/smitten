@@ -8,16 +8,21 @@
     <script src="lib/zone.js/dist/zone.js"></script>
     <script src="lib/reflect-metadata/Reflect.js"></script>
     <script src="lib/systemjs/dist/system.src.js"></script>
+
+    <!-- load socket.io file -->
+    <script src="lib/socket.io-client/socket.io.js"></script>
+
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
     <!-- 2. Configure SystemJS -->
     <script src="systemjs.config.js"></script>
     <script>
-        System.import('app')
-                .then(null, console.error.bind(console));
+      System.import('app')
+            .then(null, console.error.bind(console));
+
+      // upon visiting our app, a 'connection' event will be emitted
+      var socket = io.connect();
     </script>
-    <!-- <base href="/"></head> -->
-   <!--  <script src="app/main.js"></script> -->
 
   </head>
 
