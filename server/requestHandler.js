@@ -63,9 +63,9 @@ module.exports = {
                 if(!user){
                   db.createUser(currentEmail, 'excited')
                     .then(function(user){
-                      //redirect to login
+                      //redirect to create calendar
                       console.log('created new user, ', user);
-                      res.redirect('/login');
+                      res.redirect('/api/calendar/create')
                     })
                     .catch(function(err){
                       console.error(err);
@@ -78,7 +78,7 @@ module.exports = {
                   } else {
                   //if user does exist and doesn't have relationship
                   //redirect to login
-                    res.redirect('/login');
+                    res.redirect('http://localhost:3000/#/login');
                   }
                 }
               })
@@ -92,6 +92,7 @@ module.exports = {
 
   calendarCreate: function(req, res, next){
     //create a new Smitten calendar for the logged in google user
+    console.log("in calendarCreate");
     calendar.calendars.insert({
       auth: oauth2Client,
       resource: {
@@ -113,18 +114,20 @@ module.exports = {
         db.updateUser(currentEmail, {relationshipId: relationship.id});
       });
 
-      res.status(200).send(event);
+      //redirect to login
+      res.redirect('http://localhost:3000/#/login');
     });
 
   },
 
-  calendarJoin: function(req,res, next){
+  googleJoin: function(req,res, next){
 
     //add partner to the user's Smitten calendar to read/write
     var calID;
     console.log("req.body.email is ", req.body.email);
     //create new user with incoming email
     //connect them to a relationship
+
     db.createUser(req.body.email, 'excited')
     .then(function(){
       return db.getRelationshipByEmail(currentEmail);
@@ -153,7 +156,7 @@ module.exports = {
           console.log("calendar Join error: ", err);
         }
         console.log("insert user  ", event);
-        res.status(201).send(event);
+        res.status(201).send(calID);
 
       });
 

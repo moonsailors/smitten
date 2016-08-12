@@ -9,7 +9,8 @@ import { LoginService } from '../services/index';
    ],
    template: `
      <div>
-       <login-input (emitLogin)="onEmitLogin($event)" ></login-input>
+       <login-input (emitLogin)="onEmitLogin($event)"
+       (emitPartner)="onEmitPartner($event)"></login-input>
      </div>
    `
  })
@@ -20,5 +21,11 @@ import { LoginService } from '../services/index';
   onEmitLogin(event: Object) {
     console.log("hit onEmitLogin");
     this.loginService.googleLogin(event);
-  }
+  };
+
+  onEmitPartner(event: Object) {
+    console.log("hit onEmitPartner");
+    this.loginService.googlePartner(event);
+  };
+
  };
