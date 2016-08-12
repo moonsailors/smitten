@@ -1,5 +1,5 @@
 export { ApiService } from './apiService';
-export { WishService } from './wishService';
+export { PostService } from './postService';
 export { CalendarService } from './calendarService';
 export { LoginService } from './loginService';
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { WishCard, WishInput } from '../ui/index';
-import { WishService } from '../services/index';
+import { PostService } from '../services/index';
 
 @Component({
   selector: 'wishes-container',
@@ -29,7 +29,7 @@ import { WishService } from '../services/index';
 export class Wishes {
   wishes = [];
 
-  constructor(private wishService: WishService) {
+  constructor(private postService: PostService) {
     // this.wishService.getRelationshipWishes(email)
     //   .subscribe(res => this.wishes = res.data);
   }
@@ -38,6 +38,7 @@ export class Wishes {
     console.log('hit on createWish', wish);
     this.wishes.push(wish);
     console.log(this.wishes);
+    this.postService.createPost(wish, 'connor.d.campbell@gmail.com');
   }
 
   onFullfillment(wish, i) {

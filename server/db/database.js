@@ -17,7 +17,7 @@ var Relationship = thinky.createModel("Relationship", {
   calendarId: type.string(),
 });
 
-var Wish = thinky.createModel("Wish", {
+var Post = thinky.createModel("Post", {
   id: type.string(),
   relationshipId: type.string(),
   creatorId: type.string(),
@@ -33,16 +33,16 @@ var Wish = thinky.createModel("Wish", {
 User.belongsTo(Relationship, 'relationship', 'relationshipId', 'id');
 Relationship.hasMany(User, 'users', 'id', 'relationshipId');
 
-Wish.belongsTo(Relationship, 'relationship', 'relationshipId', 'id');
-Relationship.hasMany(Wish, 'wishes', 'id', 'relationshipId');
-Wish.belongsTo(User, 'user', 'creatorId', 'id');
-User.hasMany(Wish, 'wishes', 'id', 'creatorId');
+Post.belongsTo(Relationship, 'relationship', 'relationshipId', 'id');
+Relationship.hasMany(Post, 'posts', 'id', 'relationshipId');
+Post.belongsTo(User, 'user', 'creatorId', 'id');
+User.hasMany(Post, 'posts', 'id', 'creatorId');
 
 
 
 module.exports = {
   User: User,
   Relationship: Relationship,
-  Wish: Wish,
+  Post: Post,
   thinky: thinky
 }

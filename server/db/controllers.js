@@ -2,7 +2,7 @@ var db = require('./database.js');
 
 var User = db.User,
     Relationship = db.Relationship,
-    Wish = db.Wish,
+    Post = db.Post,
     thinky = db. thinky,
     r = thinky.r,
     Query = thinky.qyery;
@@ -115,12 +115,12 @@ var updateRelationship = function(email, params){
 /********************************************/
 
 //create wish
-var createWish = function(email, params){
+var createPost = function(email, params){
   return getUserByEmail(email)
     .then(function(user){
       params.relationshipId = user.relationshipId;
       params.creatorId = user.id;
-      return new Wish(params).save();
+      return new Post(params).save();
     })
     .error(function(err){
       console.error(err);
@@ -128,10 +128,10 @@ var createWish = function(email, params){
     });
 };
 
-var getUserWishes = function(email){
+var getUserPosts = function(email){
   return getUserByEmail(email)
     .then(function(user){
-      return Wish.filter({creatorId: user.id}).run();
+      return Post.filter({creatorId: user.id}).run();
     })
     .error(function(err){
       console.error(err);
@@ -139,10 +139,10 @@ var getUserWishes = function(email){
     });
 }
 
-var getRelationshipWishes = function(email){
+var getRelationshipPosts = function(email){
   return getRelationshipByEmail(email)
     .then(function(relationship){
-      return Wish.filter({relationshipId: relationship.id}).run();
+      return Post.filter({relationshipId: relationship.id}).run();
     })
     .error(function(err){
       console.error(err);
@@ -150,9 +150,9 @@ var getRelationshipWishes = function(email){
     })
 }
 
-//update wish (assuming id is present)
-var updateWish = function(id, params){
-  return Wish.get(id).update(params)
+//update Post (assuming id is present)
+var updatePost = function(id, params){
+  return Post.get(id).update(params)
     .run()
     .error(function(err){
       console.error(err);
@@ -160,10 +160,10 @@ var updateWish = function(id, params){
     });
 };
 
-var deleteWish = function(id){
-  return Wish.get(id).getJoin({creator: true, relationship: true}).run()
-    .then(function(wish){
-      return wish.delete();
+var deletePost = function(id){
+  return Post.get(id).getJoin({creator: true, relationship: true}).run()
+    .then(function(post){
+      return post.delete();
     })
     .error(function(err){
       console.error(err);
@@ -174,6 +174,7 @@ var deleteWish = function(id){
 /********************************************/
 
 // r.dbDrop('smitten').run();
+
 
 
 module.exports = {
