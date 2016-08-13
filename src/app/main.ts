@@ -6,6 +6,7 @@ import { HTTP_PROVIDERS } from '@angular/http';
 import { routes } from './routes';
 import { providers } from './index';
 import { App } from './app';
+import { Store } from './store';
 // import { WishService, CalendarService, ApiService } from './services/index';
 
 // console.log("services are ", WishService, CalendarService, ApiService);
@@ -16,6 +17,7 @@ bootstrap(App, [
   ...HTTP_PROVIDERS,
   disableDeprecatedForms(),
   provideForms(),
+  Store,
   provideRouter(routes),
   { provide: LocationStrategy, useClass: HashLocationStrategy },
   ...providers

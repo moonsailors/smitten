@@ -155,7 +155,8 @@ module.exports = {
         if(err){
           console.log("calendar Join error: ", err);
         }
-        console.log("insert user  ", event);
+        console.log("insert user");
+        console.log("calID after user permissions ", calID);
         res.status(201).send(calID);
 
       });
