@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './apiService';
+import { StoreHelper } from './store-helper';
 
 @Injectable()
 export class  LoginService {
   path: string = '/api/google';
-  constructor(private apiService: ApiService) {
-
-
-  }
+  constructor(private apiService: ApiService,
+              private storeHelper: StoreHelper) {}
 
   googleLogin(event: Object) {
     console.log("hit googleLogin");
@@ -24,9 +23,10 @@ export class  LoginService {
     console.log("path is ", `${this.path}/join`);
       this.apiService.post(`${this.path}/join`, event)
       .subscribe(res => {
-        console.log("calID is ", res.body);
+        console.log("calID is ", res._body);
+        this.storeHelper.update('login', {calendarId: res._body});
         // redirect to calendar page
-        window.location.href = 'http://localhost:3000/';
+        // window.location.href = 'http://localhost:3000/';
       });
   }
 
