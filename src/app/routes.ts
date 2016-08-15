@@ -17,3 +17,4 @@ export const routes: RouterConfig = [
   },
   { path: '**', redirectTo: '' }
 ];
+
