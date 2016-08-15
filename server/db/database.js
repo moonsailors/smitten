@@ -3,11 +3,12 @@ var thinky = require('thinky')(config);
 
 var type = thinky.type;
 
-//Schemas 
+//Schemas
 /****************************/
 var User = thinky.createModel("User", {
   id: type.string(),
   relationshipId: type.string(),
+  token: type.object(),
   email: type.string(),
   mood: type.string()
 });

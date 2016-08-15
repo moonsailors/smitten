@@ -74,7 +74,17 @@ module.exports = {
                   //if user does exist and has relationship
                   //redirect to '/'
                   if(user.relationshipId){
-                    res.redirect('/');
+                    //save tokens
+                    //{route: aldkfoiefj}
+                    console.log('tokens are ', tokens);
+                    db.User.get(user.id)
+                    .update({token: tokens})
+                    .run()
+                    .then(function(user){
+                      console.log('updated user ', user);
+                      res.redirect('/');
+                    });
+
                   } else {
                   //if user does exist and doesn't have relationship
                   //redirect to login

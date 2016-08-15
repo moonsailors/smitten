@@ -184,5 +184,8 @@ module.exports = {
   deleteUser: deleteUser,
   createRelationship: createRelationship,
   getRelationshipByEmail: getRelationshipByEmail,
-  updateRelationship: updateRelationship
+  updateRelationship: updateRelationship,
+  User: User,
+  Post: Post,
+  Relationship: Relationship
 }
