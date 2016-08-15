@@ -16,6 +16,7 @@ export class  LoginService {
         console.log("res body ", res._body);
         window.location.href = res._body;
       });
+      window.location.href = 'http://localhost:3000/';
   };
 
   googlePartner(event: Object) {
@@ -26,7 +27,7 @@ export class  LoginService {
         console.log("calID is ", res._body);
         this.storeHelper.update('login', {calendarId: res._body});
         // redirect to calendar page
-        // window.location.href = 'http://localhost:3000/';
+        window.location.href = 'http://localhost:3000/';
       });
   }
 

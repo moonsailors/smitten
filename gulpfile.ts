@@ -59,7 +59,8 @@ gulp.task("libs", () => {
             'rxjs/**',
             'zone.js/dist/**',
             '@angular/**',
-            'socket.io-client/socket.io.js'
+            'socket.io-client/socket.io.js',
+            'angular2-grid/**'
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("build/lib"));
 });

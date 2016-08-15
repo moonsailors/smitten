@@ -14,6 +14,11 @@ export class  CalendarService {
     console.log("path is ", `${this.path}/eventAdd`);
       this.apiService.post(`${this.path}/eventAdd`, event)
       .subscribe(res => console.log("response ", res));
-  }
+  };
+
+  getCalendarId() {
+    console.log("hit get Calendar Id");
+    return this.apiService.get(`${this.path}/calId`);
+  };
 
 }

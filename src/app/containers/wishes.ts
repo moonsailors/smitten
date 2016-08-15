@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { WishCard, WishInput } from '../ui/index';
 import { PostService } from '../services/index';
+import { PostGrid } from './grid';
 
 @Component({
   selector: 'wishes-container',
   directives: [
     WishCard,
-    WishInput
+    WishInput,
+    PostGrid
   ],
   styles: [],
   template: `
@@ -21,6 +23,7 @@ import { PostService } from '../services/index';
         >
         </wish-card>
       </div>
+      <post-grid></post-grid>
     </div>
   `
 
