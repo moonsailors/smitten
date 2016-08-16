@@ -4,8 +4,6 @@ var postRequestHandler = require('./postsRequestHandler.js');
 module.exports = function (app, express){
 
 
-  app.post('/api/amazonSearch', requestHandler.amazonSearchItem);
-
   app.get('/api/google/login', requestHandler.googleLogin);
   app.get('/googleOAuth/', requestHandler.googleRedirect);
   app.post('/api/google/join', requestHandler.googleJoin);
