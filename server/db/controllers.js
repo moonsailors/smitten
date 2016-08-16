@@ -176,10 +176,10 @@ var deletePost = function(id){
 // r.dbDrop('smitten').run();
 // var relationshipId;
 
-// createUser('connor.d.campbell@gmail.com', 'saucy')
+// createUser('connor.d.campbell@gmail.com', 'nice')
 //   .then(function(user){
 //     console.log(user);
-//     return createUser('ashley.mcg.campbell@gmail.com', 'sexy');
+//     return createUser('ashley.mcg.campbell@gmail.com', 'cute');
 //   })
 //   .then(function(user){
 //     console.log(user);
