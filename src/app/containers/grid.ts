@@ -5,7 +5,7 @@ import {  NgGrid,
           NgGridItemConfig, 
           NgGridItemEvent } from 'angular2-grid';
 
-interface Box {
+interface Post {
   id: number;
   config: NgGridItemConfig;
 }
@@ -33,7 +33,7 @@ interface Box {
 
 export class PostGrid {
 
-  private boxes: Array<Box> = [];
+  private boxes: Array<Post> = [];
 
   constructor() {
     for (var i = 0; i < 4; i++) {
@@ -55,7 +55,6 @@ export class PostGrid {
     'min_rows': 1,
     'col_width': 2,
     'row_height': 2,
-    'cascade': 'up',
     'min_width': 50,
     'min_height': 50,
     'fix_to_grid': false,

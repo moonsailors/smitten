@@ -2,22 +2,22 @@ var request = require('request');
 var db = require('./db/controllers');
 
 exports.getRelationshipPosts = function(req, res, next){
-  console.log('get relationship posts hit');
+  console.log('get relationship posts hit', req.body);
   res.end(req.url, 200);
 };
 
 exports.createPost = function(req, res, next){
-  console.log('createPost hit');
+  console.log('createPost hit', req.body);
   res.end();
 };
 
 exports.deletePost = function(req, res, next){
-  console.log('deletePost hit');
+  console.log('deletePost hit', req.body);
   res.end();
 };
 
 exports.updatePost = function(req, res, next){
-  console.log('updatePost hit');
+  console.log('updatePost hit', req.body);
   res.end();
 };
 

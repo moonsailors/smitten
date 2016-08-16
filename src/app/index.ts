@@ -3,7 +3,7 @@ export { routes } from './routes';
 export { Store } from './store';
 // export { WishService, CalendarService, ApiService } from './services/index';
 export { Wishes, Main, Calendar, Login } from './containers/index';
-export { WishCard, CalendarInput } from './ui/index';
+export { PostCard, CalendarInput } from './ui/index';
 
 import * as services from './services/index';
 console.log("services are ", services);
