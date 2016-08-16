@@ -3,15 +3,16 @@ import { Component,
           Output,
           EventEmitter } from '@angular/core';
 import { Dialog } from 'primeng/primeng';
+import { Button } from 'primeng/primeng';
 
 @Component ({
   selector: 'calendar-input',
-  directives: [ Dialog ],
+  directives: [ Dialog, Button ],
   styles: [],
   template: `
     <div>
       <p-dialog header="Add Event" [(visible)]="display" modal="true" showEffect="fade">
-      <form (ngSubmit)="addEvent()">
+      <form class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix" (ngSubmit)="addEvent()">
         Event
         <input type="text" [(ngModel)]="event.summary" name="event" placeholder="...add and event">
         <br>
@@ -26,11 +27,11 @@ import { Dialog } from 'primeng/primeng';
         <br>
         End Time
         <input type="datetime" [(ngModel)]="event.end.datetime" name="end" placeholder="to">
-        <button type="submit">Submit</button>
+        <button pButton class="ui-button" type="submit" label="Add"></button>
       </form>
       </p-dialog>
 
-      <button type="text" (click)="showDialog()" pButton icon="fa-external-link-square" label="Show">Add Event</button>
+      <button type="text" class="ui-button" (click)="showDialog()" pButton icon="fa-external-link-square" label="Create Event"></button>
     </div>
   `
 })
