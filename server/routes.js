@@ -12,6 +12,7 @@ module.exports = function (app, express){
 
   app.get('/api/calendar/create', requestHandler.calendarCreate);
   app.post('/api/calendar/eventAdd', requestHandler.calendarEventAdd);
+  app.get('/api/calendar/calId', requestHandler.calendarId);
 
 
   app.get('/api/posts/relationship/:email', postRequestHandler.getRelationshipPosts);
