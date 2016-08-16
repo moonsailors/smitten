@@ -41,6 +41,8 @@
     "google-auth-library": "^0.9.8",
     "googleapis": "^12.0.0",
     "gulp-inject-modules": "^1.0.0",
+    "jquery": "^3.1.0",
+    "jquery-ui": "^1.12.0",
     "lodash": "^4.13.1",
     "primeng": "^1.0.0-beta.12",
     "primeui": "^4.1.14",

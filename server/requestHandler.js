@@ -180,20 +180,6 @@ module.exports = {
     var calId;
     console.log("event ", req.body);
 
-
-    var event = {
-    'summary': 'Google I/O 2015',
-    'location': '800 Howard St., San Francisco, CA 94103',
-    'description': 'A chance to hear more about Google\'s developer products.',
-    'start': {
-      'dateTime': '2016-08-20T09:00:00-07:00',
-      'timeZone': 'America/Los_Angeles',
-    },
-    'end': {
-      'dateTime': '2016-08-20T17:00:00-07:00',
-      'timeZone': 'America/Los_Angeles',
-    }};
-
     db.getRelationshipByEmail(currentEmail)
     .then(function(relationship){
       calId = relationship.calendarId;
@@ -203,7 +189,7 @@ module.exports = {
       calendar.events.insert({
         auth: oauth2Client,
         calendarId: calId,
-        resource: event,
+        resource: req.body,
       }, function(err, event) {
         if (err) {
           console.log('There was an error contacting the Calendar service: ' + err);

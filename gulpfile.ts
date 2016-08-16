@@ -62,6 +62,7 @@ gulp.task("libs", () => {
             'socket.io-client/socket.io.js',
             'angular2-grid/**',
             'jquery/**',
+            'jquery-ui/**',
             'primeng/**',
             'primeui/**'
         ], {cwd: "node_modules/**"}) /* Glob required here. */
