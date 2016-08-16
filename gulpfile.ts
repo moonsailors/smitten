@@ -60,7 +60,10 @@ gulp.task("libs", () => {
             'zone.js/dist/**',
             '@angular/**',
             'socket.io-client/socket.io.js',
-            'angular2-grid/**'
+            'angular2-grid/**',
+            'jquery/**',
+            'primeng/**',
+            'primeui/**'
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("build/lib"));
 });

@@ -18,13 +18,6 @@ var calendarUrl = "https://www.googleapis.com/calendar/v3/calendars";
 var calenderId;
 var currentEmail;
 
-// Amazon API authorization
-var amazon = require('amazon-product-api');
-var amazonClient = amazon.createClient({
-  awsId: client.amazon.access_key_id,
-  awsSecret: client.amazon.secret_access_key,
-  awsTag: client.amazon.associate_tag
-});
 
 module.exports = {
 
@@ -223,16 +216,5 @@ module.exports = {
 
   },
 
-  amazonSearchItem: function(req, res, next) {
 
-    amazonClient.itemSearch(req.body)
-    .then(function(results) {
-      console.log(results);
-    })
-    .catch(function(err) {
-      var errString = JSON.stringify(err);
-      console.log(errString);
-    });
-
-  }
 };
