@@ -45,6 +45,15 @@ export class ApiService {
   //   return body.data || { };
   // }
 
+  post(path: string, body): Observable<any> {
+    return this.http.post(`${this.api_url}${path}`, JSON.stringify(body), {headers: this.headers})
+      .map(this.checkForError)
+      .catch(err => Observable.throw(err))
+      .map(res => {
+        return res;
+       });
+  }
+
   get(path: string): Observable<any> {
     return this.http.get(`${this.api_url}${path}`, {headers: this.headers})
       .map(this.checkForError)
@@ -53,15 +62,6 @@ export class ApiService {
         return res;
       });
 
-  }
-
-  post(path: string, body): Observable<any> {
-    return this.http.post(`${this.api_url}${path}`, JSON.stringify(body), {headers: this.headers})
-      .map(this.checkForError)
-      .catch(err => Observable.throw(err))
-      .map(res => {
-        return res;
-       });
   }
 
   delete(path: string): Observable<any> {

@@ -15,8 +15,8 @@ module.exports = function (app, express){
   app.get('/api/calendar/calId', requestHandler.calendarId);
 
 
-  app.get('/api/posts/relationship/:email', postRequestHandler.getRelationshipPosts);
   app.post('/api/posts/:email', postRequestHandler.createPost);
+  app.get('/api/posts/relationship/:email', postRequestHandler.getRelationshipPosts);
   app.delete('/api/posts/:id', postRequestHandler.deletePost);
   app.put('/api/posts/:id', postRequestHandler.updatePost);
 

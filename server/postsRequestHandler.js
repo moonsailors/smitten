@@ -2,22 +2,35 @@ var request = require('request');
 var db = require('./db/controllers');
 
 exports.getRelationshipPosts = function(req, res, next){
-  console.log('get relationship posts hit');
-  res.end(req.url, 200);
+  console.log('get relationship posts hit', req.body);
+  var email = req.url.split('/').pop();
+  db.getRelationshipPosts(email)
+    .then(function(result){
+      res.status(200).send(result);
+    })
 };
 
 exports.createPost = function(req, res, next){
-  console.log('createPost hit');
-  res.end();
+  console.log('createPost hit', req.body);
+  var email = req.url.split('/').pop();
+  db.createPost(email, req.body)
+    .then(function(post){
+      res.status(200).send(post);
+    });
 };
 
 exports.deletePost = function(req, res, next){
-  console.log('deletePost hit');
-  res.end();
+  console.log('deletePost hit', req.body);
+  var id = req.url.split('/').pop();
+  db.deletePost(id)
+    .then(function(result){
+      console.log(result);
+      res.status(200).send(result);  
+    });
 };
 
 exports.updatePost = function(req, res, next){
-  console.log('updatePost hit');
+  console.log('updatePost hit', req.body);
   res.end();
 };
 
