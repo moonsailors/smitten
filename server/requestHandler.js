@@ -130,6 +130,14 @@ module.exports = {
 
   },
 
+  calendarId: function(req,res,next){
+    db.getRelationshipByEmail(currentEmail)
+    .then(function(relationship){
+      console.log('calId is ', relationship.calendarId);
+      res.status(200).send(relationship.calendarId);
+    })
+  },
+
   googleJoin: function(req,res, next){
 
     //add partner to the user's Smitten calendar to read/write
