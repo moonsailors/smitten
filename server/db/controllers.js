@@ -111,10 +111,10 @@ var updateRelationship = function(email, params){
     })
 };
 
-//Wishlist CRUD
+//Post CRUD
 /********************************************/
 
-//create wish
+//create post
 var createPost = function(email, params){
   return getUserByEmail(email)
     .then(function(user){
@@ -174,6 +174,30 @@ var deletePost = function(id){
 /********************************************/
 
 // r.dbDrop('smitten').run();
+// var relationshipId;
+
+// createUser('connor.d.campbell@gmail.com', 'saucy')
+//   .then(function(user){
+//     console.log(user);
+//     return createUser('ashley.mcg.campbell@gmail.com', 'sexy');
+//   })
+//   .then(function(user){
+//     console.log(user);
+//     return createRelationship('gobledegook')
+//   })
+//   .then(function(relationship){
+//     console.log(relationship);
+//     relationshipId = relationship.id;
+//     return updateUser('ashley.mcg.campbell@gmail.com', {relationshipId: relationshipId});
+//   })
+//   .then(function(user){
+//     console.log(user);
+//     return updateUser('connor.d.campbell@gmail.com', {relationshipId: relationshipId});
+//   })
+//   .error(function(err){
+//       console.error(err);
+//       throw err;
+//     });
 
 
 
@@ -185,6 +209,9 @@ module.exports = {
   createRelationship: createRelationship,
   getRelationshipByEmail: getRelationshipByEmail,
   updateRelationship: updateRelationship,
+  createPost: createPost,
+  deletePost: deletePost,
+  getRelationshipPosts: getRelationshipPosts,
   User: User,
   Post: Post,
   Relationship: Relationship

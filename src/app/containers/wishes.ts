@@ -34,7 +34,19 @@ export class Wishes {
 
   private posts = [];
 
-  constructor(private postService: PostService) {}
+  constructor(private postService: PostService) {
+    console.log('constructor');
+    this.postService.getRelationshipPosts("connor.d.campbell@gmail.com")
+      .subscribe(res => {
+        let newPosts = res.json();
+        console.log(newPosts);
+        newPosts.forEach(function(post, index){
+          post.index = index;
+          console.log(post);
+        });
+        this.posts = newPosts;
+      });
+  }
 
   private gridConfig: NgGridConfig = <NgGridConfig> {
     'margins': [5],
@@ -64,15 +76,22 @@ export class Wishes {
     var newPost = {
       title: post.title,
       description: post.description,
-      id: this.posts.length - 1,
+      index: this.posts.length,
       config : conf
     };
-    this.posts.push(newPost);
+
+    this.postService.createPost("connor.d.campbell@gmail.com", newPost)
+      .subscribe(res => {
+        var post = res.json();
+        post.index = this.posts.push(post) - 1;
+      });
   }
 
   onPostCompletion(post) {
     console.log('hit post completion');
-    this.posts.splice(post.id - 1, 1);
+    this.postService.deletePost(post.id)
+      .subscribe(res => console.log(res));
+    this.posts.splice(post.index, 1);
   }
 
   private _generateDefaultItemConfig(): NgGridItemConfig {

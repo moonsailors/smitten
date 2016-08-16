@@ -29,6 +29,7 @@ import {
       </div>
       <div>
         {{post.description}}
+        {{post.index}}
       </div>
       <div>
         <button (click)="onCompletion()">done</button>
