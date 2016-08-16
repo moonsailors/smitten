@@ -2,32 +2,43 @@ import { Component,
           Input,
           Output,
           EventEmitter } from '@angular/core';
+import { Dialog } from 'primeng/primeng';
 
 @Component ({
   selector: 'calendar-input',
+  directives: [ Dialog ],
   styles: [],
   template: `
     <div>
-      <h2>{{event.summary}}</h2>
+      <p-dialog header="Add Event" [(visible)]="display" modal="true" showEffect="fade">
       <form (ngSubmit)="addEvent()">
         Event
         <input type="text" [(ngModel)]="event.summary" name="event" placeholder="...add and event">
+        <br>
         Description
         <input type="text" [(ngModel)]="event.description" name="description" placeholder="...add a description">
+        <br>
         Location
         <input type="text" [(ngModel)]="event.location" name="location" placeholder="...do we want to know?">
+        <br>
         Start Time
         <input type="datetime" [(ngModel)]="event.start.datetime" name="start" placeholder="from">
+        <br>
         End Time
         <input type="datetime" [(ngModel)]="event.end.datetime" name="end" placeholder="to">
-        <button type="submit">Add Event</button>
+        <button type="submit">Submit</button>
       </form>
+      </p-dialog>
+
+      <button type="text" (click)="showDialog()" pButton icon="fa-external-link-square" label="Show">Add Event</button>
     </div>
   `
 })
 
 export class CalendarInput {
   @Output () emitAddition =  new EventEmitter();
+
+  display: boolean = false;
 
   event = {
     summary: '',
@@ -41,6 +52,10 @@ export class CalendarInput {
       datetime: '',
       timeZone: 'Eastern'
     }
+  };
+
+  showDialog() {
+    this.display = !this.display;
   };
 
   addEvent() {

@@ -5,14 +5,18 @@
         'app': 'app', // 'dist',
         'rxjs': 'lib/rxjs',
         '@angular': 'lib/@angular',
-        'angular2-grid': 'lib/angular2-grid/dist'
+        'angular2-grid': 'lib/angular2-grid/dist',
+        'jquery': 'lib/jquery',
+        'primeng': 'lib/primeng'
     };
 
     // packages tells the System loader how to load when no filename and/or no extension
     var packages = {
         'app': {main: 'main.js', defaultExtension: 'js'},
         'rxjs': {defaultExtension: 'js'},
-        'angular2-grid': { main: 'main.js',  defaultExtension: 'js' }
+        'angular2-grid': { main: 'main.js',  defaultExtension: 'js' },
+        'jquery': {defaultExtension: 'js'},
+        'primeng': {defaultExtension: 'js'}
     };
 
     var packageNames = [
