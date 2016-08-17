@@ -10,7 +10,7 @@ import {
   NgGridItemEvent
 } from 'angular2-grid';
 import { Galleria } from 'primeng/primeng';
-import { Draggable } from 'ng2-draggable';
+import { Draggable } from 'ng2-draggable/src/index';
 
 
 @Component({

@@ -22,7 +22,7 @@
         'jquery-ui': {defaultExtension: 'js'},
         'primeui': {defaultExtension: 'js'},
         'primeng': {defaultExtension: 'js'},
-        'ng2-draggable': {defaultExtension: 'js'}
+        'ng2-draggable': {main: 'index.js', defaultExtension: 'js'}
     };
 
     var packageNames = [
