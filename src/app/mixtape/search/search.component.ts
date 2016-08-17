@@ -10,20 +10,9 @@ import { SoundCloudSearchResultsComponent } from './search-results.component';
     SoundCloudSearchInputComponent,
     SoundCloudSearchResultsComponent
   ],
-  providers: [SearchSoundCloud],
   template: `
     <sc-search-input></sc-search-input>
     <sc-search-results></sc-search-results>
   `
 })
-export class SoundCloudSearchComponent {
-  searchResult: any;
-
-  constructor(private searchSoundCloud: SearchSoundCloud) {
-    this.searchSoundCloud.search()
-      .subscribe(
-        res => this.searchResult = res,
-        err => console.log(err),
-        () => console.log(this.searchResult));
-  }
-}
+export class SoundCloudSearchComponent {}
