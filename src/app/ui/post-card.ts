@@ -9,40 +9,52 @@ import {
   NgGridItemConfig, 
   NgGridItemEvent
 } from 'angular2-grid';
+import { Galleria } from 'primeng/primeng';
+import { Draggable } from 'ng2-draggable';
 
-// interface Post {
-//   id: number;
-//   config: NgGridItemConfig;
-// }
 
 @Component({
   selector: 'post-card',
   styles: [],
   directives: [
-    NgGridItem
+    NgGridItem,
+    Galleria,
+    Draggable
   ],
   template: `
-  <div [(ngGridItem)]="post.config">
-    <div class="handle"> 
-      <div>
-        {{post.title}}
-      </div>
-      <div>
-        {{post.description}}
-        {{post.index}}
-      </div>
-      <div>
-        <button (click)="onCompletion()">done</button>
-      </div> 
+  <div [draggable]>
+    <div class="handle"><h4>{{post.title}}</h4></div>
+    <div *ngIf="note">
+      <p>{{post.description}}</p>
     </div>
+    <div *ngIf="images">
+      <p-galleria [images]="post.images" panelWidth="500" panelHeight="313"></p-galleria>
+    </div>
+    <div>
+      <button (click)="onCompletion()">done</button>
+    </div> 
   </div>
 
   `
 })
 
+// [(ngGridItem)]="post.config"
+
 export class PostCard {
   @Input() post = {};
+  @Input() i;
   @Output() complete = new EventEmitter();
+
+  note: boolean = true;
+  images: boolean = true;
+
+  constructor() {
+    if (this.post.type === "note") {
+      this.note = true;
+    } else {
+      this.images = true;
+    }
+  }
 
   onCompletion() {
     console.log('button pressed');

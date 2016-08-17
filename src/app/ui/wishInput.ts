@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Dialog } from 'primeng/primeng';
-import { Button, SelectButton, InputText, InputTextarea } from 'primeng/primeng';
+import { Button, SelectButton, InputText, InputTextarea, Calendar } from 'primeng/primeng';
 
 
 @Component({
@@ -11,21 +11,20 @@ import { Button, SelectButton, InputText, InputTextarea } from 'primeng/primeng'
     Dialog,
     SelectButton,
     InputText,
-    InputTextarea
+    InputTextarea,
+    Calendar
   ],
   template: `
   <div>
-    <p-dialog header="Add a Post" [(visible)]="display">
+    <p-dialog header="Add a Post" [(visible)]="display" showEffect="fade">
       <p-selectButton [options]="postTypes" [(ngModel)]="selectedType" (click)="toggleType()"></p-selectButton>
       <div *ngIf="postInputNoteDisplay">
         <input type="text" pInputText [(ngModel)]="post.title"/>
         <textarea pInputTextarea [(ngModel)]="post.description"></textarea>
       </div>
       <div *ngIf="postInputPhotoDisplay">
-
-      </div>
-      <div *ngIf="postInputReminderDisplay">
-
+        <input type="text" pInputText [(ngModel)]="post.title"/>
+        <input type="text" pInputText [(ngModel)]="post.photos[0]"/>
       </div>
       <button (click)="hideDisplay()" pButton lable="exit"></button>
     </p-dialog>
@@ -35,12 +34,6 @@ import { Button, SelectButton, InputText, InputTextarea } from 'primeng/primeng'
   </div>
   `
 })
-
-// <form (ngSubmit)="onWishSubmit()">
-//   <input type="text" [(ngModel)]="wish.title" name="title" placeholder="...add a title">
-//   <input type="text" [(ngModel)]="wish.description" name="description" placeholder="...add a description">
-//   <button type="submit">Add</button>
-// </form>
 
 export class WishInput {
   @Output() createWish = new EventEmitter();
@@ -57,8 +50,7 @@ export class WishInput {
   selectedType: string = "";
   postTypes = [
     { label: 'note', value: 'note' },
-    { label: 'photo', value: 'photo' },
-    { label: 'reminder', value: 'reminder' }
+    { label: 'photos', value: 'photos' }
   ];
 
   postInputNoteDisplay: boolean = false;
@@ -69,21 +61,17 @@ export class WishInput {
     if (this.selectedType === 'note') {
       this.postInputNoteDisplay = true;
       this.postInputPhotoDisplay = false;
-      this.postInputReminderDisplay = false;
-    }else if (this.selectedType === 'photo') {
-      this.postInputNoteDisplay = false;
-      this.postInputPhotoDisplay = true;
-      this.postInputReminderDisplay = false;
     }else {
       this.postInputNoteDisplay = false;
-      this.postInputPhotoDisplay = false;
-      this.postInputReminderDisplay = true;
+      this.postInputPhotoDisplay = true;
     }
   }
 
   post = {
+    type: this.selectedType,
     title: "",
     description: "",
+    photos: [""],
   };
 
   onWishSubmit() {
