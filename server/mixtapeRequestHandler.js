@@ -15,8 +15,15 @@ exports.searchSoundCloud = function(req, res, next) {
   SC.get('/tracks', query)
     .then((results) => {
       console.log('success!  search results received from soundcloud');
+      results = processSearchResults(results);
       res.send(results);
     }).catch((error) => {
       console.log('error: ', error);
     });
 };
+
+function processSearchResults(results) {
+  return results.map(function(result) {
+    return result.title;
+  });
+}
