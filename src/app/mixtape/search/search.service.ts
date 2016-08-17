@@ -6,7 +6,8 @@ import { ApiService } from '../../services/index';
 export class SearchSoundCloud {
   constructor(private apiService: ApiService) {}
 
-  search() {
-    return this.apiService.post('/api/soundcloud-search', {q: 'justin-bieber'});
+  search(searchParams) {
+    console.log('making the API call to SoundCloud!');
+    return this.apiService.post('/api/soundcloud-search', searchParams);
   }
 }
