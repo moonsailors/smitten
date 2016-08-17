@@ -3,7 +3,7 @@ import { Main,
         Wishes,
         Calendar,
         Login } from './containers/index';
-import { SoundCloudSearchComponent } from './mixtape/search/index';
+import { SoundCloudSearchComponent } from './mixtape/search/search.component';
 
 
 export const routes: RouterConfig = [
