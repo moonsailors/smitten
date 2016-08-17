@@ -15,8 +15,6 @@ var scopes = [
 ];
 
 var calendarUrl = "https://www.googleapis.com/calendar/v3/calendars";
-var calenderId;
-var currentEmail;
 
 module.exports = {
 
@@ -45,15 +43,16 @@ module.exports = {
 
         plus.people.get({ userId: 'me', auth: oauth2Client}, function(err, response){
             console.log("plus res ", response);
-            currentEmail = response.emails[0].value;
+            req.session.username = response.emails[0].value;
+            // currentEmail = response.emails[0].value;
 
-            db.getUserByEmail(currentEmail)
+            db.getUserByEmail(req.session.username)
               .then(function(user){
                   //if user doesn't exist, create new user
                   //and redirect to login
                   console.log('returned user, ', user);
                 if(!user){
-                  db.createUser(currentEmail, 'excited')
+                  db.createUser(req.session.username, 'excited')
                     .then(function(user){
                       //redirect to create calendar
                       console.log('created new user, ', user);
@@ -106,14 +105,13 @@ module.exports = {
       }
       console.log("Smitten calendar created ", event);
       //add calendarID "event.id" entry to Users table
-      calendarId = event.id;
 
       //add the calendar id to a relationship
       //attach that relationshipid to a user
 
       db.createRelationship(event.id)
       .then(function(relationship){
-        db.updateUser(currentEmail, {relationshipId: relationship.id});
+        db.updateUser(req.session.username, {relationshipId: relationship.id});
       });
 
       //redirect to login
@@ -123,7 +121,7 @@ module.exports = {
   },
 
   calendarId: function(req,res,next){
-    db.getRelationshipByEmail(currentEmail)
+    db.getRelationshipByEmail(req.session.username)
     .then(function(relationship){
       console.log('calId is ', relationship.calendarId);
       res.status(200).send(relationship.calendarId);
@@ -140,7 +138,7 @@ module.exports = {
 
     db.createUser(req.body.email, 'excited')
     .then(function(){
-      return db.getRelationshipByEmail(currentEmail);
+      return db.getRelationshipByEmail(req.session.username);
     })
     .then(function(relationship){
       db.updateUser(req.body.email, {relationshipId: relationship.id});
@@ -179,7 +177,7 @@ module.exports = {
     var calId;
     console.log("event ", req.body);
 
-    db.getRelationshipByEmail(currentEmail)
+    db.getRelationshipByEmail(req.session.username)
     .then(function(relationship){
       calId = relationship.calendarId;
       console.log("calId ", calId);

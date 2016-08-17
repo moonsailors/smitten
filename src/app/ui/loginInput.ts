@@ -2,6 +2,7 @@ import { Component,
           Input,
           Output,
           EventEmitter } from '@angular/core';
+import { LoginService } from '../services/loginService';
 
 @Component({
   selector: 'login-input',
@@ -41,9 +42,12 @@ import { Component,
           <fieldset class="field">
             <legend>Login to Smitten</legend>
             <container id="container">
-            <p class="submit"><input type="submit" (click)="loginUser()" name="commit" value="Sign in with Google"></p>
-            <p><input type="text" name="login" [(ngModel)]="partner.email" value="" placeholder="Partner Email"></p>
-            <p class="link-partner" (click)="addPartner()"><input type="submit" name="commit" value="Link partner account"></p>
+            <p [hidden]="loggedIn" class="submit"><input type="submit" (click)="loginUser()" name="commit" value="Sign in with Google"></p>
+            <p [hidden]="!loggedIn"> Please link your partner
+            <input type="text" name="login" [(ngModel)]="partner.email" value="" placeholder="Partner Email">
+            </p>
+            <p [hidden]="!loggedIn" class="link-partner" (click)="addPartner()">
+            <input type="submit" name="commit" value="Link partner account"></p>
             </container>
           </fieldset>
         </form>
@@ -57,14 +61,21 @@ export class LoginInput {
     @Output () emitLogin =  new EventEmitter();
     @Output () emitPartner = new EventEmitter();
 
+    constructor (private loginService: LoginService) {
+        this.loggedIn = this.loginService.isLoggedIn;
+
+    }
+
     user = {};
     partner = {
       email: ''
     };
+    loggedIn;
 
     loginUser() {
       console.log("hit loginUser");
       this.emitLogin.next(this.user);
+
     };
 
     addPartner() {
