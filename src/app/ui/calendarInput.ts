@@ -23,11 +23,11 @@ import { Dialog, Button, InputText, Calendar } from 'primeng/primeng';
         <input pInputText type="text" [(ngModel)]="event.location" name="location" placeholder="...do we want to know?">
         <br>
         Start Time
-        <p-calendar [(ngModel)]="event.start.datetime" name="start" inputStyleClass="ui-calendar" dateFormat="mm/dd/yy" timeFormat="HH:mm">
+        <p-calendar [(ngModel)]="start.datetime" name="start" inputStyleClass="ui-calendar" dateFormat="yy-mm-dd" timeFormat="HH:mm:ss">
         </p-calendar>
         <br>
         End Time
-        <p-calendar [(ngModel)]="event.end.datetime" name="end" inputStyleClass="ui-calendar" dateFormat="mm/dd/yy" timeFormat="HH:mm">
+        <p-calendar [(ngModel)]="end.datetime" name="end" inputStyleClass="ui-calendar" dateFormat="yy-mm-dd" timeFormat="HH:mm:ss">
         </p-calendar>
         <button pButton class="ui-button" type="submit" label="Add"></button>
       </form>
@@ -44,17 +44,25 @@ export class CalendarInput {
 
   display: boolean = false;
 
+  start = {
+    datetime: ''
+  };
+
+  end = {
+    datetime: ''
+  };
+
   event = {
     summary: '',
     location: '',
     description: '',
     start: {
-      datetime: '',
-      timeZone: 'America/Los_Angeles'
+      dateTime: '',
+      timeZone: 'America/New_York'
     },
     end: {
-      datetime: '',
-      timeZone: 'America/Los_Angeles'
+      dateTime: '',
+      timeZone: 'America/New_York'
     }
   };
 
@@ -62,6 +70,11 @@ export class CalendarInput {
     this.display = true;
   };
 
+  convertTime(datetime) {
+    var newdate = datetime.replace(/ /i, 'T');
+    newdate = newdate + '-04:00';
+    return newdate;
+  }
   addEvent() {
     console.log("hit add Event");
     // var event = {
@@ -77,6 +90,8 @@ export class CalendarInput {
     //     'timeZone': 'America/Los_Angeles'
     //   }
     // };
+    this.event.start.dateTime = this.convertTime(this.start.datetime);
+    this.event.end.dateTime = this.convertTime(this.end.datetime);
     console.log("event is ", this.event);
     this.emitAddition.next(this.event);
   };
