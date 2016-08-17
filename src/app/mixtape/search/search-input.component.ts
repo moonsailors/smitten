@@ -9,7 +9,7 @@ import { SearchSoundCloud } from './search.service';
 })
 export class SoundCloudSearchInputComponent {
   resultMax: number = 50;
-  search: Object = {
+  search = {
     q: '',
     limit: this.resultMax
   };
