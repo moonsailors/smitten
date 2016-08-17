@@ -52,7 +52,7 @@
     "rethinkdb": "^2.3.2",
     "rxjs": "5.0.0-beta.6",
     "socket.io": "^1.4.8",
-    "soundcloud": "^3.1.2",
+    "soundcloud-node-es6": "0.0.1",
     "systemjs": "^0.19.36",
     "thinky": "^2.3.4",
     "typescript": "^1.8.10",
