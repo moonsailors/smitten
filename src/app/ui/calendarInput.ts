@@ -23,10 +23,12 @@ import { Dialog, Button, InputText, Calendar } from 'primeng/primeng';
         <input pInputText type="text" [(ngModel)]="event.location" name="location" placeholder="...do we want to know?">
         <br>
         Start Time
-        <p-calendar dateFormat="mm/dd/yy" timeFormat="HH:mm"></p-calendar>
+        <p-calendar [(ngModel)]="event.start.datetime" name="start" inputStyleClass="ui-calendar" dateFormat="mm/dd/yy" timeFormat="HH:mm">
+        </p-calendar>
         <br>
         End Time
-        <p-calendar dateFormat="mm/dd/yy" timeFormat="HH:mm"></p-calendar>
+        <p-calendar [(ngModel)]="event.end.datetime" name="end" inputStyleClass="ui-calendar" dateFormat="mm/dd/yy" timeFormat="HH:mm">
+        </p-calendar>
         <button pButton class="ui-button" type="submit" label="Add"></button>
       </form>
       </footer>
@@ -48,11 +50,11 @@ export class CalendarInput {
     description: '',
     start: {
       datetime: '',
-      timeZone: 'Eastern'
+      timeZone: 'America/Los_Angeles'
     },
     end: {
       datetime: '',
-      timeZone: 'Eastern'
+      timeZone: 'America/Los_Angeles'
     }
   };
 
@@ -62,20 +64,21 @@ export class CalendarInput {
 
   addEvent() {
     console.log("hit add Event");
-    var event = {
-      'summary': 'Google I/O 2015',
-      'location': '800 Howard St., San Francisco, CA 94103',
-      'description': 'A chance to hear more about Google\'s developer products.',
-      'start': {
-        'dateTime': '2016-08-25T09:00:00-07:00',
-        'timeZone': 'America/Los_Angeles',
-      },
-      'end': {
-        'dateTime': '2016-08-25T17:00:00-07:00',
-        'timeZone': 'America/Los_Angeles'
-      }
-    };
-    this.emitAddition.next(event);
+    // var event = {
+    //   'summary': 'Google I/O 2015',
+    //   'location': '800 Howard St., San Francisco, CA 94103',
+    //   'description': 'A chance to hear more about Google\'s developer products.',
+    //   'start': {
+    //     'dateTime': '2016-08-25T09:00:00-07:00',
+    //     'timeZone': 'America/Los_Angeles',
+    //   },
+    //   'end': {
+    //     'dateTime': '2016-08-25T17:00:00-07:00',
+    //     'timeZone': 'America/Los_Angeles'
+    //   }
+    // };
+    console.log("event is ", this.event);
+    this.emitAddition.next(this.event);
   };
 
 
