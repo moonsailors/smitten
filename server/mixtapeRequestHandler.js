@@ -13,11 +13,10 @@ exports.searchSoundCloud = function(req, res, next) {
   const query = req.body;
 
   SC.get('/tracks', query)
-  .then((result) => {
-    console.log('success?');
-    console.log(result);
-    res.send(result);
-  }).catch((error) => {
-    console.log(error);
-  });
+    .then((results) => {
+      console.log('success!  search results received from soundcloud');
+      res.send(results);
+    }).catch((error) => {
+      console.log('error: ', error);
+    });
 };
