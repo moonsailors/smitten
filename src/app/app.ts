@@ -8,7 +8,12 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
     ...ROUTER_DIRECTIVES
   ],
   template: `
-    <div> WELCOME TO SMITTEN!
+    <div>
+      <nav>
+        <a routerLink="/" routerLinkActive="active">Calendar</a>
+        <a routerLink="/wishes" routerLinkActive="active">Post-Its</a>
+        <a routerLink="/login" routerLinkActive="active">Login</a>
+       </nav>
       <router-outlet></router-outlet>
     </div>
   `
