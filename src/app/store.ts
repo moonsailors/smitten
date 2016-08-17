@@ -13,6 +13,7 @@ import 'rxjs/Rx';
 // }
 
 export interface Login {
+  loggedIn: boolean;
   calendarId: string;
   email: string;
   token: string;
@@ -25,6 +26,7 @@ export interface State {
 
 const defaultState = {
   login: [{
+      loggedIn: false,
       calendarId: "",
       email: "",
       token: ""
