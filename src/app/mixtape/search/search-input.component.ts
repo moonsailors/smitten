@@ -18,16 +18,12 @@ export class SoundCloudSearchInputComponent {
   constructor(private searchSoundCloud: SearchSoundCloud) {}
 
   onSubmit() {
-    console.log('submitting your soundcloud search!');
+    console.log('sending your SoundCloud search query to server');
+
     if (this.search.q) {
-      this.searchSoundCloud.search(this.search)
-        .subscribe(
-          results => {
-            console.log('soundcloud results received from server!');
-            this.searchResults = results._body;
-          },
-          err => console.log('error: ', err));
+      this.searchSoundCloud.search(this.search);
     }
+
     this.search.q = '';
   }
 }
