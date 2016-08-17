@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'sc-search-input',
-  templateUrl: '',
-  styles: []
+  templateUrl: `
+    <div></div>
+  `
 })
 export class SoundCloudSearchInputComponent {}

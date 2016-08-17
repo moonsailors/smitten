@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
-import { SoundCloudSearchInputComponent, SoundCloudSearchResultsComponent } from './index';
+import { SearchSoundCloud } from './search.service';
+import { SoundCloudSearchInputComponent } from './search-input.component';
+import { SoundCloudSearchResultsComponent } from './search-results.component';
 
 @Component({
   selector: 'sc-search-container',
@@ -8,10 +10,17 @@ import { SoundCloudSearchInputComponent, SoundCloudSearchResultsComponent } from
     SoundCloudSearchInputComponent,
     SoundCloudSearchResultsComponent
   ],
+  providers: [SearchSoundCloud],
   template: `
     <sc-search-input></sc-search-input>
     <sc-search-results></sc-search-results>
-  `,
-  styles: []
+  `
 })
-export class SoundCloudSearchComponent {}
+export class SoundCloudSearchComponent {
+  searchResult: any;
+
+  constructor(private searchSoundCloud: SearchSoundCloud) {
+    this.searchSoundCloud.search()
+      .subscribe(res => this.searchResult = res);
+  }
+}

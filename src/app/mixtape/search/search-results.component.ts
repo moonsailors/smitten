@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'sc-search-results',
-  templateUrl: '',
-  styles: []
+  templateUrl: `
+    <div></div>
+  `
 })
 export class SoundCloudSearchResultsComponent {}
