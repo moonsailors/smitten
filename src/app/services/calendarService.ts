@@ -12,8 +12,7 @@ export class  CalendarService {
   addCalendarEvent(event: Object) {
     console.log("hit add Calendar Event");
     console.log("path is ", `${this.path}/eventAdd`);
-      this.apiService.post(`${this.path}/eventAdd`, event)
-      .subscribe(res => console.log("response ", res));
+      return this.apiService.post(`${this.path}/eventAdd`, event);
   };
 
   getCalendarId() {

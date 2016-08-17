@@ -22,18 +22,26 @@ export class Calendar {
   calSrc = "";
   trustedUrl;
 
-  constructor(private calendarService: CalendarService, private sanitizer: DomSanitizationService) {
+  loadCalendar() {
     this.calendarService.getCalendarId()
     .subscribe(res => {
         console.log("calendarId ", res._body);
         this.calSrc = "https://calendar.google.com/calendar/embed?src=" + res._body;
-        this.trustedUrl = sanitizer.bypassSecurityTrustResourceUrl(this.calSrc);
+        this.trustedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.calSrc);
      });
+  }
+
+  constructor(private calendarService: CalendarService, private sanitizer: DomSanitizationService) {
+    this.loadCalendar();
   }
 
 
   onEmitAddition(event: Object) {
     console.log("hit onEmitAddition");
-    this.calendarService.addCalendarEvent(event);
+    this.calendarService.addCalendarEvent(event)
+    .subscribe(res => {
+      console.log("event added ", res._body);
+      this.loadCalendar();
+    });
   }
 };

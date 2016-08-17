@@ -7,6 +7,8 @@
         '@angular': 'lib/@angular',
         'angular2-grid': 'lib/angular2-grid/dist',
         'jquery': 'lib/jquery',
+        'jquery-ui': 'lib/jquery',
+        'primeui': 'lib/primeui',
         'primeng': 'lib/primeng'
     };
 
@@ -16,6 +18,8 @@
         'rxjs': {defaultExtension: 'js'},
         'angular2-grid': { main: 'main.js',  defaultExtension: 'js' },
         'jquery': {defaultExtension: 'js'},
+        'jquery-ui': {defaultExtension: 'js'},
+        'primeui': {defaultExtension: 'js'},
         'primeng': {defaultExtension: 'js'}
     };
 

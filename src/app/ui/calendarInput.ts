@@ -2,36 +2,39 @@ import { Component,
           Input,
           Output,
           EventEmitter } from '@angular/core';
-import { Dialog } from 'primeng/primeng';
-import { Button } from 'primeng/primeng';
+import { Dialog, Button, InputText, Calendar } from 'primeng/primeng';
 
 @Component ({
   selector: 'calendar-input',
-  directives: [ Dialog, Button ],
+  directives: [ Dialog, Button, InputText, Calendar ],
   styles: [],
   template: `
     <div>
-      <p-dialog header="Add Event" [(visible)]="display" modal="true" showEffect="fade">
+      <p-dialog header="Add Event" [(visible)]="display" modal="modal" showEffect="fade">
+      <footer>
       <form class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix" (ngSubmit)="addEvent()">
         Event
-        <input type="text" [(ngModel)]="event.summary" name="event" placeholder="...add and event">
+        <input pInputText type="text" [(ngModel)]="event.summary" name="event" placeholder="...add and event">
         <br>
         Description
-        <input type="text" [(ngModel)]="event.description" name="description" placeholder="...add a description">
+        <input pInputText type="text" [(ngModel)]="event.description" name="description" placeholder="...add a description">
         <br>
         Location
-        <input type="text" [(ngModel)]="event.location" name="location" placeholder="...do we want to know?">
+        <input pInputText type="text" [(ngModel)]="event.location" name="location" placeholder="...do we want to know?">
         <br>
         Start Time
-        <input type="datetime" [(ngModel)]="event.start.datetime" name="start" placeholder="from">
+        <p-calendar [(ngModel)]="event.start.datetime" name="start" inputStyleClass="ui-calendar" dateFormat="mm/dd/yy" timeFormat="HH:mm">
+        </p-calendar>
         <br>
         End Time
-        <input type="datetime" [(ngModel)]="event.end.datetime" name="end" placeholder="to">
+        <p-calendar [(ngModel)]="event.end.datetime" name="end" inputStyleClass="ui-calendar" dateFormat="mm/dd/yy" timeFormat="HH:mm">
+        </p-calendar>
         <button pButton class="ui-button" type="submit" label="Add"></button>
       </form>
+      </footer>
       </p-dialog>
 
-      <button type="text" class="ui-button" (click)="showDialog()" pButton icon="fa-external-link-square" label="Create Event"></button>
+      <button type="text" class="ui-button" (click)="showDialog()" pButton label="Create Event"></button>
     </div>
   `
 })
@@ -47,34 +50,35 @@ export class CalendarInput {
     description: '',
     start: {
       datetime: '',
-      timeZone: 'Eastern'
+      timeZone: 'America/Los_Angeles'
     },
     end: {
       datetime: '',
-      timeZone: 'Eastern'
+      timeZone: 'America/Los_Angeles'
     }
   };
 
   showDialog() {
-    this.display = !this.display;
+    this.display = true;
   };
 
   addEvent() {
     console.log("hit add Event");
-    var event = {
-      'summary': 'Google I/O 2015',
-      'location': '800 Howard St., San Francisco, CA 94103',
-      'description': 'A chance to hear more about Google\'s developer products.',
-      'start': {
-        'dateTime': '2016-08-20T09:00:00-07:00',
-        'timeZone': 'America/Los_Angeles',
-      },
-      'end': {
-        'dateTime': '2016-08-20T17:00:00-07:00',
-        'timeZone': 'America/Los_Angeles'
-      }
-    };
-    this.emitAddition.next(event);
+    // var event = {
+    //   'summary': 'Google I/O 2015',
+    //   'location': '800 Howard St., San Francisco, CA 94103',
+    //   'description': 'A chance to hear more about Google\'s developer products.',
+    //   'start': {
+    //     'dateTime': '2016-08-25T09:00:00-07:00',
+    //     'timeZone': 'America/Los_Angeles',
+    //   },
+    //   'end': {
+    //     'dateTime': '2016-08-25T17:00:00-07:00',
+    //     'timeZone': 'America/Los_Angeles'
+    //   }
+    // };
+    console.log("event is ", this.event);
+    this.emitAddition.next(this.event);
   };
 
 
