@@ -24,9 +24,9 @@ export class SoundCloudSearchInputComponent {
         .subscribe(
           results => {
             console.log('soundcloud results received from server!');
-            this.searchResults = results._body
+            this.searchResults = results._body;
           },
-          err => console.log('error: ', err)
+          err => console.log('error: ', err));
     }
     this.search.q = '';
   }
