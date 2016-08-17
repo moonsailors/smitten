@@ -18,7 +18,6 @@ var calendarUrl = "https://www.googleapis.com/calendar/v3/calendars";
 var calenderId;
 var currentEmail;
 
-
 module.exports = {
 
   googleLogin: function(req, res, next){
@@ -199,8 +198,5 @@ module.exports = {
         res.status(201).send(event.htmlLink);
       });
     });
-
-  },
-
 
 };
