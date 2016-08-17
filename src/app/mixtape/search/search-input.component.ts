@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'sc-search-input',
-  templateUrl: `
+  template: `
     <div></div>
   `
 })

@@ -21,6 +21,9 @@ export class SoundCloudSearchComponent {
 
   constructor(private searchSoundCloud: SearchSoundCloud) {
     this.searchSoundCloud.search()
-      .subscribe(res => this.searchResult = res);
+      .subscribe(
+        res => this.searchResult = res,
+        err => console.log(err),
+        () => console.log(this.searchResult));
   }
 }

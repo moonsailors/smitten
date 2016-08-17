@@ -10,8 +10,13 @@ SC.init({
 });
 
 exports.searchSoundCloud = function(req, res, next) {
-  SC.get('/tracks/245743948').then((result) => {
+  const query = req.body;
+
+  SC.get('/tracks', query)
+  .then((result) => {
+    console.log('success?');
     console.log(result);
+    res.send(result);
   }).catch((error) => {
     console.log(error);
   });

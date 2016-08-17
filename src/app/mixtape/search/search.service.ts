@@ -7,6 +7,6 @@ export class SearchSoundCloud {
   constructor(private apiService: ApiService) {}
 
   search() {
-    return this.apiService.post('/api/soundcloud-search', 'justin bieber');
+    return this.apiService.post('/api/soundcloud-search', {q: 'justin-bieber'});
   }
 }

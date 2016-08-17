@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'sc-search-results',
-  templateUrl: `
+  template: `
     <div></div>
   `
 })
