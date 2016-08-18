@@ -53,6 +53,11 @@ export class  LoginService {
         this.router.navigate(['/']);
         // window.location.href = 'http://localhost:3000/';
       });
+  };
+
+  logout() {
+    window.localStorage.setItem("loggedIn", "false");
+    return this.apiService.get(`${this.path}/logout`);
   }
 
 };

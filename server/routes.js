@@ -6,6 +6,7 @@ module.exports = function (app, express){
   app.get('/api/google/login', requestHandler.googleLogin);
   app.get('/googleOAuth/', requestHandler.googleRedirect);
   app.post('/api/google/join', requestHandler.googleJoin);
+  app.get('/api/google/logout', requestHandler.googleLogout);
 
   app.get('/api/calendar/create', requestHandler.calendarCreate);
   app.post('/api/calendar/eventAdd', requestHandler.calendarEventAdd);

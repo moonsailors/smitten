@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 // import { Main } from './containers';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { LoginService } from './services/loginService';
 
 @Component({
@@ -14,7 +14,7 @@ import { LoginService } from './services/loginService';
         <a routerLink="/" routerLinkActive="active">Calendar</a>
         <a routerLink="/wishes" routerLinkActive="active">Post-Its</a>
         <a routerLink="/mixtape" routerLinkActive="active">Mixtape</a>
-        <a routerLink="/login" routerLinkActive="active">Login</a>
+        <a routerLink="/logout" routerLinkActive="active">Logout</a>
        </nav>
       <router-outlet></router-outlet>
     </div>
@@ -22,8 +22,10 @@ import { LoginService } from './services/loginService';
 })
 export class App {
   loggedIn;
-  constructor (private loginService: LoginService) {
+  constructor (private loginService: LoginService,
+              private router: Router) {
     this.loggedIn = this.loginService.isLoggedIn;
     console.log("loggedIn is ", this.loggedIn);
   }
+
 }
