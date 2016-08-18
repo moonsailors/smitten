@@ -61,8 +61,8 @@ gulp.task("libs", () => {
             '@angular/**',
             'socket.io-client/socket.io.js',
             'angular2-grid/**',
-            'jquery/**',
-            'jquery-ui/**',
+            // 'jquery/dist/jquery.min.js',
+            // 'jquery-ui/**',
             'primeng/**',
             'primeui/**',
             'bootstrap/dist/js/bootstrap.min.js'
