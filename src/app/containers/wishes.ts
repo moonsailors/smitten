@@ -6,16 +6,14 @@ import {  NgGrid,
           NgGridItem, 
           NgGridItemConfig, 
           NgGridItemEvent } from 'angular2-grid';
-import { Dialog, Galleria } from 'primeng/primeng';
+
 @Component({
   selector: 'wishes-container',
   directives: [
     PostCard,
     WishInput,
     NgGrid,
-    NgGridItem,
-    Dialog,
-    Galleria
+    NgGridItem
   ],
   styles: [],
   template: `
@@ -25,7 +23,6 @@ import { Dialog, Galleria } from 'primeng/primeng';
         <post-card 
           *ngFor="let post of posts; let i = index"
           [post]="post"
-          [i]="i"
           (complete)="onPostCompletion($event)"></post-card>
       </div>
     </div>
@@ -34,36 +31,21 @@ import { Dialog, Galleria } from 'primeng/primeng';
 })
 
 export class Wishes {
-  something = true;
-  private posts = [
-    {
-      type: "note",
-      title: "example note",
-      description: "this is what a note looks like.",
-      photos: [{}],
-      config: this._generateDefaultItemConfig()
-    },
-    {
-      type: "note",
-      title: "Justing <3",
-      description: "ohMG JUSTIN.",
-      photos: [ { source: "http://www.etonline.com/photo/2016/02/24213948/justin_bieber_gq_1280.jpg", alt: "", title: "" } ],
-      config: this._generateDefaultItemConfig()
-    },
-  ];
+
+  private posts = [];
 
   constructor(private postService: PostService) {
     console.log('constructor');
-    // this.postService.getRelationshipPosts("connor.d.campbell@gmail.com")
-    //   .subscribe(res => {
-    //     let newPosts = res.json();
-    //     console.log(newPosts);
-    //     newPosts.forEach(function(post, index){
-    //       post.index = index;
-    //       console.log(post);
-    //     });
-    //     this.posts = newPosts;
-    //   });
+    this.postService.getRelationshipPosts("connor.d.campbell@gmail.com")
+      .subscribe(res => {
+        let newPosts = res.json();
+        console.log(newPosts);
+        newPosts.forEach(function(post, index){
+          post.index = index;
+          console.log(post);
+        });
+        this.posts = newPosts;
+      });
   }
 
   private gridConfig: NgGridConfig = <NgGridConfig> {
@@ -90,19 +72,19 @@ export class Wishes {
   };
 
   onCreatePost(post) {
-    // const conf = this._generateDefaultItemConfig();
-    // var newPost = {
-    //   title: post.title,
-    //   description: post.description,
-    //   index: this.posts.length,
-    //   config : conf
-    // };
+    const conf = this._generateDefaultItemConfig();
+    var newPost = {
+      title: post.title,
+      description: post.description,
+      index: this.posts.length,
+      config : conf
+    };
 
-    // this.postService.createPost("connor.d.campbell@gmail.com", newPost)
-    //   .subscribe(res => {
-    //     var post = res.json();
-    //     post.index = this.posts.push(post) - 1;
-    //   });
+    this.postService.createPost("connor.d.campbell@gmail.com", newPost)
+      .subscribe(res => {
+        var post = res.json();
+        post.index = this.posts.push(post) - 1;
+      });
   }
 
   onPostCompletion(post) {
