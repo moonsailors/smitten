@@ -1,5 +1,7 @@
 <div *ngIf="searchResults">
-  <ul>
-    <li *ngFor="let result of searchResults">{{result}}</li>
-  </ul>
+  <div *ngFor="let result of searchResults" class="song-container">
+    <figure><img src="{{result.image}}"></figure>
+    <p class="song-title">{{result.title}}</p>
+    <p class="song-artist">{{result.artist}}</p>
+  </div>
 </div>
