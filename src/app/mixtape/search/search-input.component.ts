@@ -14,8 +14,6 @@ export class SoundCloudSearchInputComponent {
   };
 
   onSubmit() {
-    console.log('sending your SoundCloud search query to server');
-
     if (this.search.q) {
       this.onSearchSubmit.emit(this.search);
     }
