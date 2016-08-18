@@ -17,7 +17,7 @@ import { LoginService } from './services/loginService';
       -moz-border-radius: 19;
       border-radius: 19px;
       font-family: Georgia;
-      color: #050105;
+      color: white;
       font-size: 20px;
       padding: 10px 20px 10px 20px;
       text-decoration: none;
