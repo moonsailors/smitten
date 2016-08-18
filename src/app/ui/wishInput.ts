@@ -77,7 +77,7 @@ export class WishInput {
     type: "",
     title: "",
     description: "",
-    photos: [ { source: "", alt: "this is alt", title: ""} ],
+    photos: [ { source: "" } ],
   };
 
   onWishSubmit() {

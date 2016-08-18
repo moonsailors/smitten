@@ -19,7 +19,7 @@ import {  NgGrid,
   template: `
     <div>
       <wish-input (createWish)="onCreatePost($event)"></wish-input>
-      <div [ngGrid]="gridConfig">
+      <div>
         <post-card 
           *ngFor="let post of posts; let i = index"
           [post]="post"
@@ -62,5 +62,8 @@ export class Wishes {
     this.postService.deletePost(post.id)
       .subscribe(res => console.log(res));
     this.posts.splice(post.index, 1);
+    this.posts.forEach(function(value, index){
+      value.index = index;
+    });
   }
 }
