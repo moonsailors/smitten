@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/index';
-
+import { Button } from 'primeng/primeng';
 
  @Component({
    selector: 'logout',
+   directives: [Button],
    template: `
      <div>
        You are now logged out
-       <button (click)="goBack()" >Return To Login</button>
+       <button pButton (click)="goBack()" label="Return to Login">
+       </button>
      </div>
    `
  })
