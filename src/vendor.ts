@@ -16,3 +16,5 @@ import 'rxjs/Rx';
 
 import 'primeng/primeng';
 import 'primeui/primeui';
+
+import 'ng2-draggable/index';
