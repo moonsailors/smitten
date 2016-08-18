@@ -13,6 +13,7 @@ import { LoginService } from './services/loginService';
       <nav [hidden]="!loggedIn">
         <a routerLink="/" routerLinkActive="active">Calendar</a>
         <a routerLink="/wishes" routerLinkActive="active">Post-Its</a>
+        <a routerLink="/mixtape" routerLinkActive="active">Mixtape</a>
         <a routerLink="/login" routerLinkActive="active">Login</a>
        </nav>
       <router-outlet></router-outlet>
