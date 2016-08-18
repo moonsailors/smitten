@@ -24,6 +24,12 @@ exports.searchSoundCloud = function(req, res, next) {
 
 function processSearchResults(results) {
   return results.map(function(result) {
-    return result.title;
+    var song = {
+      title: result.title,
+      artist: result.user.username,
+      image: result.artwork_url
+    };
+
+    return song;
   });
 }

@@ -64,7 +64,8 @@ gulp.task("libs", () => {
             'jquery/**',
             'jquery-ui/**',
             'primeng/**',
-            'primeui/**'
+            'primeui/**',
+            'bootstrap/dist/js/bootstrap.min.js'
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("build/lib"));
 });

@@ -10,10 +10,8 @@ import { SoundCloudSearchResultsComponent } from './search-results.component';
     SoundCloudSearchInputComponent,
     SoundCloudSearchResultsComponent
   ],
-  template: `
-    <sc-search-input (onSearchSubmit)="getSearchResults($event)"></sc-search-input>
-    <sc-search-results [searchResults]="searchResults"></sc-search-results>
-  `,
+  templateUrl: 'app/mixtape/search/search.component.html',
+  styleUrls: ['app/mixtape/search/search.component.css'],
   providers: [SearchSoundCloud]
 })
 export class SoundCloudSearchComponent {
