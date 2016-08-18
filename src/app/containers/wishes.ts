@@ -48,39 +48,9 @@ export class Wishes {
       });
   }
 
-  private gridConfig: NgGridConfig = <NgGridConfig> {
-    'margins': [5],
-    'draggable': true,
-    'resizable': true,
-    'max_cols': 0,
-    'max_rows': 0,
-    'visible_cols': 0,
-    'visible_rows': 0,
-    'min_cols': 1,
-    'min_rows': 1,
-    'col_width': 2,
-    'row_height': 2,
-    'min_width': 50,
-    'min_height': 50,
-    'fix_to_grid': false,
-    'auto_style': true,
-    'auto_resize': false,
-    'maintain_ratio': false,
-    'prefer_new': false,
-    'zoom_on_drag': false,
-    'limit_to_screen': true
-  };
-
   onCreatePost(post) {
-    const conf = this._generateDefaultItemConfig();
-    var newPost = {
-      title: post.title,
-      description: post.description,
-      index: this.posts.length,
-      config : conf
-    };
-
-    this.postService.createPost("connor.d.campbell@gmail.com", newPost)
+    console.log('old post', post);
+    this.postService.createPost("connor.d.campbell@gmail.com", post)
       .subscribe(res => {
         var post = res.json();
         post.index = this.posts.push(post) - 1;
@@ -93,9 +63,4 @@ export class Wishes {
       .subscribe(res => console.log(res));
     this.posts.splice(post.index, 1);
   }
-
-  private _generateDefaultItemConfig(): NgGridItemConfig {
-    return { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 1, 'sizey': 1 };
-  }
-
 }
