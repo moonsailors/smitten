@@ -8,7 +8,7 @@ import { LoginService } from '../services/loginService';
   selector: 'login-input',
   styles: [`
       body {
-        background-image:url(heart-broken.jpeg);
+        background-image:url(/app/ui/heart-broken.jpeg);
         background-repeat: no-repeat;
         background-size: 100% 100%;
       }
@@ -58,12 +58,12 @@ import { LoginService } from '../services/loginService';
 })
 
 export class LoginInput {
+    @Input()
     @Output () emitLogin =  new EventEmitter();
     @Output () emitPartner = new EventEmitter();
 
     constructor (private loginService: LoginService) {
         this.loggedIn = this.loginService.isLoggedIn;
-
     }
 
     user = {};

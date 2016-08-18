@@ -196,5 +196,10 @@ module.exports = {
         res.status(201).send(event.htmlLink);
       });
     });
+  },
+
+  googleLogout : function(req, res, next){
+    req.session.destroy();
+    res.status(200).send();
   }
 };
