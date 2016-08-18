@@ -12,7 +12,7 @@ import { SoundCloudSearchResultsComponent } from './search-results.component';
   ],
   template: `
     <sc-search-input (onSearchSubmit)="getSearchResults($event)"></sc-search-input>
-    <sc-search-results></sc-search-results>
+    <sc-search-results [searchResults]="searchResults"></sc-search-results>
   `,
   providers: [SearchSoundCloud]
 })
@@ -25,10 +25,9 @@ export class SoundCloudSearchComponent {
     this.searchSoundCloud.search(searchParams)
       .subscribe(
         results => {
-          console.log('soundcloud results received from server');
-          this.searchResults = results._body;
+
+          this.searchResults = JSON.parse(results._body);
         },
-        err => console.log('error: ', err),
-        () => console.log('search results saved'));
+        err => console.log('error: ', err));
   }
 }
