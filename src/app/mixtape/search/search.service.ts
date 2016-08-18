@@ -7,7 +7,8 @@ export class SearchSoundCloud {
   constructor(private apiService: ApiService) {}
 
   search(searchParams) {
-    console.log('making the API call to SoundCloud!');
+    console.log('making the API call to SoundCloud');
+
     return this.apiService.post('/api/soundcloud-search', searchParams);
   }
 }

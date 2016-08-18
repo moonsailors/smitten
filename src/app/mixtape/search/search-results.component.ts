@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'sc-search-results',
-  template: `
-    <div></div>
-  `
+  templateUrl: 'app/mixtape/search/search-results.component.html'
 })
-export class SoundCloudSearchResultsComponent {}
+export class SoundCloudSearchResultsComponent {
+  @Input() searchResults: any;
+}
