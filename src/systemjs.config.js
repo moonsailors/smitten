@@ -9,8 +9,7 @@
         'jquery': 'lib/jquery',
         'jquery-ui': 'lib/jquery',
         'primeui': 'lib/primeui',
-        'primeng': 'lib/primeng',
-        'ng2-draggable': 'lib/ng2-draggable'
+        'primeng': 'lib/primeng'
     };
 
     // packages tells the System loader how to load when no filename and/or no extension
@@ -21,8 +20,7 @@
         'jquery': {defaultExtension: 'js'},
         'jquery-ui': {defaultExtension: 'js'},
         'primeui': {defaultExtension: 'js'},
-        'primeng': {defaultExtension: 'js'},
-        'ng2-draggable': {main: 'index.js', defaultExtension: 'js'}
+        'primeng': {defaultExtension: 'js'}
     };
 
     var packageNames = [

@@ -64,8 +64,7 @@ gulp.task("libs", () => {
             'jquery/**',
             'jquery-ui/**',
             'primeng/**',
-            'primeui/**',
-            'ng2-draggable/**'
+            'primeui/**'
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("build/lib"));
 });
