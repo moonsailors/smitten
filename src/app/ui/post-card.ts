@@ -49,11 +49,6 @@ export class PostCard {
   images: boolean = true;
 
   constructor() {
-    if (this.post.type === "note") {
-      this.note = true;
-    } else {
-      this.images = true;
-    }
   }
 
   onCompletion() {
