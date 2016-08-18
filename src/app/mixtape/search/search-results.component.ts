@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-
-import { SearchSoundCloud } from './search.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'sc-search-results',
-  templateUrl: 'app/mixtape/search/search-results.component.html',
-  providers: [SearchSoundCloud]
+  templateUrl: 'app/mixtape/search/search-results.component.html'
 })
-export class SoundCloudSearchResultsComponent implements OnInit {}
+export class SoundCloudSearchResultsComponent {
+  @Input() searchResults: any;
+}
