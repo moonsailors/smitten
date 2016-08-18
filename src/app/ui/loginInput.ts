@@ -3,9 +3,11 @@ import { Component,
           Output,
           EventEmitter } from '@angular/core';
 import { LoginService } from '../services/loginService';
+import { Button, InputText } from 'primeng/primeng';
 
 @Component({
   selector: 'login-input',
+  directives: [Button, InputText],
   styles: [`
       body {
         background-image:url(/app/ui/heart-broken.jpeg);
@@ -42,12 +44,18 @@ import { LoginService } from '../services/loginService';
           <fieldset class="field">
             <legend>Login to Smitten</legend>
             <container id="container">
-            <p [hidden]="loggedIn" class="submit"><input type="submit" (click)="loginUser()" name="commit" value="Sign in with Google"></p>
-            <p [hidden]="!loggedIn"> Please link your partner
-            <input type="text" name="login" [(ngModel)]="partner.email" value="" placeholder="Partner Email">
+            <p [hidden]="loggedIn" class="submit">
+            <button pButton type="button" (click)="loginUser()"
+            label="Sign in with Google">
+            </button>
             </p>
-            <p [hidden]="!loggedIn" class="link-partner" (click)="addPartner()">
-            <input type="submit" name="commit" value="Link partner account"></p>
+            <p [hidden]="!loggedIn"> Please link your partner
+            <input pInputText type="text" name="login" [(ngModel)]="partner.email" value="" placeholder="Partner Email">
+            </p>
+            <p [hidden]="!loggedIn" class="link-partner">
+            <button pButton type="button" (click)="addPartner()" label="Link partner account">
+            </button>
+            </p>
             </container>
           </fieldset>
         </form>
