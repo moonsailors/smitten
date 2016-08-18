@@ -18,7 +18,7 @@
     "compile": "gulp compile",
     "build": "gulp build",
     "start": "concurrent --kill-others \"gulp watch\" \"lite-server\"",
-    "postinstall": "typings install"
+    "postinstall": "typings install && node node_modules/gulp/bin/gulp build"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.4",
