@@ -21,10 +21,13 @@ var ENV = {
   }
 }
 var client;
+var api_host;
 if(process.env.PORT){
   client = ENV;
+  api_host = 'http://just-smitten.herokuapp.com:' + process.env.PORT;
 } else {
   client = require('./client_secret.json');
+  api_host = 'http://localhost:3000';
 }
 
 var request = require('request');
@@ -104,7 +107,7 @@ module.exports = {
                   } else {
                   //if user does exist and doesn't have relationship
                   //redirect to login
-                    res.redirect('http://localhost:3000/#/login');
+                    res.redirect(api_host + '/#/login');
                   }
                 }
               })
@@ -140,7 +143,7 @@ module.exports = {
       });
 
       //redirect to login
-      res.redirect('http://localhost:3000/#/login');
+      res.redirect(api_host + '/#/login');
     });
 
   },
