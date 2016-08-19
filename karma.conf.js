@@ -17,6 +17,9 @@ module.exports = function(config){
 
     files: [
       // angular source
+      "https://code.jquery.com/jquery-2.2.4.min.js",
+      "https://code.jquery.com/ui/1.11.4/jquery-ui.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.1/jquery-ui-timepicker-addon.min.js",
       'build/lib/es6-shim/es6-shim.min.js',
       'build/lib/rxjs/bundles/Rx.umd.min.js',
       'build/lib/zone.js/dist/zone.min.js',

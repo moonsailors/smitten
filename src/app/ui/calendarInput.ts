@@ -1,10 +1,8 @@
-/// <reference path="../../../typings/globals/jquery/index.d.ts" />
 import { Component,
           Input,
           Output,
           EventEmitter } from '@angular/core';
 import { Dialog, Button, InputText, Calendar } from 'primeng/primeng';
-declare var jQuery: JQueryStatic;
 
 @Component ({
   selector: 'calendar-input',
