@@ -22,17 +22,20 @@ var ENV = {
 }
 var client;
 var api_host;
+var redirect;
 if(process.env.PORT){
   client = ENV;
   api_host = 'http://just-smitten.herokuapp.com:' + process.env.PORT;
+  redirect = ENV.web.redirect_uris[0];
 } else {
   client = require('./client_secret.json');
   api_host = 'http://localhost:3000';
+  redirect = ENV.web.redirect_uris[1];
 }
 
 var request = require('request');
 var db = require('./db/controllers');
-var oauth2Client = new OAuth2(client.web.client_id, client.web.client_secret, client.web.redirect_uris[1]);
+var oauth2Client = new OAuth2(client.web.client_id, client.web.client_secret, redirect);
 var calendar = google.calendar('v3');
 
 // generate a url that asks permissions for Google+ and Google Calendar scopes
