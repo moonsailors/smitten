@@ -7,6 +7,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const tsProject = tsc.createProject("tsconfig.json");
 const tslint = require('gulp-tslint');
 const injectModules = require('gulp-inject-modules');
+const Server = require('karma').Server;
 
 /**
  * Remove build directory.
@@ -60,14 +61,18 @@ gulp.task("libs", () => {
             'zone.js/dist/**',
             '@angular/**',
             'socket.io-client/socket.io.js',
-            'angular2-grid/**',
-            // 'jquery/dist/jquery.min.js',
-            // 'jquery-ui/**',
             'primeng/**',
             'primeui/**',
             'bootstrap/dist/js/bootstrap.min.js'
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("build/lib"));
+});
+
+gulp.task("test", (done) => {
+    new Server({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: false
+    }, done).start();
 });
 
 /**
