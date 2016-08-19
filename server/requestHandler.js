@@ -149,7 +149,9 @@ module.exports = {
     db.getRelationshipByEmail(req.session.username)
     .then(function(relationship){
       console.log('calId is ', relationship.calendarId);
-      res.status(200).send(relationship.calendarId);
+      var body = {user: req.session.username, calId: relationship.calendarId};
+      bodyString =  JSON.stringify(body);
+      res.status(200).send(bodyString);
     })
   },
 
