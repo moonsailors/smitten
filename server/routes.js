@@ -1,6 +1,6 @@
 var requestHandler = require('./requestHandler.js');
 var postRequestHandler = require('./postsRequestHandler.js');
-var mixtapeRequestHandler = require('./mixtapeRequestHandler.js');
+var mixtapeRequestHandler = require('./request-handlers/mixtape.js');
 
 module.exports = function (app, express){
   app.get('/api/google/login', requestHandler.googleLogin);
@@ -18,6 +18,8 @@ module.exports = function (app, express){
   app.put('/api/posts/:id', postRequestHandler.updatePost);
 
   /** mixtape **/
+  app.post('/api/add-song', mixtapeRequestHandler.addToPlaylist);
+  app.get('/api/get-playlist', mixtapeRequestHandler.getPlaylist);
   app.post('/api/soundcloud-search', mixtapeRequestHandler.searchSoundCloud);
 
   //tester routes
