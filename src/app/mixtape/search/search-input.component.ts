@@ -8,7 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class SoundCloudSearchInputComponent {
   @Output() onSearchSubmit = new EventEmitter<any>();
 
-  resultMax: number = 50;
+  resultMax: number = 1;
   search = {
     q: '',
     limit: this.resultMax

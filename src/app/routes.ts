@@ -5,7 +5,7 @@ import { Main,
         Login,
         Logout } from './containers/index';
 import { AuthGuard } from './services/index';
-import { SoundCloudSearchComponent } from './mixtape/search/search.component';
+import { MixtapeComponent } from './mixtape/index';
 
 
 export const routes: RouterConfig = [
@@ -14,12 +14,11 @@ export const routes: RouterConfig = [
     component: Main,
     children: [
       { path: '', component: Calendar, canActivate: [AuthGuard] },
-      { path: 'login', component: Login},
-      { path: 'logout', component: Logout},
+      { path: 'login', component: Login },
+      { path: 'logout', component: Logout },
       { path: 'wishes', component: Wishes, canActivate: [AuthGuard] },
-      { path: 'mixtape', component: SoundCloudSearchComponent, canActivate: [AuthGuard]}
+      { path: 'mixtape', component: MixtapeComponent, canActivate: [AuthGuard] }
     ]
   },
   { path: '**', redirectTo: '' }
 ];
-

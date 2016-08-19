@@ -1,0 +1,15 @@
+<!-- TODO: delete after testing -->
+Diagnostic:
+{{diagnostic}}
+
+<div>
+  <div
+    *ngFor="let song of songs"
+    class="playlist-song-container">
+    <figure><img src="{{song.image}}"></figure>
+    <div class="song-title-container">
+      <p class="song-title truncate">{{song.title}}</p>
+      <p class="song-artist">{{song.artist}}</p>
+    </div>
+  </div>
+</div>
