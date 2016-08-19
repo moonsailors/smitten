@@ -4,20 +4,20 @@ var plus = google.plus('v1');
 
 var ENV = {
   "web": {
-    "client_id": GOOGLE_CLIENT_ID,
+    "client_id": process.env.GOOGLE_CLIENT_ID,
     "project_id":"my-project-1470442389075",
     "auth_uri":"https://accounts.google.com/o/oauth2/auth",
     "token_uri":"https://accounts.google.com/o/oauth2/token",
     "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
-    "client_secret": GOOGLE_CLIENT_SECRET,
+    "client_secret": process.env.GOOGLE_CLIENT_SECRET,
     "redirect_uris":["http://just-smitten.herokuapp.com/googleOAuth",
     "http://localhost:3000/googleOAuth"],
     "javascript_origins":["http://just-smitten.herokuapp.com",
     "http://localhost:3000"]
   },
   "soundcloud": {
-    "id": SOUNDCLOUD_ID,
-    "secret": SOUNDCLOUD_SECRET
+    "id": process.env.SOUNDCLOUD_ID,
+    "secret": process.env.SOUNDCLOUD_SECRET
   }
 }
 var client;
