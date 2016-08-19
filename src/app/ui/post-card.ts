@@ -21,24 +21,27 @@ import { Galleria, InputText } from 'primeng/primeng';
   template: `
   <div class="drag-me" [draggable]>
     <div><h4>{{post.title}}</h4></div>
-    <div>
+    <div *ngIf="post.type === 'note'">
       <p>{{post.description}}</p>
     </div>
-    <div>
+    <div *ngIf="post.type === 'photos'">
       <p-galleria [images]="post.photos" panelWidth="500" panelHeight="313"></p-galleria>
       <input type="text" pInputText [(ngModel)]="newPhotoLink"/>
       <button pButton type="button" (click)="addNewPhoto()" label="Click">Add a photo</button>
     </div>
     <div>
       <button (click)="onCompletion()">done</button>
-    </div> 
+    </div>
   </div>
 
   `
 })
 
 export class PostCard {
-  @Input() post = {};
+  @Input() post = {
+    type: "",
+    photos: []
+  };
   @Output() complete = new EventEmitter();
   @Output() newPhoto = new EventEmitter();
 
@@ -72,9 +75,9 @@ export class PostCard {
 //   Output,
 //   EventEmitter
 // } from '@angular/core';
-// import {  
-//   NgGridItem, 
-//   NgGridItemConfig, 
+// import {
+//   NgGridItem,
+//   NgGridItemConfig,
 //   NgGridItemEvent
 // } from 'angular2-grid';
 // import { Galleria } from 'primeng/primeng';
@@ -100,7 +103,7 @@ export class PostCard {
   //   </div>
   //   <div>
   //     <button (click)="onCompletion()">done</button>
-  //   </div> 
+  //   </div>
   // </div>
 
 //   `

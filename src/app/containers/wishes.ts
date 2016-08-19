@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { PostCard, WishInput } from '../ui/index';
 import { PostService } from '../services/index';
-import {  NgGrid, 
-          NgGridConfig, 
-          NgGridItem, 
-          NgGridItemConfig, 
+import {  NgGrid,
+          NgGridConfig,
+          NgGridItem,
+          NgGridItemConfig,
           NgGridItemEvent } from 'angular2-grid';
 
 @Component({
@@ -20,7 +20,7 @@ import {  NgGrid,
     <div>
       <wish-input (createWish)="onCreatePost($event)"></wish-input>
       <div>
-        <post-card 
+        <post-card
           *ngFor="let post of posts; let i = index"
           [post]="post"
           (complete)="onPostCompletion($event)"></post-card>
@@ -36,7 +36,7 @@ export class Wishes {
 
   constructor(private postService: PostService) {
     console.log('constructor');
-    this.postService.getRelationshipPosts("connor.d.campbell@gmail.com")
+    this.postService.getRelationshipPosts("jenjengoo@gmail.com")
       .subscribe(res => {
         let newPosts = res.json();
         console.log(newPosts);
@@ -50,7 +50,7 @@ export class Wishes {
 
   onCreatePost(post) {
     console.log('old post', post);
-    this.postService.createPost("connor.d.campbell@gmail.com", post)
+    this.postService.createPost("jenjengoo@gmail.com", post)
       .subscribe(res => {
         var post = res.json();
         post.index = this.posts.push(post) - 1;
