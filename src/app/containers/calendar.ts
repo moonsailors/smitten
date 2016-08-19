@@ -25,8 +25,12 @@ export class Calendar {
   loadCalendar() {
     this.calendarService.getCalendarId()
     .subscribe(res => {
-        console.log("calendarId ", res._body);
-        this.calSrc = "https://calendar.google.com/calendar/embed?src=" + res._body;
+        console.log("body ", res._body);
+        var body = JSON.parse(res._body);
+        console.log("calendarId ", body["calId"]);
+        console.log("user ", body["user"]);
+        window.localStorage.setItem("user", body["user"]);
+        this.calSrc = "https://calendar.google.com/calendar/embed?src=" + body["calId"];
         this.trustedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.calSrc);
      });
   }
