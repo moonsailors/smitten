@@ -52,7 +52,9 @@ function processSearchResults(results) {
     var song = {
       title: result.title,
       artist: result.user.username,
-      image: result.artwork_url
+      image: result.artwork_url,
+      stream: result.stream_url,
+      permalink: result.permalink_url
     };
 
     return song;
