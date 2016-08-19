@@ -17,17 +17,21 @@ module.exports = function(config){
 
     files: [
       // angular source
+      'build/lib/es6-shim/es6-shim.min.js',
       'build/lib/rxjs/bundles/Rx.umd.min.js',
+      'build/lib/zone.js/dist/zone.min.js',
+      'build/lib/reflect-metadata/Reflect.js',
+      'build/lib/systemjs/dist/system-polyfills.js',
+      'build/lib/systemjs/dist/system.src.js',
+      'build/lib/@angular/core/bundles/core.umd.min.js',
       'build/lib/@angular/common/bundles/common.umd.min.js',
       'build/lib/@angular/compiler/bundles/compiler.umd.min.js',
-      'build/lib/@angular/core/bundles/core.umd.min.js',
       'build/lib/@angular/forms/bundles/forms.umd.min.js',
       'build/lib/@angular/http/bundles/http.umd.min.js',
       'build/lib/@angular/platform-browser/bundles/platform-browser.umd.min.js',
       'build/lib/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.min.js',
       'build/lib/@angular/router/bundles/router.umd.min.js',
       'build/lib/bootstrap/dist/js/bootstrap.min.js',
-      "build/lib/es6-shim/es6-shim.min.js",
       // app code
       'build/app/**/*.js',
       //server code

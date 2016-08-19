@@ -11,9 +11,6 @@ export class ApiService {
     Accept: 'application/json'
   });
 
-
-  api_url: string = 'http://localhost:3000';
-
   constructor(private http: Http) {}
 
   private getJson(response: Response) {
@@ -31,20 +28,6 @@ export class ApiService {
       throw error;
     }
   }
-
-  // private handleError (error: any) {
-  //   console.log('got an error');
-  //   let errMsg = (error.message) ? error.message :
-  //     error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-  //   console.error(errMsg);
-  //   return Observable.throw(errMsg);
-  // }
-
-  // private extractData(res: Response) {
-  //   let body = res.json();
-  //   console.log("BODY", body.data);
-  //   return body.data || { };
-  // }
 
   post(path: string, body): Observable<any> {
     return this.http.post(`${path}`, JSON.stringify(body), {headers: this.headers})
@@ -66,13 +49,13 @@ export class ApiService {
   }
 
   delete(path: string): Observable<any> {
-    return this.http.delete(`${this.api_url}${path}`, {headers: this.headers})
+    return this.http.delete(`${path}`, {headers: this.headers})
       .map(this.checkForError)
       .catch(err => Observable.throw(err))
       .map(this.getJson);
   }
 
   put(path: string, body): Observable<any> {
-    return this.http.put(`${this.api_url}/${path}`, body);
+    return this.http.put(`${path}`, body);
   }
 }

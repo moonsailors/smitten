@@ -17,7 +17,7 @@
     "clean": "gulp clean",
     "compile": "gulp compile",
     "build": "gulp build",
-    "test" : "gulp test",
+    "test": "gulp test",
     "start": "concurrent --kill-others \"gulp watch\" \"lite-server\"",
     "postinstall": "typings install && node node_modules/gulp/bin/gulp build"
   },
@@ -45,8 +45,6 @@
     "gulp-tslint": "^6.0.2",
     "gulp-typescript": "^2.13.6",
     "jasmine-core": "^2.4.1",
-    "jquery": "^3.1.0",
-    "jquery-ui": "^1.12.0",
     "karma": "^1.2.0",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.0.0",
