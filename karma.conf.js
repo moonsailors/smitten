@@ -52,7 +52,7 @@ module.exports = function(config){
     ],
 
     // if true, Karma exits after running the tests.
-    singleRun: false,
+    singleRun: true,
     // any additional plugins needed for testing
     plugins: [
       'karma-mocha',

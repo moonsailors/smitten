@@ -5,7 +5,6 @@
         'app': 'app', // 'dist',
         'rxjs': 'lib/rxjs',
         '@angular': 'lib/@angular',
-        'angular2-grid': 'lib/angular2-grid/dist',
         'jquery': 'lib/jquery',
         'jquery-ui': 'lib/jquery',
         'primeui': 'lib/primeui',
@@ -16,7 +15,6 @@
     var packages = {
         'app': {main: 'main.js', defaultExtension: 'js'},
         'rxjs': {defaultExtension: 'js'},
-        'angular2-grid': { main: 'main.js',  defaultExtension: 'js' },
         'jquery': {defaultExtension: 'js'},
         'jquery-ui': {defaultExtension: 'js'},
         'primeui': {defaultExtension: 'js'},

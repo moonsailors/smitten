@@ -1,19 +1,12 @@
 import { Component } from '@angular/core';
 import { PostCard, WishInput } from '../ui/index';
 import { PostService } from '../services/index';
-import {  NgGrid,
-          NgGridConfig,
-          NgGridItem,
-          NgGridItemConfig,
-          NgGridItemEvent } from 'angular2-grid';
 
 @Component({
   selector: 'wishes-container',
   directives: [
     PostCard,
-    WishInput,
-    NgGrid,
-    NgGridItem
+    WishInput
   ],
   styles: [],
   template: `
