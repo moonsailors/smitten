@@ -29,6 +29,16 @@ var Post = thinky.createModel("Post", {
   time: type.date().default(thinky.r.now())
 });
 
+var PlaylistSong = thinky.createModel('PlaylistSong', {
+  id: type.string(),
+  relationshipId: type.string(),
+  title: type.string(),
+  artist: type.string(),
+  image: type.string(),
+  stream: type.string(),
+  permalink: type.string()
+});
+
 //Relations
 /*****************************/
 User.belongsTo(Relationship, 'relationship', 'relationshipId', 'id');
@@ -39,11 +49,13 @@ Relationship.hasMany(Post, 'posts', 'id', 'relationshipId');
 Post.belongsTo(User, 'user', 'creatorId', 'id');
 User.hasMany(Post, 'posts', 'id', 'creatorId');
 
-
+Relationship.hasMany(PlaylistSong, 'playlist-songs', 'id', 'relationshipId');
+PlaylistSong.belongsTo(Relationship, 'relationship', 'relationshipId', 'id');
 
 module.exports = {
   User: User,
   Relationship: Relationship,
   Post: Post,
+  PlaylistSong: PlaylistSong,
   thinky: thinky
 }
