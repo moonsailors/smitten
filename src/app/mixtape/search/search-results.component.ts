@@ -1,20 +1,25 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 
-import { PlaylistService } from '../shared/index';
+import { Store } from '../../store/store';
 
 @Component({
   selector: 'sc-search-results',
   templateUrl: 'app/mixtape/search/search-results.component.html',
-  styleUrls: ['app/mixtape/search/search-results.component.css'],
-  providers: [PlaylistService]
+  styleUrls: ['app/mixtape/search/search-results.component.css']
 })
 export class SoundCloudSearchResultsComponent {
-  @Input() searchResults: any;
+  searchResults: Observable<Array<Object>>;
 
-  result: any;
-
-  constructor(private playlistService: PlaylistService) {}
-
-  getResult(songData) {
+  constructor(private store: Store) {
+    this.store
+      .changes
+      .pluck('mixtape', 'searchResults')
+      .subscribe(
+        (searchResults: Observable<Array<Object>>) =>
+          this.searchResults = searchResults,
+        err => console.log('error: ', err),
+        () => console.log(this.searchResults));
   }
 }
