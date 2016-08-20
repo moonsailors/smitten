@@ -4,25 +4,26 @@ import { defaultState } from './default.state';
 import { State } from './state.interface';
 import 'rxjs/Rx';
 
-const _store = new BehaviorSubject<State>(defaultState);
+const store = new BehaviorSubject<State>(defaultState);
 
 @Injectable()
 export class Store {
-  private _store = _store;
-  changes = this._store
+  store = store;
+  changes = this.store
               .asObservable()
-              .distinctUntilChanged();
+              .distinctUntilChanged()
+              .do(changes => console.log('new state', changes));
 
   setState(state: State) {
     console.log('set state', state);
-    this._store.next(state);
+    this.store.next(state);
   }
 
-  getState(): State {
-    return this._store.value;
+  getState() {
+    return this.store.value;
   }
 
   purge() {
-    this._store.next(defaultState);
+    this.store.next(defaultState);
   }
 }

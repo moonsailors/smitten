@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 
 import { SearchSoundCloud } from './search.service';
 import { Store } from '../../store/store';
+import 'rxjs/Rx';
 
 @Component({
   selector: 'sc-search-input',
@@ -27,11 +28,13 @@ export class SoundCloudSearchInputComponent {
         .subscribe(
           results => {
             results = results._body;
-            currentState.mixtape.searchResults = results;
+            this.store.setState(
+              Object.assign({}, currentState, {
+                mixtape: {searchResults: results}
+              })
+            );
           },
-          err => console.log('error: ', err),
-          () => this.store.setState(currentState));
-
+          err => console.log('error: ', err));
     }
     this.search.q = '';
   }

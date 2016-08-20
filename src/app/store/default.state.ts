@@ -1,6 +1,6 @@
 export const defaultState = {
   mixtape: {
-    searchResults: [],
+    searchResults: [{title: 'hi', artist: 'hey', image: 'yo'}],
     playlist: []
   }
 };

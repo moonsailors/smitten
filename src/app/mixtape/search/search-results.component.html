@@ -1,8 +1,7 @@
-<div *ngIf="searchResults" class="results-container">
+<div class="results-container">
   <div
     *ngFor="let result of searchResults"
-    class="song-container"
-    (click)="getResult(result)">
+    class="song-container">
     <figure><img src="{{result.image}}"></figure>
     <div class="song-title-container">
       <p class="song-title truncate">{{result.title}}</p>
