@@ -111,6 +111,15 @@ var updateRelationship = function(email, params){
     })
 };
 
+var deleteRelationship = function(email){
+  getRelationshipByEmail(email)
+    .then(function(relationship){
+      if(relationship){
+        return realtionship.delete();
+      }
+    })
+}
+
 //Post CRUD
 /********************************************/
 
@@ -172,34 +181,6 @@ var deletePost = function(id){
 }
 
 /********************************************/
-
-// r.dbDrop('smitten').run();
-// var relationshipId;
-
-// createUser('connor.d.campbell@gmail.com', 'nice')
-//   .then(function(user){
-//     console.log(user);
-//     return createUser('ashley.mcg.campbell@gmail.com', 'cute');
-//   })
-//   .then(function(user){
-//     console.log(user);
-//     return createRelationship('gobledegook')
-//   })
-//   .then(function(relationship){
-//     console.log(relationship);
-//     relationshipId = relationship.id;
-//     return updateUser('ashley.mcg.campbell@gmail.com', {relationshipId: relationshipId});
-//   })
-//   .then(function(user){
-//     console.log(user);
-//     return updateUser('connor.d.campbell@gmail.com', {relationshipId: relationshipId});
-//   })
-//   .error(function(err){
-//       console.error(err);
-//       throw err;
-//     });
-
-
 
 module.exports = {
   createUser: createUser,

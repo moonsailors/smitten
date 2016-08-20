@@ -49,7 +49,28 @@ describe("User Controllers", function(){
       })
   });
 
-})
+});
+
+describe("Relationship Controllers", function(){
+  it("Should be able to create a relationship", function(done){
+
+    done();
+  });
+
+  it("Should be able to update a relationship", function(done){
+
+    done();
+  });
+
+  it("Should be able to get a relationship by email", function(done){
+
+    done();
+  });
+
+  it("Should be able to delete", function(done){
+    done();
+  });
+});
 
 // module.exports = {
 //   createUser: createUser,
