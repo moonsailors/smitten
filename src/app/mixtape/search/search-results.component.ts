@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 
 import { Store } from '../../store/store';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/Rx';
 
 @Component({
   selector: 'sc-search-results',
