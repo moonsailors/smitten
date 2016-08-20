@@ -8,10 +8,8 @@ import { HTTP_PROVIDERS } from '@angular/http';
 import { routes } from './routes';
 import { providers } from './index';
 import { App } from './app';
-import { Store } from './store';
-// import { WishService, CalendarService, ApiService } from './services/index';
+import { Store } from './store/store';
 
-// console.log("services are ", WishService, CalendarService, ApiService);
 console.log("App ", App);
 console.log("routes", routes);
 
