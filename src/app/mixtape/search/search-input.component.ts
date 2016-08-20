@@ -27,10 +27,13 @@ export class SoundCloudSearchInputComponent {
       this.searchSoundCloud.search(searchParams)
         .subscribe(
           results => {
-            results = results._body;
+            results = JSON.parse(results._body);
             this.store.setState(
               Object.assign({}, currentState, {
-                mixtape: {searchResults: results}
+                mixtape: {
+                  playlist: currentState.mixtape.playlist,
+                  searchResults: results
+                }
               })
             );
           },
