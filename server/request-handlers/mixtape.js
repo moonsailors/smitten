@@ -27,19 +27,18 @@ SC.init({
  */
 exports.addToPlaylist = function(req, res, next) {
   var song = req.body;
-  var relationshipId = req.session.username;
+  var userEmail = req.session.username;
 
-  db.addSong(song, email)
+  db.addSong(song, userEmail)
     .then(function(song) {
       res.status(200).send(song);
     });
 };
 
 exports.getPlaylist = function(req, res, next) {
-  var relationshipId = req.session.username;
-  console.log(req);
+  var userEmail = req.session.username;
 
-  db.getPlaylist(relationshipId)
+  db.getPlaylist(userEmail)
     .then(function(playlist) {
       res.status(200).send(playlist);
     });
