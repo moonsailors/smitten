@@ -20,14 +20,14 @@ export class SoundCloudSearchInputComponent {
               private searchSoundCloud: SearchSoundCloud) {}
 
   onSubmit(searchParams) {
-    console.log('search submitted');
     const currentState = this.store.getState();
 
     if (this.search.q) {
       this.searchSoundCloud.search(searchParams)
         .subscribe(
           results => {
-            currentState.mixtape.playlist = results;
+            results = results._body;
+            currentState.mixtape.searchResults = results;
           },
           err => console.log('error: ', err),
           () => this.store.setState(currentState));
