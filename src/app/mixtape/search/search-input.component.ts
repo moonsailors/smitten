@@ -11,7 +11,7 @@ import 'rxjs/Rx';
   providers: [SearchSoundCloud]
 })
 export class SoundCloudSearchInputComponent {
-  resultMax: number = 1;
+  resultMax: number = 15;
   search = {
     q: '',
     limit: this.resultMax
