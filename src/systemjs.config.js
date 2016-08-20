@@ -5,20 +5,22 @@
         'app': 'app', // 'dist',
         'rxjs': 'lib/rxjs',
         '@angular': 'lib/@angular',
-        'jquery': 'lib/jquery',
-        'jquery-ui': 'lib/jquery',
         'primeui': 'lib/primeui',
-        'primeng': 'lib/primeng'
+        'primeng': 'lib/primeng',
+        'es6-shim': 'lib/es6-shim/es6-shim.min.js',
+        'zone': 'lib/zone.js/dist/zone.js',
+        'reflect-metadata': 'lib/reflect-metadata/Reflect.js'
     };
 
     // packages tells the System loader how to load when no filename and/or no extension
     var packages = {
         'app': {main: 'main.js', defaultExtension: 'js'},
         'rxjs': {defaultExtension: 'js'},
-        'jquery': {defaultExtension: 'js'},
-        'jquery-ui': {defaultExtension: 'js'},
         'primeui': {defaultExtension: 'js'},
-        'primeng': {defaultExtension: 'js'}
+        'primeng': {defaultExtension: 'js'},
+        'es6-shim': {defaultExtension: 'js'},
+        'zone': {defaultExtension: 'js'},
+        'reflect-metadata': {defaultExtension: 'js'}
     };
 
     var packageNames = [

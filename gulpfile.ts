@@ -7,7 +7,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const tsProject = tsc.createProject("tsconfig.json");
 const tslint = require('gulp-tslint');
 const injectModules = require('gulp-inject-modules');
-const Server = require('karma').Server;
+const mocha = require("gulp-mocha");
 
 /**
  * Remove build directory.
@@ -68,11 +68,9 @@ gulp.task("libs", () => {
         .pipe(gulp.dest("build/lib"));
 });
 
-gulp.task("test", (done) => {
-    new Server({
-        configFile: __dirname + '/karma.conf.js',
-        singleRun: true
-    }, done).start();
+gulp.task("test", () => {
+    gulp.src('test/test.js', {read:false})
+        .pipe(mocha({reporter: 'nyan'}));
 });
 
 /**
