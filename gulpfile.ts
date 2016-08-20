@@ -69,8 +69,9 @@ gulp.task("libs", () => {
 });
 
 gulp.task("test", () => {
-    gulp.src('test/test.js', {read:false})
-        .pipe(mocha({reporter: 'nyan'}));
+    gulp.src('test/*.js', {read:false})
+        .pipe(mocha({reporter: 'nyan'}))
+        .once('end', () => process.exit());
 });
 
 /**
