@@ -1,7 +1,8 @@
 <div class="results-container">
   <div
     *ngFor="let result of searchResults"
-    class="song-container">
+    class="song-container"
+    (click)="addSong(result)">
     <figure><img src="{{result.image}}"></figure>
     <div class="song-title-container">
       <p class="song-title truncate">{{result.title}}</p>
