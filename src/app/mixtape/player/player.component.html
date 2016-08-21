@@ -3,6 +3,6 @@
   <p *ngIf="nowPlaying">{{nowPlaying.title}}</p>
   <button>previous</button>
   <button (click)="togglePlay()">play/pause</button>
-  <button>next</button>
+  <button (click)="playNextSong()">next</button>
   <audio id="mixtape-audio" controls></audio>
 </div>

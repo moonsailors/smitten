@@ -40,6 +40,7 @@ export class MixtapePlayerComponent implements OnInit {
           if (song) {
             this.paused = true;
             this.setSong(song);
+            this.playerService.changeSongIndex(song);
             this.togglePlay();
           }
         },
@@ -56,7 +57,10 @@ export class MixtapePlayerComponent implements OnInit {
   }
 
   playNextSong() {
-
+    this.paused = true;
+    var nextSong = this.playerService.next();
+    this.setSong(nextSong);
+    this.togglePlay();
   }
 
   setSong(songData) {
