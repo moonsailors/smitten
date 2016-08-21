@@ -34,7 +34,7 @@ describe('Server GET tests', function(){
     .expect(200, done);
   });
 
-  it('get playlists route exists', function(done){
+  xit('get playlists route exists', function(done){
     request(server)
     .get('/api/get-playlist')
     .expect(200, done);
