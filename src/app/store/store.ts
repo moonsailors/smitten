@@ -11,11 +11,9 @@ export class Store {
   store = store;
   changes = this.store
               .asObservable()
-              .distinctUntilChanged()
-              .do(changes => console.log('new state', changes));
+              .distinctUntilChanged();
 
   setState(state: State) {
-    console.log('set state', state);
     this.store.next(state);
   }
 
