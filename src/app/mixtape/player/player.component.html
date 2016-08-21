@@ -1,6 +1,7 @@
 <div>
-  <p>{{nowPlaying.title}}</p>
+  <p *ngIf="nowPlaying">{{nowPlaying.title}}</p>
   <button>previous</button>
   <button>play/pause</button>
   <button>next</button>
+  <audio [attr.src]="src" id="mixtape-audio"></audio>
 </div>
