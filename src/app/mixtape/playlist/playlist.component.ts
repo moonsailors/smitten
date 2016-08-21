@@ -22,7 +22,6 @@ export class PlaylistComponent implements OnInit {
       .subscribe(
         (playlist: Observable<Array<Object>>) => {
           this.songs = playlist;
-          console.log('our playlist: ', this.songs);
         },
         err => console.log('error: ', err));
   }
