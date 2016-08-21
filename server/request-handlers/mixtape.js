@@ -25,6 +25,8 @@ SC.init({
 /**
  * request handlers
  */
+
+ // TODO: Add error handlers
 exports.addToPlaylist = function(req, res, next) {
   var song = req.body;
   var userEmail = req.session.username;
@@ -32,15 +34,22 @@ exports.addToPlaylist = function(req, res, next) {
   db.addSong(song, userEmail)
     .then(function(song) {
       res.status(200).send(song);
+    }).catch(function(error) {
+      console.error('error: ', error);
     });
 };
 
 exports.getPlaylist = function(req, res, next) {
   var userEmail = req.session.username;
-
+  console.log('session: ', req.session);
   db.getPlaylist(userEmail)
     .then(function(playlist) {
+      if (!Array.isArray(playlist)) {
+        playlist = [];
+      }
       res.status(200).send(playlist);
+    }).catch(function(error) {
+      console.error('error: ', error);
     });
 };
 
