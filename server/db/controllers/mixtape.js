@@ -1,9 +1,9 @@
 var db = require('../database.js');
 var PlaylistSong = db.PlaylistSong;
 
-exports.addSong = function(song) {
+exports.addSong = function(song, userEmail) {
   return new PlaylistSong({
-    relationshipId: localStorage.user,
+    relationshipId: userEmail,
     title: song.title,
     artist: song.artist,
     image: song.image,
@@ -19,8 +19,11 @@ exports.addSong = function(song) {
   });
 };
 
-exports.deleteSong = function(id) {
-  return PlaylistSong.get(id)
+exports.deleteSong = function(userEmail) {
+  return PlaylistSong.filter({
+    relationshipId: userEmail,
+    id: id
+  }).run()
     .then(function(song) {
       return song.delete();
     })
@@ -30,14 +33,14 @@ exports.deleteSong = function(id) {
     });
 };
 
-exports.getPlaylist = function() {
+exports.getPlaylist = function(userEmail) {
+  console.log('user email', userEmail);
   return PlaylistSong.filter({
-    // TODO: remove hard coding
-    relationshipId: 'hthr.prk@gmail.com'
+    relationshipId: userEmail
   }).run()
     .then(function(playlist) {
       console.log('playlist retrieved');
-      console.log(playlist);
+      return playlist;
     })
     .error(function(err) {
       console.log('Playlist not found in DB');
