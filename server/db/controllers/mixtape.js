@@ -34,12 +34,13 @@ exports.deleteSong = function(userEmail) {
 };
 
 exports.getPlaylist = function(userEmail) {
+  console.log('user email', userEmail);
   return PlaylistSong.filter({
     relationshipId: userEmail
   }).run()
     .then(function(playlist) {
       console.log('playlist retrieved');
-      console.log(playlist);
+      return playlist;
     })
     .error(function(err) {
       console.log('Playlist not found in DB');
