@@ -15,7 +15,6 @@ export class MixtapePlayerComponent implements OnInit {
   clientId: string;
   nowPlaying: Song;
   paused: boolean;
-  src: string;
 
   constructor(private store: Store,
               private playerService: MixtapePlayerService) {
@@ -28,7 +27,7 @@ export class MixtapePlayerComponent implements OnInit {
 
           if (!this.nowPlaying && this.playerService.playlist.length) {
             this.nowPlaying = this.playerService.playlist[0];
-            this.src = this.nowPlaying.stream + '?client_id=' + this.clientId;
+            this.audio.src = this.nowPlaying.stream + '?client_id=' + this.clientId;
           }
         },
         err => console.log('error: ', err));
@@ -62,7 +61,7 @@ export class MixtapePlayerComponent implements OnInit {
 
   setSong(songData) {
     this.nowPlaying = songData;
-    this.src = this.nowPlaying.stream + '?client_id=' + this.clientId;
+    this.audio.src = this.nowPlaying.stream + '?client_id=' + this.clientId;
   }
 
   togglePlay() {
