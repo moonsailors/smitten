@@ -1,6 +1,7 @@
 export const defaultState = {
   mixtape: {
     searchResults: [],
-    playlist: []
+    playlist: [],
+    nowPlaying: false
   }
 };
