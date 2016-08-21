@@ -12,11 +12,19 @@ export class MixtapePlayerService {
     this.currentSongIndex = this.playlist.indexOf(song);
   }
 
-  next() {
-    if (this.currentSongIndex < this.playlist.length - 1) {
-      this.currentSongIndex++;
+  nextPrev(direction) {
+    if (direction === 'forward') {
+      if (this.currentSongIndex < this.playlist.length - 1) {
+        this.currentSongIndex++;
+      } else {
+        this.currentSongIndex = 0;
+      }
     } else {
-      this.currentSongIndex = 0;
+      if (this.currentSongIndex > 0) {
+        this.currentSongIndex--;
+      } else {
+        this.currentSongIndex = this.playlist.length - 1;
+      }
     }
 
     return this.playlist[this.currentSongIndex];

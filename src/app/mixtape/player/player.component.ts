@@ -16,6 +16,7 @@ export class MixtapePlayerComponent implements OnInit {
   nowPlaying: Song;
   paused: boolean;
 
+  // TODO: refactor code
   constructor(private store: Store,
               private playerService: MixtapePlayerService) {
     this.store
@@ -50,15 +51,22 @@ export class MixtapePlayerComponent implements OnInit {
 
   ngOnInit() {
     this.audio = document.getElementById('mixtape-audio');
-    this.audio.addEventListener('ended', this.playNextSong);
+    this.audio.addEventListener('ended', this.playNextPrevSong.bind(this, 'forward'));
     this.clientId = '370cba66667bcfda9e137b49ec27b708';
     this.paused = true;
     this.playerService.currentSongIndex = 0;
   }
 
-  playNextSong() {
+  playNextPrevSong(direction) {
+    var nextSong;
+
+    if (direction === 'forward') {
+      nextSong = this.playerService.nextPrev('forward');
+    } else {
+      nextSong = this.playerService.nextPrev('backward');
+    }
+
     this.paused = true;
-    var nextSong = this.playerService.next();
     this.setSong(nextSong);
     this.togglePlay();
   }
