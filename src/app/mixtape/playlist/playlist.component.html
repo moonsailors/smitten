@@ -1,7 +1,8 @@
 <div>
   <div
     *ngFor="let song of songs"
-    class="playlist-song-container">
+    class="playlist-song-container"
+    (click)="onSongClick(song)">
     <figure><img src="{{song.image}}"></figure>
     <div class="song-title-container">
       <p class="song-title truncate">{{song.title}}</p>

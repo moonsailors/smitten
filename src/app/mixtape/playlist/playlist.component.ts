@@ -46,4 +46,18 @@ export class PlaylistComponent implements OnInit {
         },
         err => console.log('error: ', err));
   }
+
+  onSongClick(song) {
+    const currentState = this.store.getState();
+
+    this.store.setState(
+      Object.assign({}, currentState, {
+        mixtape: {
+          playlist: currentState.mixtape.playlist,
+          searchResults: currentState.mixtape.searchResults,
+          nowPlaying: song
+        }
+      })
+    );
+  }
 }
