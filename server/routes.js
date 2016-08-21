@@ -19,7 +19,7 @@ module.exports = function (app, express){
 
   /** mixtape **/
   app.post('/api/add-song', mixtapeRequestHandler.addToPlaylist);
-  app.get('/api/get-playlist', mixtapeRequestHandler.getPlaylist);
+  app.post('/api/get-playlist', mixtapeRequestHandler.getPlaylist);
   app.post('/api/soundcloud-search', mixtapeRequestHandler.searchSoundCloud);
 
   //tester routes
