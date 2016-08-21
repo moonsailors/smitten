@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
-import { PlayerService } from './player.service';
+import { MixtapePlayerService } from './player.service';
 import { Store } from '../../store/store';
 
 @Component({
@@ -10,14 +10,14 @@ import { Store } from '../../store/store';
   templateUrl: 'app/mixtape/player/player.component.html',
   providers: [PlayerService]
 })
-export class PlayerComponent implements OnInit {
+export class MixtapePlayerComponent implements OnInit {
   audio: any;
   nowPlaying: Object;
   paused: boolean;
   src: string;
 
   constructor(private store: Store,
-              private playerService: PlayerService) {
+              private playerService: MixtapePlayerService) {
     this.store
       .changes
       .pluck('mixtape', 'playlist')

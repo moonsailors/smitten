@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../../services/index';
 
 @Injectable()
-export class PlayerService {
+export class MixtapePlayerService {
   currentSongIndex: number;
   playlist: Array<Object>;
 }
