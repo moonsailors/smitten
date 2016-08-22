@@ -5,3 +5,15 @@ h1, h2, h3, p, figure, ul, input, a {
   border: 0;
   box-sizing: border-box;
 }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  color: #4A4A4A;
+  font-size: 100%;
+}
+
+section, nav {
+  max-width: 1140px;
+  margin: 0 auto;
+}
