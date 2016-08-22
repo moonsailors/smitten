@@ -37,6 +37,7 @@ var request = require('request');
 var db = require('./db/controllers');
 var oauth2Client = new OAuth2(client.web.client_id, client.web.client_secret, redirect);
 var calendar = google.calendar('v3');
+var TMClient = require('textmagic-rest-client');
 
 // generate a url that asks permissions for Google+ and Google Calendar scopes
 var scopes = [
@@ -46,6 +47,9 @@ var scopes = [
 ];
 
 var calendarUrl = "https://www.googleapis.com/calendar/v3/calendars";
+var TMUrl = "https://rest.textmagic.com/api/v2/messages";
+
+var text = new TMClient(client.textmagic.user, client.textmagic.id);
 
 module.exports = {
 
@@ -159,6 +163,16 @@ module.exports = {
       bodyString =  JSON.stringify(body);
       res.status(200).send(bodyString);
     })
+  },
+
+  calendarText: function(req, res, next){
+    console.log("text body", req.body);
+
+    text.Messages.send({text: req.body.text, phones: req.body.phone}, function(err, response){
+        console.log('Messages.send()', err, response);
+        res.status(201).send(response);
+    });
+
   },
 
   googleJoin: function(req,res, next){
