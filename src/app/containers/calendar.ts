@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
 import { CalendarInput } from '../ui/index';
+import { TextInput } from '../ui/index';
 import { CalendarService } from '../services/index';
 import { DomSanitizationService } from '@angular/platform-browser';
 
 @Component ({
   selector: 'calendar',
   directives: [
-    CalendarInput
+    CalendarInput,
+    TextInput
   ],
   styles: [],
   template: `
     <calendar-input (emitAddition)="onEmitAddition($event)"></calendar-input>
+    <text-input></text-input>
     <iframe [src]="trustedUrl"
     style="border: 0"
     width="1024" height="768" frameborder="0" scrolling="no">
