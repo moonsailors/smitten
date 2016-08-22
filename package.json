@@ -60,6 +60,7 @@
     "soundcloud-node-es6": "0.0.1",
     "supertest": "^2.0.0",
     "systemjs": "^0.19.36",
+    "textmagic-rest-client": "0.0.5",
     "thinky": "^2.3.4",
     "tslint": "^3.14.0",
     "typescript": "^1.8.10",

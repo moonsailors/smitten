@@ -44,7 +44,7 @@ import { Button, InputText } from 'primeng/primeng';
           <fieldset class="field">
             <legend>Login to Smitten</legend>
             <container id="container">
-            <p [hidden]="loggedIn" class="submit">
+            <p [hidden]="hitLoginButton || loggedIn" class="submit">
             <button pButton type="button" (click)="loginUser()"
             label="Sign in with Google">
             </button>
@@ -79,9 +79,11 @@ export class LoginInput {
       email: ''
     };
     loggedIn;
+    hitLoginButton = false;
 
     loginUser() {
       console.log("hit loginUser");
+      this.hitLoginButton = true;
       this.emitLogin.next(this.user);
 
     };
