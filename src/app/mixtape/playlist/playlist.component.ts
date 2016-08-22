@@ -22,7 +22,6 @@ export class PlaylistComponent implements OnInit {
       .subscribe(
         (playlist: Observable<Array<Object>>) => {
           this.songs = playlist;
-          console.log('our playlist: ', this.songs);
         },
         err => console.log('error: ', err));
   }
@@ -46,5 +45,19 @@ export class PlaylistComponent implements OnInit {
 
         },
         err => console.log('error: ', err));
+  }
+
+  onSongClick(song) {
+    const currentState = this.store.getState();
+
+    this.store.setState(
+      Object.assign({}, currentState, {
+        mixtape: {
+          playlist: currentState.mixtape.playlist,
+          searchResults: currentState.mixtape.searchResults,
+          nowPlaying: song
+        }
+      })
+    );
   }
 }

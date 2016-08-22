@@ -1,0 +1,7 @@
+<div>
+  <p *ngIf="nowPlaying">{{nowPlaying.title}}</p>
+  <button (click)="playNextPrevSong('backward')">previous</button>
+  <button (click)="togglePlay()">play/pause</button>
+  <button (click)="playNextPrevSong('forward')">next</button>
+  <audio id="mixtape-audio" controls></audio>
+</div>
