@@ -6,6 +6,7 @@ import { Main,
         Logout } from './containers/index';
 import { AuthGuard } from './services/index';
 import { MixtapeComponent } from './mixtape/index';
+import { LandingPageComponent } from './landing/index';
 
 
 export const routes: RouterConfig = [
@@ -17,7 +18,8 @@ export const routes: RouterConfig = [
       { path: 'login', component: Login },
       { path: 'logout', component: Logout },
       { path: 'wishes', component: Wishes, canActivate: [AuthGuard] },
-      { path: 'mixtape', component: MixtapeComponent, canActivate: [AuthGuard] }
+      { path: 'mixtape', component: MixtapeComponent, canActivate: [AuthGuard] },
+      { path: 'landing', component: LandingPageComponent, canActivate: [AuthGuard] }
     ]
   },
   { path: '**', redirectTo: '' }
