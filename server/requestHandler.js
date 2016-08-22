@@ -18,6 +18,10 @@ var ENV = {
   "soundcloud": {
     "id": process.env.SOUNDCLOUD_ID,
     "secret": process.env.SOUNDCLOUD_SECRET
+  },
+  "textmagic": {
+    "id": process.env.TEXTMAGIC_ID,
+    "user": process.env.TEXTMAGIC_USER
   }
 }
 var client;
