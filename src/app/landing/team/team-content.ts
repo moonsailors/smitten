@@ -3,19 +3,23 @@ export const TEAM_CONTENT: Object {
   team: [
     {
       name: 'Connor Campbell',
-      role: 'Product Owner'
+      role: 'Product Owner',
+      image: 'app/landing/team/images/smitten-connor.png'
     },
     {
       name: 'Heather Park',
-      role: 'Scrum Master'
+      role: 'Scrum Master',
+      image: 'app/landing/team/images/smitten-heather.png'
     },
     {
       name: 'Jennica Goo',
-      role: 'Developer'
+      role: 'Developer',
+      image: 'app/landing/team/images/smitten-jennica.png'
     },
     {
       name: 'Karen Zapata',
-      role: 'Developer'
+      role: 'Developer',
+      image: 'app/landing/team/images/smitten-karen.png'
     }
   ],
   githubImg: 'app/landing/team/images/github-icon.png'
