@@ -1,4 +1,4 @@
-export const TEAM_CONTENT: Object {
+export const TEAM_CONTENT: Object = {
   heading: 'The Team',
   team: [
     {
