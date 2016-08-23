@@ -24,9 +24,14 @@ h2:after {
   justify-content: space-between;
 }
 
-img {
+.member-img {
   width: 120px;
   margin-bottom: 15px;
+}
+
+.icon {
+  margin-top: 10px;
+  width: 22px;
 }
 
 .name {
