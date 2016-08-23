@@ -14,7 +14,7 @@ var getUserByEmail = function(email){
   return User.filter({email: email}).run()
     .then(function(user){
       if(!(user.length < 1)){
-        return User.get(user[0].id).run();
+        return User.get(user[0].id).getJoin({posts: true}).run();
       }
     })
     .error(function(err){
@@ -75,8 +75,6 @@ var deleteUser = function(email){
 /********************************************/
 //Create
 var createRelationship = function(calendarId){
-  var user1Id, user2Id, relationshipId;
-
   return new Relationship({
       calendarId: calendarId,
       wishlist: []
@@ -89,9 +87,9 @@ var createRelationship = function(calendarId){
 
 //retrieve
 var getRelationshipByEmail = function(email){
-  return getUserByEmail(email)
+  return User.filter({email: email}).run()
     .then(function(user){
-      return Relationship.get(user.relationshipId).getJoin({users: true}).run();
+      return Relationship.get(user[0].relationshipId).getJoin({users: true, posts: true}).run();
     })
     .error(function(err){
       console.error(err);
@@ -103,13 +101,24 @@ var getRelationshipByEmail = function(email){
 var updateRelationship = function(email, params){
   getRelationshipByEmail(email)
     .then(function(relationship){
-      return Relationship.get(relationship.id).update(params).run();
+      if(relationship){
+        return Relationship.get(relationship.id).update(params).run();
+      }
     })
     .error(function(err){
       console.error(err);
       throw err;
-    })
+    });
 };
+
+var deleteRelationship = function(email){
+  getRelationshipByEmail(email)
+    .then(function(relationship){
+      if(relationship){
+        return realtionship.delete();
+      }
+    });
+}
 
 //Post CRUD
 /********************************************/
@@ -171,34 +180,8 @@ var deletePost = function(id){
     });
 }
 
+//sentiment parsing helper functions
 /********************************************/
-
-// r.dbDrop('smitten').run();
-// var relationshipId;
-
-// createUser('connor.d.campbell@gmail.com', 'nice')
-//   .then(function(user){
-//     console.log(user);
-//     return createUser('ashley.mcg.campbell@gmail.com', 'cute');
-//   })
-//   .then(function(user){
-//     console.log(user);
-//     return createRelationship('gobledegook')
-//   })
-//   .then(function(relationship){
-//     console.log(relationship);
-//     relationshipId = relationship.id;
-//     return updateUser('ashley.mcg.campbell@gmail.com', {relationshipId: relationshipId});
-//   })
-//   .then(function(user){
-//     console.log(user);
-//     return updateUser('connor.d.campbell@gmail.com', {relationshipId: relationshipId});
-//   })
-//   .error(function(err){
-//       console.error(err);
-//       throw err;
-//     });
-
 
 
 module.exports = {
@@ -209,9 +192,12 @@ module.exports = {
   createRelationship: createRelationship,
   getRelationshipByEmail: getRelationshipByEmail,
   updateRelationship: updateRelationship,
+  deleteRelationship : deleteRelationship,
   createPost: createPost,
+  updatePost: updatePost,
   deletePost: deletePost,
   getRelationshipPosts: getRelationshipPosts,
+  getUserPosts: getUserPosts,
   User: User,
   Post: Post,
   Relationship: Relationship
