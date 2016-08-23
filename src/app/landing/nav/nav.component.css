@@ -39,7 +39,7 @@ nav {
   font-size: 0.875em;
   letter-spacing: 0.014375em;
   padding-bottom: 24px;
-  text-transform: uppercase;
+  text-transform: lowercase;
   border-bottom: 2px solid transparent;
   transition: border-bottom 0.4s;
 }
