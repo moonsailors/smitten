@@ -1,9 +1,14 @@
-<div class="landing-nav-container">
+<div class="nav-container">
   <div class="color-bar"></div>
-  <ul class="links">
-    <li>Features</li>
-    <li>Testimonials</li>
-    <li>Team</li>
-    <li>Log In</li>
-  </ul>
+  <nav class="landing-nav">
+    <a href="{{brand?.url}}" class="landing-nav-brand">{{brand?.text}}</a>
+    <ul class="landing-nav-links">
+      <li *ngFor="let link of links" class="nav-link">
+        <a href="{{link.url}}" class="nav-link">{{link.text}}</a>
+      </li>
+      <li class="nav-link">
+        <a href="#" class="button">Log In</a>
+      </li>
+    </ul>
+  </nav>
 </div>

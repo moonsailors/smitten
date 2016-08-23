@@ -1,0 +1,14 @@
+<section id="landing-features">
+  <h2>{{content?.heading}}</h2>
+  <div class="features-container">
+    <div *ngFor="let feature of content?.features" class="feature">
+      <figure>
+        <img src="{{feature.image}}">
+      </figure>
+      <div class="feature-text">
+        <p class="feature-name">{{feature?.name}}</p>
+        <p>{{feature?.description}}</p>
+      </div>
+    </div>
+  </div>
+</section>

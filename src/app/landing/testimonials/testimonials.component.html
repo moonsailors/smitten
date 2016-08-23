@@ -1,0 +1,12 @@
+<section id="landing-testimonials">
+  <h2>{{content?.heading}}</h2>
+  <div class="testimonials-container">
+    <div *ngFor="let testimonial of content?.testimonials" class="testimonial">
+      <p class="text">{{testimonial?.testimonial}}</p>
+      <figure>
+        <img src="{{testimonial?.image}}">
+      </figure>
+      <p class="user">{{testimonial?.user}}</p>
+    </div>
+  </div>
+</section>

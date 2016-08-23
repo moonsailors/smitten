@@ -1,0 +1,42 @@
+#landing-features {
+  text-transform: lowercase;
+  padding: 80px 0;
+}
+
+.features-container {
+  font-size: 0.875em;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.feature-name {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.feature {
+  display: flex;
+  justify-content: space-between;
+  align-content: flex-start;
+}
+
+h2 {
+  font-size: 1.5625em;
+}
+
+h2:after {
+  content: " ";
+  display: block;
+  width: 30px;
+  height: 2px;
+  background-color: #91204D;
+  margin: 3px 0 0 0;
+}
+
+.feature figure img {
+  height: 30px;
+  width: auto;
+  margin-right: 12px;
+  margin-top: 4px;
+}

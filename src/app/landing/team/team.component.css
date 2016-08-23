@@ -1,0 +1,43 @@
+#landing-team {
+  text-transform: lowercase;
+  padding: 80px 0;
+}
+
+h2 {
+  font-size: 1.5625em;
+}
+
+h2:after {
+  content: " ";
+  display: block;
+  width: 30px;
+  height: 2px;
+  background-color: #91204D;
+  margin: 3px 0 0 0;
+}
+
+.team-container {
+  font-size: 0.875em;
+  margin-top: 50px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.member-img {
+  width: 120px;
+  margin-bottom: 15px;
+}
+
+.icon {
+  margin-top: 10px;
+  width: 22px;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.role {
+  font-style: italic;
+}

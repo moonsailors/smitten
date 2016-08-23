@@ -1,0 +1,17 @@
+<section id="landing-team">
+  <h2>{{content?.heading}}</h2>
+  <div class="team-container">
+    <div *ngFor="let member of content?.team" class="member">
+      <figure>
+        <img class="member-img" src="{{member?.image}}">
+      </figure>
+      <p class="name">{{member?.name}}</p>
+      <p class="role">{{member?.role}}</p>
+      <figure >
+        <a href="{{member?.githubLink}}" target="_blank">
+          <img class="icon" src="{{member?.githubImg}}">
+        </a>
+      </figure>
+    </div>
+  </div>
+</section>

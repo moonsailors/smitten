@@ -1,0 +1,41 @@
+.jumbotron {
+  height: 80vh;
+  text-align: center;
+  text-transform: lowercase;
+  width: 100%;
+}
+
+.jumbotron-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+h1 {
+  font-size: 4.625em;
+}
+
+h2 {
+  font-size: 1.25em;
+  font-weight: 400;
+  margin: -7px auto 20px;
+  max-width: 30%;
+}
+
+.button {
+  color: #FFF;
+  background-color: #91204D;
+  border: 1px solid #91204D;
+  border-radius: 30px;
+  display: inline-block;
+  padding: 5px 24px;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+.button:hover {
+  color: #91204D;
+  background-color: #FFF;
+  border: 1px solid #91204D;
+}
