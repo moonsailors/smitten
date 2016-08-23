@@ -171,8 +171,13 @@ module.exports = {
 
   calendarText: function(req, res, next){
     console.log("text body", req.body);
+    var time = req.body.time + '-07:00';
+    var UTC = Date.parse(time);
+    console.log("UTC ", UTC);
+    UTC = UTC/1000;
+    console.log("UTCsubstr ", UTC);
 
-    text.Messages.send({text: req.body.text, phones: req.body.phone}, function(err, response){
+    text.Messages.send({text: req.body.text, phones: req.body.phone, sendingTime: UTC}, function(err, response){
         console.log('Messages.send()', err, response);
         res.status(201).send(response);
     });
