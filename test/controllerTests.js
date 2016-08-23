@@ -150,28 +150,28 @@ describe("Post", function(){
   var postId;
   var userId;
 
-  it('should be able to add', function(done){
-    createRelationship('this is a test')
-      .then(function(relationship){
-        console.log(relationship);
-        relationshipId = relationship.id;
-        return createUser('miley', 'a little strange');
-      })
-      .then(function(user){
-        console.log(user);
-        userId = user.id;
-        return User.get(user.id).update({relationshipId: relationshipId}).run();
-      })
-      .then(function(user){
-        return createPost('miley', {testing: 'testing'});
-      })
-      .then(function(post){
-        console.log(post);
-        postId = post.id;
-        expect(post.testing).to.equal('testing');
-        done();
-      })
-  });
+  // it('should be able to add', function(done){
+  //   createRelationship('this is a test')
+  //     .then(function(relationship){
+  //       console.log(relationship);
+  //       relationshipId = relationship.id;
+  //       return createUser('miley', 'a little strange');
+  //     })
+  //     .then(function(user){
+  //       console.log(user);
+  //       userId = user.id;
+  //       return User.get(user.id).update({relationshipId: relationshipId}).run();
+  //     })
+  //     .then(function(user){
+  //       return createPost('miley', {testing: 'testing'});
+  //     })
+  //     .then(function(post){
+  //       console.log(post);
+  //       postId = post.id;
+  //       expect(post.testing).to.equal('testing');
+  //       done();
+  //     })
+  // });
 
   // it('should be able to retrieve by user', function(done){
   //   getUserPosts('miley')
@@ -214,19 +214,3 @@ describe("Post", function(){
   //     });
   // });
 })
-
-// module.exports = {
-//   createUser: createUser,
-//   getUserByEmail: getUserByEmail,
-//   updateUser: updateUser,
-//   deleteUser: deleteUser,
-//   createRelationship: createRelationship,
-//   getRelationshipByEmail: getRelationshipByEmail,
-//   updateRelationship: updateRelationship,
-//   createPost: createPost,
-//   deletePost: deletePost,
-//   getRelationshipPosts: getRelationshipPosts,
-//   User: User,
-//   Post: Post,
-//   Relationship: Relationship
-// }
