@@ -1,6 +1,5 @@
 var expect = require('chai').expect;
 var _ = require('lodash');
-var config = require('./testConfig.js');
 var db = require('../server/db/database.js');
 var controllers = require('../server/db/controllers.js');
 var //user
