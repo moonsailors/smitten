@@ -7,7 +7,7 @@ import { Button, SelectButton, InputText, InputTextarea, Calendar } from 'primen
   selector: "wish-input",
   styles: [],
   directives: [
-    Button, 
+    Button,
     Dialog,
     SelectButton,
     InputText,
@@ -30,13 +30,13 @@ import { Button, SelectButton, InputText, InputTextarea, Calendar } from 'primen
         <h6>image title</h6>
         <input type="text" pInputText [(ngModel)]="post.photos[0].title"/>
         <h6>image</h6>
-        <input type="text" pInputText [(ngModel)]="post.photos[0].source"/>
+        <input type="text" placeholder = "paste in pic URL" pInputText [(ngModel)]="post.photos[0].source"/>
       </div>
-      <button (click)="onWishSubmit()" pButton lable="exit"></button>
+      <button (click)="onWishSubmit()" pButton label="Add Post-it!"></button>
     </p-dialog>
 
-    <button (click)="showDialog()" pButton icon="fa-externa-link-square" lable="Add"></button>
-      
+    <button (click)="showDialog()" pButton icon="fa-external-link-square" label="Add"></button>
+
   </div>
   `
 })
