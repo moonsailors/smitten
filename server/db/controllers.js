@@ -14,7 +14,7 @@ var getUserByEmail = function(email){
   return User.filter({email: email}).run()
     .then(function(user){
       if(!(user.length < 1)){
-        return User.get(user[0].id).run();
+        return User.get(user[0].id).getJoin({posts: true}).run();
       }
     })
     .error(function(err){
@@ -75,8 +75,6 @@ var deleteUser = function(email){
 /********************************************/
 //Create
 var createRelationship = function(calendarId){
-  var user1Id, user2Id, relationshipId;
-
   return new Relationship({
       calendarId: calendarId,
       wishlist: []
@@ -91,7 +89,7 @@ var createRelationship = function(calendarId){
 var getRelationshipByEmail = function(email){
   return getUserByEmail(email)
     .then(function(user){
-      return Relationship.get(user.relationshipId).getJoin({users: true}).run();
+      return Relationship.get(user.relationshipId).getJoin({users: true, posts: true}).run();
     })
     .error(function(err){
       console.error(err);
@@ -103,12 +101,14 @@ var getRelationshipByEmail = function(email){
 var updateRelationship = function(email, params){
   getRelationshipByEmail(email)
     .then(function(relationship){
-      return Relationship.get(relationship.id).update(params).run();
+      if(relationship){
+        return Relationship.get(relationship.id).update(params).run();
+      }
     })
     .error(function(err){
       console.error(err);
       throw err;
-    })
+    });
 };
 
 var deleteRelationship = function(email){
@@ -117,7 +117,7 @@ var deleteRelationship = function(email){
       if(relationship){
         return realtionship.delete();
       }
-    })
+    });
 }
 
 //Post CRUD
@@ -180,7 +180,9 @@ var deletePost = function(id){
     });
 }
 
+//sentiment parsing helper functions
 /********************************************/
+
 
 module.exports = {
   createUser: createUser,
@@ -190,9 +192,12 @@ module.exports = {
   createRelationship: createRelationship,
   getRelationshipByEmail: getRelationshipByEmail,
   updateRelationship: updateRelationship,
+  deleteRelationship : deleteRelationship,
   createPost: createPost,
+  updatePost: updatePost,
   deletePost: deletePost,
   getRelationshipPosts: getRelationshipPosts,
+  getUserPosts: getUserPosts,
   User: User,
   Post: Post,
   Relationship: Relationship
