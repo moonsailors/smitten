@@ -18,10 +18,7 @@ import { Dialog, Button, InputText, Calendar } from 'primeng/primeng';
         <br>
         Text Message
         <input pInputText type="text" [(ngModel)]="event.user" name="user" placeholder="...add a text message">
-        <br>
-        Reminder Time
-        <p-calendar [(ngModel)]="end.datetime" name="end" inputStyleClass="ui-calendar" dateFormat="yy-mm-dd" timeFormat="HH:mm:ss">
-        </p-calendar>
+
         <button pButton class="ui-button" type="submit" label="Add"></button>
       </form>
       </footer>
