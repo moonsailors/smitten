@@ -1,0 +1,12 @@
+<section class="team">
+  <h2>{{content?.heading}}</h2>
+  <div class="team-container">
+    <div *ngFor="let member of content?.team" class="member">
+      <figure>
+        <img src="{{member?.image}}">
+      </figure>
+      <p class="text">{{member?.name}}</p>
+      <p class="user">{{member?.role}}</p>
+    </div>
+  </div>
+</section>
