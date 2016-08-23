@@ -1,0 +1,9 @@
+<section class="features">
+  <h2>{{content?.heading}}</h2>
+  <div class="features-container">
+    <div *ngFor="let feature of content?.features" class="feature">
+      <p>{{feature?.name}}</p>
+      <p>{{feature?.description}}</p>
+    </div>
+  </div>
+</section>
