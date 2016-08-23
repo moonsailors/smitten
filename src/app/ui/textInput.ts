@@ -18,6 +18,10 @@ import { Dialog, Button, InputText, Calendar } from 'primeng/primeng';
         <br>
         Text Message
         <input pInputText type="text" [(ngModel)]="event.text" name="text" placeholder="...add a text message">
+        <br>
+        Set Reminder Time
+        <p-calendar [(ngModel)]="event.time" name="time" inputStyleClass="ui-calendar" dateFormat="yy-mm-dd" timeFormat="HH:mm:ss">
+        </p-calendar>
 
         <button pButton class="ui-button" type="submit" label="Add"></button>
       </form>
@@ -35,7 +39,8 @@ export class TextInput {
 
   event = {
     phone: "",
-    text: ""
+    text: "",
+    time: ""
   };
 
   display: boolean = false;
