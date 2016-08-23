@@ -17,6 +17,7 @@ import { TestimonialsComponent } from './testimonials/index';
     <landing-nav></landing-nav>
     <jumbotron></jumbotron>
     <features></features>
+    <testimonials></testimonials>
   `
 })
 export class LandingPageComponent {}
