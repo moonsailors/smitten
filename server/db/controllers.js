@@ -87,9 +87,9 @@ var createRelationship = function(calendarId){
 
 //retrieve
 var getRelationshipByEmail = function(email){
-  return getUserByEmail(email)
+  return User.filter({email: email}).run()
     .then(function(user){
-      return Relationship.get(user.relationshipId).getJoin({users: true, posts: true}).run();
+      return Relationship.get(user[0].relationshipId).getJoin({users: true, posts: true}).run();
     })
     .error(function(err){
       console.error(err);
