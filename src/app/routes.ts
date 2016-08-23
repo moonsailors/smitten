@@ -17,9 +17,9 @@ export const routes: RouterConfig = [
       { path: '', component: Calendar, canActivate: [AuthGuard] },
       { path: 'login', component: Login },
       { path: 'logout', component: Logout },
+      { path: 'index', component: LandingPageComponent },
       { path: 'wishes', component: Wishes, canActivate: [AuthGuard] },
-      { path: 'mixtape', component: MixtapeComponent, canActivate: [AuthGuard] },
-      { path: 'landing', component: LandingPageComponent, canActivate: [AuthGuard] }
+      { path: 'mixtape', component: MixtapeComponent, canActivate: [AuthGuard] }
     ]
   },
   { path: '**', redirectTo: '' }

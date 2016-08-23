@@ -21,6 +21,7 @@ import { LoginService } from './services/loginService';
       font-size: 20px;
       padding: 10px 20px 10px 20px;
       text-decoration: none;
+      margin-bottom: 15px;
     }
   `],
   directives: [
@@ -34,8 +35,6 @@ import { LoginService } from './services/loginService';
         <a routerLink="/mixtape" routerLinkActive="active">Mixtape</a>
         <a routerLink="/logout" routerLinkActive="active">Logout</a>
        </nav>
-       <br>
-       <br>
       <router-outlet></router-outlet>
     </div>
   `
