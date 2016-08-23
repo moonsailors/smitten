@@ -14,7 +14,8 @@ import { Button, InputText } from 'primeng/primeng';
       text-align: center;
     }
 
-    .login-container {
+    .login-container,
+    .partner-link-container {
       position: absolute;
       top: 25%;
       left: 50%;
@@ -33,10 +34,31 @@ import { Button, InputText } from 'primeng/primeng';
       font-weight: 700;
     }
 
-    .login-container img {
+    .google-signin-button {
+      cursor: pointer;
+    }
+
+    .google-signin-button img {
       width: 190px;
       height: auto;
       margin-top: 7px;
+    }
+
+    input[type="text"] {
+      border: 1px solid #E1E1E1;
+      height: 26px;
+      width: 250px;
+      margin-top: 10px;
+      padding: 0 10px;
+      font-family: inherit;
+      font-size: 12px;
+    }
+
+    button {
+      height: 25px;
+      color: #FFF;
+      background-color: #91204D;
+      border: none;
     }
   `
   ],
@@ -47,7 +69,9 @@ import { Button, InputText } from 'primeng/primeng';
       class="login-container"
       [hidden]="hitLoginButton || loggedIn">
       <p>welcome to smitten.</p>
-      <img (click)="loginUser()" src="app/images/google-signin.png">
+      <figure class="google-signin-button">
+        <img (click)="loginUser()" src="app/images/google-signin.png">
+      </figure>
     </div>
     <div
         class="partner-link-container"
@@ -57,7 +81,7 @@ import { Button, InputText } from 'primeng/primeng';
             type="text"
             [(ngModel)]="partner.email"
             placeholder="your partner's gmail address">
-        <button (click)="addPartner()"></button>
+        <button (click)="addPartner()">link</button>
     </div>
   </div>
   `
