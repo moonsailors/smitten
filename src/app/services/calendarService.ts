@@ -20,4 +20,9 @@ export class  CalendarService {
     return this.apiService.get(`${this.path}/calId`);
   };
 
+  addText(event: Object) {
+    console.log("hit add text");
+    return this.apiService.post(`${this.path}/text`, event);
+  };
+
 }
