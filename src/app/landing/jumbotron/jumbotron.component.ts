@@ -15,8 +15,7 @@ export class JumbotronComponent implements OnInit {
 
   getContent() {
     this.jumbotronService.getContent()
-      .then(content => this.content = content)
-      .then(() => console.log('content: ', this.content));
+      .then(content => this.content = content);
   }
 
   ngOnInit() {
