@@ -27,6 +27,7 @@ import { Button } from 'primeng/primeng';
    goBack() {
     // redirect to calendar page
       this.router.navigate(['/login']);
+      window.location.reload();
    };
  };
 

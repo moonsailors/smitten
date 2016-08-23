@@ -3,17 +3,25 @@ import { CalendarInput } from '../ui/index';
 import { TextInput } from '../ui/index';
 import { CalendarService } from '../services/index';
 import { DomSanitizationService } from '@angular/platform-browser';
+import { Dialog } from 'primeng/primeng';
 
 @Component ({
   selector: 'calendar',
   directives: [
     CalendarInput,
-    TextInput
+    TextInput,
+    Dialog
   ],
   styles: [],
   template: `
     <calendar-input (emitAddition)="onEmitAddition($event)"></calendar-input>
     <text-input (emitText)="onEmitText($event)"></text-input>
+
+    <div>
+     <p-dialog header="Your text has been sent!" [(visible)]="textsent" modal="modal" showEffect="fade">
+      </p-dialog>
+    </div>
+
     <iframe [src]="trustedUrl"
     style="border: 0"
     width="1024" height="768" frameborder="0" scrolling="no">
@@ -24,6 +32,7 @@ import { DomSanitizationService } from '@angular/platform-browser';
 export class Calendar {
   calSrc = "";
   trustedUrl;
+  textsent: boolean = false;
 
   loadCalendar() {
     this.calendarService.getCalendarId()
@@ -57,6 +66,7 @@ export class Calendar {
     this.calendarService.addText(event)
     .subscribe(res => {
       console.log("text sent ", res._body);
+      this.textsent = true;
     });
   }
 };
