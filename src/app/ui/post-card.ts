@@ -5,7 +5,7 @@ import {
   EventEmitter
 } from '@angular/core';
 import { Draggable } from '../services/index';
-import { Galleria, InputText } from 'primeng/primeng';
+import { Galleria, InputText, Button } from 'primeng/primeng';
 
 @Component({
   selector: 'post-card',
@@ -16,7 +16,9 @@ import { Galleria, InputText } from 'primeng/primeng';
   `],
   directives: [
     Draggable,
-    Galleria
+    Galleria,
+    Button,
+    InputText
   ],
   template: `
   <div class="drag-me" [draggable]>
@@ -26,12 +28,10 @@ import { Galleria, InputText } from 'primeng/primeng';
     </div>
     <div *ngIf="post.type === 'photos'">
       <p-galleria [images]="post.photos" panelWidth="500" panelHeight="313"></p-galleria>
-      <input type="text" pInputText [(ngModel)]="newPhotoLink"/>
-      <button pButton type="button" (click)="addNewPhoto()" label="Click">Add a photo</button>
+      <input type="text" pInputText [(ngModel)]="newPhotoLink" placeholder="paste in pic URL" />
+      <button pButton type="ui-button" (click)="addNewPhoto()" label="Add a photo"></button>
     </div>
-    <div>
-      <button (click)="onCompletion()">done</button>
-    </div>
+     <button pButton type="button" icon="fa-remove" (click)="onCompletion()"></button>
   </div>
 
   `
@@ -60,6 +60,7 @@ export class PostCard {
   }
 
   addNewPhoto() {
+    console.log('hit add new photo');
     if (this.newPhotoLink.length > 2) {
       this.post.photos.push( { source: this.newPhotoLink } );
       this.newPhoto.next(this.post);
