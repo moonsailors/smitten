@@ -17,7 +17,7 @@ import { Dialog, Button, InputText, Calendar } from 'primeng/primeng';
         <input pInputText type="text" [(ngModel)]="event.phone" name="phone" placeholder="e.g. 14151234567">
         <br>
         Text Message
-        <input pInputText type="text" [(ngModel)]="event.user" name="user" placeholder="...add a text message">
+        <input pInputText type="text" [(ngModel)]="event.text" name="text" placeholder="...add a text message">
 
         <button pButton class="ui-button" type="submit" label="Add"></button>
       </form>
@@ -30,19 +30,20 @@ import { Dialog, Button, InputText, Calendar } from 'primeng/primeng';
 })
 
 export class TextInput {
-
+  @Output () emitText =  new EventEmitter();
   constructor () {}
 
   event = {
     phone: "",
-    text: "",
-    time: ""
+    text: ""
   };
 
   display: boolean = false;
 
   addText() {
     console.log("hit add text button");
+    console.log("event is ", this.event);
+    this.emitText.next(this.event);
   }
 
   showDialog() {

@@ -13,7 +13,7 @@ import { DomSanitizationService } from '@angular/platform-browser';
   styles: [],
   template: `
     <calendar-input (emitAddition)="onEmitAddition($event)"></calendar-input>
-    <text-input></text-input>
+    <text-input (emitText)="onEmitText($event)"></text-input>
     <iframe [src]="trustedUrl"
     style="border: 0"
     width="1024" height="768" frameborder="0" scrolling="no">
@@ -49,6 +49,14 @@ export class Calendar {
     .subscribe(res => {
       console.log("event added ", res._body);
       this.loadCalendar();
+    });
+  }
+
+  onEmitText(event: Object) {
+    console.log("hit onEmitText");
+    this.calendarService.addText(event)
+    .subscribe(res => {
+      console.log("text sent ", res._body);
     });
   }
 };
