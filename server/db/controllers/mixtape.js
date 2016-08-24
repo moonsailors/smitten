@@ -19,22 +19,27 @@ exports.addSong = function(song, userEmail) {
   });
 };
 
-exports.deleteSong = function(userEmail) {
-  return PlaylistSong.filter({
-    relationshipId: userEmail,
-    id: id
-  }).run()
+exports.deleteSong = function(song, userEmail) {
+  return PlaylistSong.get(song.id)
     .then(function(song) {
-      return song.delete();
-    })
-    .error(function(err) {
-      console.log('Unable to delete song in DB');
-      console.error(err);
+      song.delete();
     });
+
+  // return PlaylistSong.filter({
+  //   // relationshipId: userEmail,
+  //   id: song.id
+  // }).run()
+  //   .then(function(song) {
+  //     console.log('deleted song: ', song);
+  //     return song.delete();
+  //   })
+  //   .error(function(err) {
+  //     console.log('Unable to delete song in DB');
+  //     console.error(err);
+  //   });
 };
 
 exports.getPlaylist = function(userEmail) {
-  console.log('user email', userEmail);
   return PlaylistSong.filter({
     relationshipId: userEmail
   }).run()

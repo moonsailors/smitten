@@ -8,6 +8,7 @@ import { Store } from '../../store/store';
 @Component({
   selector: 'playlist',
   templateUrl: 'app/mixtape/playlist/playlist.component.html',
+  styleUrls: ['app/mixtape/playlist/playlist.component.css'],
   providers: [PlaylistService]
 })
 export class PlaylistComponent implements OnInit {
@@ -27,27 +28,51 @@ export class PlaylistComponent implements OnInit {
   }
 
   ngOnInit() {
-    const currentState = this.store.getState();
-
     this.playlistService.getPlaylist()
-      .subscribe(
-        playlist => {
-          playlist = JSON.parse(playlist._body);
-
-          this.store.setState(
-            Object.assign({}, currentState, {
-              mixtape: {
-                playlist: playlist,
-                searchResults: currentState.mixtape.searchResults
-              }
-            })
-          );
-
-        },
-        err => console.log('error: ', err));
+      .subscribe(this.handlePlaylist.bind(this), this.handleError);
   }
 
-  onSongClick(song) {
+  deleteSong(song) {
+    const currentState = this.store.getState();
+    const playlist = currentState.mixtape.playlist;
+    const index = playlist.indexOf(song);
+
+    this.playlistService.deleteSong(song)
+      .subscribe(this.handlePlaylist.bind(this), this.handleError);
+
+    // this.store.setState(
+    //   Object.assign({}, currentState, {
+    //     mixtape: {
+    //       playlist: [
+    //         ...playlist.slice(0, index),
+    //         ...playlist.slice(index + 1)
+    //       ],
+    //       searchResults: currentState.mixtape.searchResults,
+    //       nowPlaying: currentState.mixtape.nowPlaying
+    //     }
+    //   })
+    // );
+  }
+
+  handleError(error) {
+    console.log('error: ', error);
+  }
+
+  handlePlaylist(playlist) {
+    const currentState = this.store.getState();
+    playlist = JSON.parse(playlist._body);
+
+    this.store.setState(
+      Object.assign({}, currentState, {
+        mixtape: {
+          playlist: playlist,
+          searchResults: currentState.mixtape.searchResults
+        }
+      })
+    );
+  }
+
+  playSong(song) {
     const currentState = this.store.getState();
 
     this.store.setState(

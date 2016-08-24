@@ -1,4 +1,4 @@
-.results-container {
+.playlist-container {
   margin-top: 15px;
   padding: 0 15px;
 }
@@ -19,7 +19,12 @@ h2:after {
   margin: 3px 0 0 0;
 }
 
-.song-container {
+ul {
+  list-style-type: none;
+  margin-right: 7px;
+}
+
+.playlist-song-container {
   padding: 20px 0;
 
   display: -webkit-box;
@@ -41,11 +46,11 @@ h2:after {
   align-items: center;
 }
 
-.glyphicon-plus {
+.glyphicon-play,
+.glyphicon-remove {
   cursor: pointer;
   color: #91204D;
   font-size: 0.75em;
-  margin-right: 7px;
 }
 
 .song-title-container {

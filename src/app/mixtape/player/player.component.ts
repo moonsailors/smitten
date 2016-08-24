@@ -40,6 +40,7 @@ export class MixtapePlayerComponent implements OnInit {
       .subscribe(
         (song: Song) => {
           if (song) {
+            console.log('song change detected');
             this.paused = true;
             this.setSong(song);
             this.playerService.changeSongIndex(song);

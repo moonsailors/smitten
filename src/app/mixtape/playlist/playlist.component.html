@@ -1,12 +1,26 @@
-<div>
+<div *ngIf="songs" class="playlist-container">
+  <h2>Mixtape</h2>
   <div
     *ngFor="let song of songs"
-    class="playlist-song-container"
-    (click)="onSongClick(song)">
-    <figure><img src="{{song.image}}"></figure>
+    class="playlist-song-container">
+    <ul>
+      <li>
+        <span
+          (click)="playSong(song)"
+          class="glyphicon glyphicon-play"
+          aria-hidden="true"></span>
+      </li>
+      <li>
+        <span
+          (click)="deleteSong(song)"
+          class="glyphicon glyphicon-remove"
+          aria-hidden="true"></span>
+      </li>
+    </ul>
+    <figure><img src="{{song?.image}}"></figure>
     <div class="song-title-container">
-      <p class="song-title truncate">{{song.title}}</p>
-      <p class="song-artist">{{song.artist}}</p>
+      <p class="song-title truncate">{{song?.title}}</p>
+      <p class="song-artist">{{song?.artist}}</p>
     </div>
   </div>
 </div>

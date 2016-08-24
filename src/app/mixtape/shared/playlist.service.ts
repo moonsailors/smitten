@@ -12,6 +12,11 @@ export class PlaylistService {
     return this.apiService.post('/api/add-song', songData);
   }
 
+  deleteSong(songData) {
+    console.log('sending server request to delete song');
+    return this.apiService.post('/api/delete-song', songData);
+  }
+
   getPlaylist() {
     return this.apiService.post('/api/get-playlist', {get: 'playlist'});
   }
