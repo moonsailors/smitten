@@ -38,6 +38,7 @@ import { MixtapePlayerComponent } from './mixtape/player/index';
     }
 
     .nav-link a {
+      text-decoration: none;
       color: #4A4A4A;
       font-size: 0.875em;
       letter-spacing: 0.014375em;
