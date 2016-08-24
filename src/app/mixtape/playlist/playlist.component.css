@@ -1,0 +1,78 @@
+.playlist-container {
+  margin-top: 15px;
+  padding: 0 15px;
+}
+
+h2 {
+  font-size: 1.5625em;
+  margin: 20px 0;
+  text-transform: lowercase;
+  font-weight: 700;
+}
+
+h2:after {
+  content: " ";
+  display: block;
+  width: 30px;
+  height: 2px;
+  background-color: #91204D;
+  margin: 3px 0 0 0;
+}
+
+ul {
+  list-style-type: none;
+  margin-right: 7px;
+}
+
+.playlist-song-container {
+  padding: 20px 0;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+
+  -webkit-box-pack: flex-start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: flex-start;
+  justify-content: flex-start;
+
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.glyphicon-play,
+.glyphicon-remove {
+  cursor: pointer;
+  color: #91204D;
+  font-size: 0.75em;
+}
+
+.song-title-container {
+  margin-left: 10px;
+}
+
+.song-title {
+  font-weight: 700;
+}
+
+p {
+  font-size: 13px;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+}
+
+.truncate {
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

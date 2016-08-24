@@ -48,7 +48,7 @@ export class PlaylistComponent implements OnInit {
         err => console.log('error: ', err));
   }
 
-  onSongClick(song) {
+  playSong(song) {
     const currentState = this.store.getState();
 
     this.store.setState(
