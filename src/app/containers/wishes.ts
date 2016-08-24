@@ -10,7 +10,7 @@ import { PostService } from '../services/index';
   ],
   styles: [],
   template: `
-    <div>
+    <div class="fade-in">
       <wish-input (createWish)="onCreatePost($event)"></wish-input>
       <div>
         <post-card

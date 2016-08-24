@@ -14,7 +14,7 @@ import { Dialog } from 'primeng/primeng';
   ],
   styles: [],
   template: `
-    <div>
+    <div class="fade-in">
     <p>
     <span>
     <calendar-input (emitAddition)="onEmitAddition($event)"></calendar-input>

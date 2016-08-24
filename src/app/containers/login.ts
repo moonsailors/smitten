@@ -8,7 +8,7 @@ import { LoginService } from '../services/index';
      LoginInput
    ],
    template: `
-     <div>
+     <div class="fade-in">
        <login-input (emitLogin)="onEmitLogin($event)"
        (emitPartner)="onEmitPartner($event)"></login-input>
      </div>
