@@ -11,7 +11,7 @@ import { Dialog, Button, InputText, Calendar } from 'primeng/primeng';
   template: `
     <div>
       <p-dialog header="Add Event" [(visible)]="display" modal="modal" showEffect="fade">
-      <footer>
+
       <form class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix" (ngSubmit)="addEvent()">
         Event
         <input pInputText type="text" [(ngModel)]="event.summary" name="event" placeholder="...add and event">
@@ -31,7 +31,7 @@ import { Dialog, Button, InputText, Calendar } from 'primeng/primeng';
         </p-calendar>
         <button pButton class="ui-button" type="submit" label="Add"></button>
       </form>
-      </footer>
+
       </p-dialog>
 
       <button type="text" class="ui-button" (click)="showDialog()" pButton label="Create Event"></button>
