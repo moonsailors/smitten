@@ -27,7 +27,15 @@ a:hover {
   text-decoration: none;
 }
 
-/*** fixed audio player ***/
+.color-bar {
+  background-color: #91204D;
+  height: 9px;
+  width: 100%;
+}
+
+/* ------------------------------------------------- */
+/* fixed audio player */
+/* ------------------------------------------------- */
 
 .wrapper {
   min-height: 100%;
@@ -45,7 +53,9 @@ footer {
   width: 100%;
 }
 
-/*** preloader screen ***/
+/* ------------------------------------------------- */
+/* preloader screen */
+/* ------------------------------------------------- */
 
 #loader-wrapper {
   position: fixed;
@@ -124,4 +134,37 @@ footer {
     -ms-transform: rotate(360deg);
     transform: rotate(360deg);
     }
+}
+
+/* ------------------------------------------------- */
+/* page fade */
+/* ------------------------------------------------- */
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  -webkit-animation-duration: 0.35s;
+  animation-duration: 0.35s;
+  -webkit-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
 }

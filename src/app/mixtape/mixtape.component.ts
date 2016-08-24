@@ -8,8 +8,10 @@ import { SoundCloudSearchComponent } from './search/index';
   selector: 'mixtape-container',
   directives: [MixtapePlayerComponent, PlaylistComponent, SoundCloudSearchComponent],
   template: `
-    <playlist></playlist>
-    <sc-search-container></sc-search-container>
+    <div class="fade-in">
+      <playlist></playlist>
+      <sc-search-container></sc-search-container>
+    </div>
   `,
   styleUrls: ['app/mixtape/mixtape.component.css']
 })

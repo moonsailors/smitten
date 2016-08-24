@@ -30,12 +30,6 @@ import { MixtapePlayerComponent } from './mixtape/player/index';
       margin-left: 60px;
     }
 
-    .color-bar {
-      background-color: #91204D;
-      height: 9px;
-      width: 100%;
-    }
-
     .app-nav-brand {
       color: #91204D;
       letter-spacing: 0.01875em;
@@ -65,8 +59,7 @@ import { MixtapePlayerComponent } from './mixtape/player/index';
     MixtapePlayerComponent
   ],
   template: `
-    <div class="wrapper">
-      <div class="color-bar"></div>
+    <div class="wrapper" class="fade-in">
       <div [hidden]="!loggedIn" class="nav-container">
         <nav class="app-nav">
           <p class="app-nav-brand">smitten</p>
@@ -89,7 +82,7 @@ import { MixtapePlayerComponent } from './mixtape/player/index';
       <router-outlet></router-outlet>
       <div *ngIf="loggedIn" class="push"></div>
     </div>
-    <player [hidden]="!loggedIn"></player>
+    <player [hidden]="!loggedIn" class='fade-in'></player>
   `
 })
 export class App {

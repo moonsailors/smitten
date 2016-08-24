@@ -7,7 +7,7 @@ import { Button } from 'primeng/primeng';
    selector: 'logout',
    directives: [Button],
    template: `
-     <div class="logout-page">
+     <div class="logout-page fade-in">
        <div class="logout-container">
          <p>you are now logged out.</p>
          <div class="button" (click)="goBack()" label="log in">
