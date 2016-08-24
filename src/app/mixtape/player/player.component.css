@@ -1,0 +1,49 @@
+.mixtape-player {
+  background-color: #FFF;
+  border-top: 1px solid #DFDFDF;
+  padding: 0 4%;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+}
+
+.controls {
+  color: #91204D;
+  cursor: pointer;
+
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+}
+
+.play-btn,
+.pause-btn {
+  font-size: 2.5em;
+  margin: 0 10px;
+}
+
+.next-prev-btn {
+  font-size: 1.5em;
+}
+
+.song-info {
+  font-size: 0.75em;
+  padding: 0 15px;
+}
+
+.title {
+  font-weight: 700;
+}
