@@ -89,7 +89,7 @@ import { MixtapePlayerComponent } from './mixtape/player/index';
     <router-outlet></router-outlet>
     <div class="push"></div>
     </div>
-    <player></player>
+    <player [hidden]="!loggedIn"></player>
   `
 })
 export class App {
