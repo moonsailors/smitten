@@ -57,8 +57,10 @@
     "rxjs": "5.0.0-beta.6",
     "sinon": "^1.17.5",
     "socket.io": "^1.4.8",
+
     "soundcloud-node-es6": "0.0.1",
     "supertest": "^2.0.0",
+    "synaptic": "^1.0.8",
     "systemjs": "^0.19.36",
     "textmagic-rest-client": "0.0.5",
     "thinky": "^2.3.4",
