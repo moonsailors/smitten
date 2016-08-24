@@ -11,7 +11,7 @@ import { Dialog, Button, InputText, Calendar } from 'primeng/primeng';
   template: `
     <div>
      <p-dialog header="Create New Text Reminder" [(visible)]="display" modal="modal" showEffect="fade">
-      <footer>
+
       <form class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix" (ngSubmit)="addText()">
         Phone Number
         <input pInputText type="text" [(ngModel)]="event.phone" name="phone" placeholder="e.g. 14151234567">
@@ -25,7 +25,7 @@ import { Dialog, Button, InputText, Calendar } from 'primeng/primeng';
 
         <button pButton class="ui-button" type="submit" label="Add"></button>
       </form>
-      </footer>
+
       </p-dialog>
 
       <button type="text" class="ui-button" (click)="showDialog()" pButton label="Create Text Reminder"></button>
