@@ -48,6 +48,25 @@ export class PlaylistComponent implements OnInit {
         err => console.log('error: ', err));
   }
 
+  deleteSong(song) {
+    const currentState = this.store.getState();
+    const playlist = currentState.mixtape.playlist;
+    const index = playlist.indexOf(song);
+
+    this.store.setState(
+      Object.assign({}, currentState, {
+        mixtape: {
+          playlist: [
+            ...playlist.slice(0, index),
+            ...playlist.slice(index + 1)
+          ],
+          searchResults: currentState.mixtape.searchResults,
+          nowPlaying: currentState.mixtape.nowPlaying
+        }
+      })
+    );
+  }
+
   playSong(song) {
     const currentState = this.store.getState();
 
