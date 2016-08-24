@@ -7,7 +7,8 @@ const sourcemaps = require('gulp-sourcemaps');
 const tsProject = tsc.createProject("tsconfig.json");
 const tslint = require('gulp-tslint');
 const injectModules = require('gulp-inject-modules');
-const mocha = require("gulp-mocha");
+const mocha = require('gulp-mocha');
+const Builder = require('systemjs-builder');
 
 /**
  * Remove build directory.
@@ -57,6 +58,7 @@ gulp.task("libs", () => {
             'systemjs/dist/system-polyfills.js',
             'systemjs/dist/system.src.js',
             'reflect-metadata/Reflect.js',
+            // 'rxjs/bundles/Rx.min.js',
             'rxjs/**',
             'zone.js/dist/**',
             '@angular/common/bundles/common.umd.min.js',
@@ -80,6 +82,26 @@ gulp.task("test", () => {
         .once('end', () => process.exit());
 });
 
+gulp.task('bundle', ['compile', 'resources', 'libs'], () => {
+    var builder = new Builder('build/', 'build/systemjs.config.js');
+
+    /*
+       the parameters of the below buildStatic() method are:
+           - your transcompiled application boot file (the one wich would contain the bootstrap(MyApp, [PROVIDERS]) function - in my case 'dist/app/boot.js'
+           - the output (file into which it would output the bundled code)
+           - options {}
+    */
+    return builder
+        .buildStatic('app/main.js', 'build/bundle.js', { minify: false, sourceMaps: true})
+        .then(function() {
+            console.log('Build complete');
+        })
+        .catch(function(err) {
+            console.log('Build error');
+            console.log(err);
+        });
+});
+
 /**
  * Watch for changes in TypeScript, HTML and CSS files.
  */
@@ -95,6 +117,7 @@ gulp.task('watch', function () {
 /**
  * Build the project.
  */
+
 gulp.task("build", ['compile', 'resources', 'libs'], () => {
     console.log("Building the project ...");
 });
