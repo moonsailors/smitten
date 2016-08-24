@@ -57,7 +57,7 @@ export class PostCard {
   coordinates = {
       x: this.post.coordinates.x,
       y: this.post.coordinates.y
-    };
+ };
 
   note: boolean = true;
   photos: boolean = true;
@@ -70,8 +70,6 @@ export class PostCard {
     //   console.log("filling out coordinates");
     //   this.post.coordinates = this.coordinates;
     // }
-    // this.coordinates = this.post.coordinates;
-    // console.log('coordinates at construction', this.post);
 
   }
 
