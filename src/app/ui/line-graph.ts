@@ -1,20 +1,20 @@
 import {UIChart} from 'primeng/primeng';
-import { Component } from '@angular/core'
+import { Component } from '@angular/core';
 
-@UIChart({
+@Component({
   selector: 'line-graph',
-  styles:[],
+  styles: [],
   directives: [UIChart],
-  template:`
+  template: `
+    <div>hello from linegraph</div>
     <p-chart type='line' [data]='data'></p-chart>
   `
 })
 
 export class LineGraph {
-
   data: any;
-
-  msgs: Message[];
+  options = {};
+  msgs = [];
 
   constructor() {
     this.data = {
@@ -34,7 +34,8 @@ export class LineGraph {
           borderColor: '#565656'
         }
       ]
-    }
+    };
+
     this.options = {
       title: {
         display: true,
@@ -44,11 +45,13 @@ export class LineGraph {
       legend: {
         position: 'bottom'
       }
-    }
-  }
+    };
+  };
 
   selectData(event) {
-    this.msgs = [];
-    this.msgs.push({severity: 'info', summary: 'Data Selected', 'detail': this.data.datasets[event.element._datasetIndex].data[event.element._index]});
+    this.msgs.push({
+      severity: 'info',
+      summary: 'Data Selected',
+      'detail': this.data.datasets[event.element._datasetIndex].data[event.element._index]});
   }
 }

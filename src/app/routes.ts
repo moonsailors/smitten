@@ -3,7 +3,8 @@ import { Main,
         Wishes,
         Calendar,
         Login,
-        Logout } from './containers/index';
+        Logout,
+        Graph } from './containers/index';
 import { AuthGuard } from './services/index';
 import { MixtapeComponent } from './mixtape/index';
 import { LandingPageComponent } from './landing/index';
@@ -19,6 +20,7 @@ export const routes: RouterConfig = [
       { path: 'logout', component: Logout },
       { path: 'index', component: LandingPageComponent },
       { path: 'wishes', component: Wishes, canActivate: [AuthGuard] },
+      { path: 'sentiment', component: Graph, canActivate: [AuthGuard] },
       { path: 'mixtape', component: MixtapeComponent, canActivate: [AuthGuard] }
     ]
   },
