@@ -22,11 +22,7 @@ exports.addSong = function(song, userEmail) {
 exports.deleteSong = function(song, userEmail) {
   return PlaylistSong.get(song.id)
     .then(function(song) {
-      song.delete()
-        .then(function(result) {
-          console.log('deleted song: ', result);
-          return result;
-        });
+      song.delete();
     });
 
   // return PlaylistSong.filter({

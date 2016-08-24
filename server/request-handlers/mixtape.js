@@ -39,9 +39,30 @@ exports.addToPlaylist = function(req, res, next) {
     });
 };
 
+exports.deleteSong = function(req, res, next) {
+  var song = req.body;
+  var userEmail = req.session.username;
+
+  db.deleteSong(song)
+    .then(function(song) {
+      db.getPlaylist(userEmail)
+        .then(function(playlist) {
+          if (!Array.isArray(playlist)) {
+            playlist = [];
+          }
+          res.status(200).send(playlist);
+        })
+        .catch(function(error) {
+          res.send('[]');
+        });
+    }).catch(function(error) {
+      console.error('error: ', error);
+    });
+};
+
 exports.getPlaylist = function(req, res, next) {
   var userEmail = req.session.username;
-  console.log('session: ', req.session);
+
   db.getPlaylist(userEmail)
     .then(function(playlist) {
       if (!Array.isArray(playlist)) {
