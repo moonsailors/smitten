@@ -1,3 +1,11 @@
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
 html, body, header, nav, div,
 h1, h2, h3, p, figure, ul, input, a {
   border: 0;
@@ -6,7 +14,6 @@ h1, h2, h3, p, figure, ul, input, a {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 100%;
-  margin: 0;
   padding: 0;
 }
 
@@ -21,4 +28,20 @@ a {
 
 a:hover {
   text-decoration: none;
+}
+
+.wrapper {
+  min-height: 100%;
+  margin: 0 auto -80px;
+}
+
+.push {
+  height: 80px;
+}
+
+footer {
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
