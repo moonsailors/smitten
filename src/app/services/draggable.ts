@@ -35,6 +35,7 @@ export class Draggable implements OnDestroy, OnInit {
     this.doTranslation(event.x, event.y);
   }
   onDragEnd(event: MouseEvent) {
+    console.log('draggen, baby');
     this.Δx = 0;
     this.Δy = 0;
   }

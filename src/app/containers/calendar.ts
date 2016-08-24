@@ -14,9 +14,12 @@ import { Dialog } from 'primeng/primeng';
   ],
   styles: [],
   template: `
+    <p>
+    <span>
     <calendar-input (emitAddition)="onEmitAddition($event)"></calendar-input>
     <text-input (emitText)="onEmitText($event)"></text-input>
-
+    </span>
+    </p>
     <div>
      <p-dialog header="Your text has been sent!" [(visible)]="textsent" modal="modal" showEffect="fade">
       </p-dialog>
@@ -24,7 +27,7 @@ import { Dialog } from 'primeng/primeng';
 
     <iframe [src]="trustedUrl"
     style="border: 0"
-    width="1024" height="768" frameborder="0" scrolling="no">
+    width="1024" height="600" frameborder="0" scrolling="no">
     </iframe>
   `
 })

@@ -2,7 +2,9 @@ import {
   Component,
   Input,
   Output,
-  EventEmitter
+  EventEmitter,
+  Renderer,
+  ElementRef
 } from '@angular/core';
 import { Draggable } from '../services/index';
 import { Galleria, InputText, Button } from 'primeng/primeng';
@@ -21,7 +23,7 @@ import { Galleria, InputText, Button } from 'primeng/primeng';
     InputText
   ],
   template: `
-  <div class="drag-me" [draggable]>
+  <div class="drag-me" [draggable] (dragend)="onDragEnd()" [style.top]="post.coordinates.y" [style.left]="post.coordinates.x" >
     <div><h4>{{post.title}}</h4></div>
     <div *ngIf="post.type === 'note'">
       <p>{{post.description}}</p>
@@ -40,17 +42,35 @@ import { Galleria, InputText, Button } from 'primeng/primeng';
 export class PostCard {
   @Input() post = {
     type: "",
-    photos: []
-  };
+    photos: [],
+    coordinates: {
+      x: "",
+      y: ""
+    }
+   };
+
   @Output() complete = new EventEmitter();
   @Output() newPhoto = new EventEmitter();
 
+  coordinates = {
+      x: "500px",
+      y: "100px"
+    };
+
   note: boolean = true;
   photos: boolean = true;
-  constructor() {
+  constructor(private renderer: Renderer, private el: ElementRef) {
     this.note = this.post.type === "note";
     this.photos = this.post.type === "photos";
+
+    // if (this.post.coordinates.x === undefined) {
+    //   console.log("filling out coordinates");
+    //   this.post.coordinates = this.coordinates;
+    // }
+    this.coordinates = this.post.coordinates;
+
   }
+
 
   newPhotoLink = "";
 
@@ -67,6 +87,9 @@ export class PostCard {
     }
   }
 
+  onDragEnd() {
+
+  }
 
 }
 
