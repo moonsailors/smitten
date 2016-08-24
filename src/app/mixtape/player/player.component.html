@@ -1,7 +1,23 @@
-<div>
-  <p *ngIf="nowPlaying">{{nowPlaying.title}}</p>
-  <button (click)="playNextPrevSong('backward')">previous</button>
-  <button (click)="togglePlay()">play/pause</button>
-  <button (click)="playNextPrevSong('forward')">next</button>
-  <audio id="mixtape-audio" controls></audio>
-</div>
+<footer class="mixtape-player">
+  <audio id="mixtape-audio"></audio>
+  <div class="controls">
+    <span
+      (click)="playNextPrevSong('backward')"
+      class="glyphicon glyphicon-backward next-prev-btn" aria-hidden="true"></span>
+    <span
+      (click)="togglePlay()"
+      *ngIf="paused"
+      class="glyphicon glyphicon-play play-btn" aria-hidden="true"></span>
+    <span
+      (click)="togglePlay()"
+      *ngIf="!paused"
+      class="glyphicon glyphicon-pause pause-btn" aria-hidden="true"></span>
+    <span
+      (click)="playNextPrevSong('forward')"
+      class="glyphicon glyphicon-forward next-prev-btn" aria-hidden="true"></span>
+  </div>
+  <div class="song-info">
+    <p class="title">{{nowPlaying?.title}}</p>
+    <p class="artist">{{nowPlaying?.artist}}</p>
+  </div>
+</footer>

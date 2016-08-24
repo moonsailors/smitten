@@ -1,19 +1,20 @@
+html, body {
+  height: 100%;
+}
+
 html, body, header, nav, div,
 h1, h2, h3, p, figure, ul, input, a {
-  margin: 0;
-  padding: 0;
   border: 0;
   box-sizing: border-box;
-}
-
-body {
+  color: #4A4A4A;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  color: #4A4A4A;
   font-size: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-section, nav {
+section, nav{
   max-width: 1140px;
   margin: 0 auto;
 }
@@ -24,4 +25,20 @@ a {
 
 a:hover {
   text-decoration: none;
+}
+
+.wrapper {
+  min-height: 100%;
+  margin: 0 auto -80px;
+}
+
+.push {
+  height: 80px;
+}
+
+footer {
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }

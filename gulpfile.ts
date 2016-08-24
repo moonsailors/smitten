@@ -69,8 +69,7 @@ gulp.task("libs", () => {
             '@angular/router/bundles/router.umd.min.js',
             'socket.io-client/socket.io.js',
             'primeng/**',
-            'primeui/**',
-            'bootstrap/dist/js/bootstrap.min.js'
+            'primeui/**'
         ], {cwd: "node_modules/**"}) /* Glob required here. */
         .pipe(gulp.dest("build/lib"));
 });

@@ -8,6 +8,7 @@ import { Store } from '../../store/store';
 @Component({
   selector: 'player',
   templateUrl: 'app/mixtape/player/player.component.html',
+  styleUrls: ['app/mixtape/player/player.component.css'],
   providers: [MixtapePlayerService]
 })
 export class MixtapePlayerComponent implements OnInit {
