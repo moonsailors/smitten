@@ -23,8 +23,8 @@ import { Galleria, InputText, Button } from 'primeng/primeng';
     InputText
   ],
   template: `
-  <div class="drag-me" [draggable] [style.top]="post.coordinates.y"
-  [style.left]="post.coordinates.x" (coordinateUpdate)="onDragEnd($event)">
+  <div class="drag-me" [draggable] [style.top]="post.coordinates.top"
+  [style.left]="post.coordinates.left" (coordinateUpdate)="onDragEnd($event)">
     <div><h4>{{post.title}}</h4></div>
     <div *ngIf="post.type === 'note'">
       <p>{{post.description}}</p>
@@ -45,26 +45,22 @@ export class PostCard {
     id: "",
     type: "",
     photos: [],
-    coordinates: {
-      x: "500px",
-      y: "500px"
-    }
+    coordinates: {}
   };
 
   @Output() complete = new EventEmitter();
   @Output() newPhoto = new EventEmitter();
 
-  coordinates = {
-      x: this.post.coordinates.x,
-      y: this.post.coordinates.y
- };
+ //  coordinates = {
+ //      x: this.post.coordinates.x,
+ //      y: this.post.coordinates.y
+ // };
 
   note: boolean = true;
   photos: boolean = true;
   constructor(private renderer: Renderer, private el: ElementRef, private postService: PostService) {
     this.note = this.post.type === "note";
     this.photos = this.post.type === "photos";
-    this.coordinates = this.post.coordinates;
 
     // if (this.post.coordinates.x === undefined) {
     //   console.log("filling out coordinates");
