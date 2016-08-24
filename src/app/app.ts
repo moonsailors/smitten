@@ -75,6 +75,9 @@ import { MixtapePlayerComponent } from './mixtape/player/index';
               <a routerLink="/mixtape" routerLinkActive="active">mixtape</a>
             </li>
             <li class="nav-link">
+              <a routerLink="/sentiment" routerLinkActive="active">sentiment</a>
+            </li>
+            <li class="nav-link">
               <a routerLink="/logout" routerLinkActive="active">logout</a>
             </li>
           </ul>

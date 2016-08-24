@@ -8,7 +8,9 @@ import { LineGraph } from '../ui/index';
   ],
   styles: [],
   template: `
-
+    <div>
+      <line-graph></line-graph>
+    </div>
   `
 })
 export class Graph {}
