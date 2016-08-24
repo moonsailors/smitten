@@ -6,7 +6,7 @@ import {
   Renderer,
   ElementRef
 } from '@angular/core';
-import { Draggable } from '../services/index';
+import { Draggable, PostService } from '../services/index';
 import { Galleria, InputText, Button } from 'primeng/primeng';
 
 @Component({
@@ -23,7 +23,8 @@ import { Galleria, InputText, Button } from 'primeng/primeng';
     InputText
   ],
   template: `
-  <div class="drag-me" [draggable] (dragend)="onDragEnd()" [style.top]="post.coordinates.y" [style.left]="post.coordinates.x" >
+  <div class="drag-me" [draggable] [style.top]="post.coordinates.y"
+  [style.left]="post.coordinates.x" (coordinateUpdate)="onDragEnd($event)">
     <div><h4>{{post.title}}</h4></div>
     <div *ngIf="post.type === 'note'">
       <p>{{post.description}}</p>
@@ -41,33 +42,36 @@ import { Galleria, InputText, Button } from 'primeng/primeng';
 
 export class PostCard {
   @Input() post = {
+    id: "",
     type: "",
     photos: [],
     coordinates: {
-      x: "",
-      y: ""
+      x: "500px",
+      y: "500px"
     }
-   };
+  };
 
   @Output() complete = new EventEmitter();
   @Output() newPhoto = new EventEmitter();
 
   coordinates = {
-      x: "500px",
-      y: "100px"
+      x: this.post.coordinates.x,
+      y: this.post.coordinates.y
     };
 
   note: boolean = true;
   photos: boolean = true;
-  constructor(private renderer: Renderer, private el: ElementRef) {
+  constructor(private renderer: Renderer, private el: ElementRef, private postService: PostService) {
     this.note = this.post.type === "note";
     this.photos = this.post.type === "photos";
+    this.coordinates = this.post.coordinates;
 
     // if (this.post.coordinates.x === undefined) {
     //   console.log("filling out coordinates");
     //   this.post.coordinates = this.coordinates;
     // }
-    this.coordinates = this.post.coordinates;
+    // this.coordinates = this.post.coordinates;
+    // console.log('coordinates at construction', this.post);
 
   }
 
@@ -87,8 +91,10 @@ export class PostCard {
     }
   }
 
-  onDragEnd() {
-
+  onDragEnd(coordinates) {
+    console.log("post card level", coordinates);
+    this.postService.updatePost(this.post.id, {coordinates: coordinates})
+      .subscribe( post => console.log(post) );
   }
 
 }

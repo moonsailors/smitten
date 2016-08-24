@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer, OnDestroy, OnInit } from '@angular/core';
+import { Directive, ElementRef, Renderer, OnDestroy, OnInit, EventEmitter, Output } from '@angular/core';
 // import { CommonModule } from '@angular/common';
 
 @Directive({
@@ -10,6 +10,9 @@ import { Directive, ElementRef, Renderer, OnDestroy, OnInit } from '@angular/cor
   }
 })
 export class Draggable implements OnDestroy, OnInit {
+
+  @Output() coordinateUpdate = new EventEmitter;
+
   private Δx: number = 0;
   private Δy: number = 0;
   private mustBePosition: Array<string> = ['absolute', 'fixed', 'relative'];
@@ -35,7 +38,7 @@ export class Draggable implements OnDestroy, OnInit {
     this.doTranslation(event.x, event.y);
   }
   onDragEnd(event: MouseEvent) {
-    console.log('draggen, baby');
+    this.coordinateUpdate.next({top: this.el.nativeElement.style.top, left: this.el.nativeElement.style.left});
     this.Δx = 0;
     this.Δy = 0;
   }
