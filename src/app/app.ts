@@ -9,14 +9,12 @@ import { LoginService } from './services/loginService';
     .nav-container {
       border: 1px solid #DFDFDF;
     }
-
     nav {
       padding: 20px 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-
     .app-nav-links {
       list-style-type: none;
       padding: 0;
@@ -24,24 +22,20 @@ import { LoginService } from './services/loginService';
       justify-content: flex-end;
       align-items: center;
     }
-
     .app-nav-links li {
       margin-left: 60px;
     }
-
     .color-bar {
       background-color: #91204D;
       height: 9px;
       width: 100%;
     }
-
     .app-nav-brand {
       color: #91204D;
       letter-spacing: 0.01875em;
       text-transform: lowercase;
       font-weight: 700;
     }
-
     .nav-link a {
       color: #4A4A4A;
       font-size: 0.875em;
@@ -51,13 +45,10 @@ import { LoginService } from './services/loginService';
       border-bottom: 2px solid transparent;
       transition: border-bottom 0.4s;
     }
-
     .nav-link a:hover,
     .nav-link a:active {
       border-bottom: 2px solid #91204D;
     }
-
-
   `],
   directives: [
     ...ROUTER_DIRECTIVES

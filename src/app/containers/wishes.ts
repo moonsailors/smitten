@@ -29,7 +29,7 @@ export class Wishes {
 
   constructor(private postService: PostService) {
     console.log('constructor');
-    this.postService.getRelationshipPosts("jenjengoo@gmail.com")
+    this.postService.getRelationshipPosts(window.localStorage.getItem('user'))
       .subscribe(res => {
         let newPosts = res.json();
         console.log(newPosts);
@@ -43,7 +43,7 @@ export class Wishes {
 
   onCreatePost(post) {
     console.log('old post', post);
-    this.postService.createPost("jenjengoo@gmail.com", post)
+    this.postService.createPost(window.localStorage.getItem('user'), post)
       .subscribe(res => {
         var post = res.json();
         post.index = this.posts.push(post) - 1;

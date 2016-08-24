@@ -25,13 +25,17 @@ exports.deletePost = function(req, res, next){
   db.deletePost(id)
     .then(function(result){
       console.log(result);
-      res.status(200).send(result);  
+      res.status(200).send(result);
     });
 };
 
 exports.updatePost = function(req, res, next){
-  console.log('updatePost hit', req.body);
-  res.end();
+  var id = req.url.split('/').pop();
+  db.updatePost(id, req.body)
+    .then(function(post){
+      console.log(post);
+      res.status(201).send(post);
+    });
 };
 
 // exports.createUser = function(req, res, next){
@@ -54,11 +58,11 @@ exports.updatePost = function(req, res, next){
 // };
 
 // exports.createRelationship = function(req, res, next){
-  
+
 // };
 
 // exports.getRelationship = function(req, res, next){
-  
+
 // };
 
   // app.post('/api/users/:email', postRequestHandler.createUser);
