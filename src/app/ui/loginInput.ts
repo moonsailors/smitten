@@ -71,7 +71,6 @@ import { Button, InputText } from 'primeng/primeng';
     <div
       class="login-container"
       [hidden]="hitLoginButton || loggedIn">
-      <div class="color-bar"></div>
       <p>welcome to smitten.</p>
       <figure class="google-signin-button">
         <img (click)="loginUser()" src="app/images/google-signin.png">

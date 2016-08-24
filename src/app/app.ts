@@ -66,28 +66,28 @@ import { MixtapePlayerComponent } from './mixtape/player/index';
   ],
   template: `
     <div class="wrapper">
-      <div [hidden]="!loggedIn" class="nav-container">
       <div class="color-bar"></div>
-      <nav class="app-nav">
-        <p class="app-nav-brand">smitten</p>
-        <ul class="app-nav-links">
-          <li class="nav-link">
-            <a routerLink="/" routerLinkActive="active">calendar</a>
-          </li>
-          <li class="nav-link">
-            <a routerLink="/wishes" routerLinkActive="active">post-its</a>
-          </li>
-          <li class="nav-link">
-            <a routerLink="/mixtape" routerLinkActive="active">mixtape</a>
-          </li>
-          <li class="nav-link">
-            <a routerLink="/logout" routerLinkActive="active">logout</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <router-outlet></router-outlet>
-    <div class="push"></div>
+      <div [hidden]="!loggedIn" class="nav-container">
+        <nav class="app-nav">
+          <p class="app-nav-brand">smitten</p>
+          <ul class="app-nav-links">
+            <li class="nav-link">
+              <a routerLink="/" routerLinkActive="active">calendar</a>
+            </li>
+            <li class="nav-link">
+              <a routerLink="/wishes" routerLinkActive="active">post-its</a>
+            </li>
+            <li class="nav-link">
+              <a routerLink="/mixtape" routerLinkActive="active">mixtape</a>
+            </li>
+            <li class="nav-link">
+              <a routerLink="/logout" routerLinkActive="active">logout</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <router-outlet></router-outlet>
+      <div *ngIf="loggedIn" class="push"></div>
     </div>
     <player [hidden]="!loggedIn"></player>
   `
