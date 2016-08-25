@@ -34,7 +34,7 @@ import { Galleria, InputText, Button } from 'primeng/primeng';
       <input type="text" pInputText [(ngModel)]="newPhotoLink" placeholder="paste in pic URL" />
       <button pButton type="ui-button" (click)="addNewPhoto()" label="Add a photo"></button>
     </div>
-     <button pButton type="button" icon="fa-remove" (click)="onCompletion()"></button>
+     <button pButton type="ui-button" icon="fa-remove" (click)="onCompletion()"></button>
   </div>
 
   `
