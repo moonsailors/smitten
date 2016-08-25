@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { LoginService } from './services/loginService';
 import { MixtapePlayerComponent } from './mixtape/player/index';
+import { LineGraph } from './ui/index';
+import '../lib/chart.js/dist/Chart.bundle.min.js';
 
 @Component({
   selector: 'app',
@@ -57,7 +59,8 @@ import { MixtapePlayerComponent } from './mixtape/player/index';
   `],
   directives: [
     ...ROUTER_DIRECTIVES,
-    MixtapePlayerComponent
+    MixtapePlayerComponent,
+    LineGraph
   ],
   template: `
     <div class="wrapper" class="fade-in">
