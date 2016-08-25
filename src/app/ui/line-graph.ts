@@ -1,57 +1,90 @@
-import {UIChart} from 'primeng/primeng';
+// import { UIChart } from 'primeng/primeng';
+import { CHART_DIRECTIVES } from 'ng2-charts/ng2-charts';
 import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'line-graph',
-  styles: [],
-  directives: [UIChart],
+  directives: [ CHART_DIRECTIVES ],
+  styles: [ `
+    .chart {display: block; width: 100%;}
+  `],
   template: `
     <div>hello from linegraph</div>
-    <p-chart type='line' [data]='data'></p-chart>
-  `
+     <base-chart class="chart"
+                [datasets]="datasets"
+                [labels]="labels"
+                [chartType]="line"
+                [options]="options"
+                [colors]="colors"
+                [legend]="legend"
+                ></base-chart>
+    `
 })
 
 export class LineGraph {
-  data: any;
-  options = {};
+  options = {animation: false,
+        responsive: false};
   msgs = [];
-
-  constructor() {
-    this.data = {
-      xLabels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      yLabels: ['negative', 'neutral', 'positive'],
-      datasets: [
-        {
+  data = { datasets: [{
           label: 'Partner 1',
-          data: ['positive', 'neutral', 'negative', 'positive', 'positive', 'positive', 'neutral'],
-          fill: false,
-          borderColor: '#4bc0c0'
+          // data: ['positive', 'neutral', 'negative', 'positive', 'positive', 'positive', 'neutral'],
+          data: [65, 59, 80, 81, 56, 55, 40]
+          // fill: false,
+          // borderColor: '#4bc0c0'
         },
         {
           label: 'Partner 2',
-          data: ['negative', 'neutral', 'neutral', 'positive', 'positive', 'positive', 'neutral'],
-          fill: false,
-          borderColor: '#565656'
-        }
-      ]
-    };
-
-    this.options = {
-      title: {
-        display: true,
-        text: 'Our Moods',
-        fontSize: 16
-      },
-      legend: {
-        position: 'bottom'
-      }
-    };
+          // data: ['negative', 'neutral', 'neutral', 'positive', 'positive', 'positive', 'neutral'],
+          data: [28, 48, 40, 19, 86, 27, 90]
+          // fill: false,
+          // borderColor: '#565656'
+        }],
+  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
   };
 
-  selectData(event) {
-    this.msgs.push({
-      severity: 'info',
-      summary: 'Data Selected',
-      'detail': this.data.datasets[event.element._datasetIndex].data[event.element._index]});
-  }
+  colors = [{ // grey
+      backgroundColor: 'rgba(148,159,177,0.2)',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    },
+    { // dark grey
+      backgroundColor: 'rgba(77,83,96,0.2)',
+      borderColor: 'rgba(77,83,96,1)',
+      pointBackgroundColor: 'rgba(77,83,96,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(77,83,96,1)'
+    }];
+  legend = false;
+
+  constructor() {
+
+      // yLabels: ['negative', 'neutral', 'positive'],
+
+
+    // this.options = {
+    //   title: {
+    //     display: true,
+    //     text: 'Our Moods',
+    //     fontSize: 16
+    //   },
+    //   legend: {
+    //     position: 'bottom'
+    //   }
+    // };
+    // var ctx: any = el.nativeElement.getContext("line");
+    //     var Graph = new Chart(ctx);
+    //     Graph.Line(this.data, this.options);
+  };
+
+  // selectData(event) {
+  //   this.msgs.push({
+  //     severity: 'info',
+  //     summary: 'Data Selected',
+  //     'detail': this.data.datasets[event.element._datasetIndex].data[event.element._index]});
+  // }
 }

@@ -30,7 +30,9 @@
         'primeng': 'lib/primeng',
         'es6-shim': 'lib/es6-shim/es6-shim.min.js',
         'zone': 'lib/zone.js/dist/zone.js',
-        'reflect-metadata': 'lib/reflect-metadata/Reflect.js'
+        'reflect-metadata': 'lib/reflect-metadata/Reflect.js',
+        'ng2-charts': 'lib/ng2-charts/',
+        'chart.js': 'lib/chart.js'
     };
 
     // packages tells the System loader how to load when no filename and/or no extension
@@ -41,7 +43,9 @@
         'primeng': {defaultExtension: 'js'},
         'es6-shim': {defaultExtension: 'js'},
         'zone': {defaultExtension: 'js'},
-        'reflect-metadata': {defaultExtension: 'js'}
+        'reflect-metadata': {defaultExtension: 'js'},
+        'ng2-charts': {defaultExtension: 'js'},
+        'chart.js': {defaultExtension: 'js'}
     };
 
     var packageNames = [

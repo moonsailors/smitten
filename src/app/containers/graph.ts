@@ -9,7 +9,7 @@ import { LineGraph } from '../ui/index';
   styles: [],
   template: `
     <div>
-      <line-graph></line-graph>
+     <line-graph></line-graph>
     </div>
   `
 })

@@ -53,6 +53,7 @@ footer {
   width: 100%;
 }
 
+
 /* ------------------------------------------------- */
 /* preloader screen */
 /* ------------------------------------------------- */
@@ -168,3 +169,6 @@ footer {
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
 }
+
+
+.chart {display: block; width: 100%;}
