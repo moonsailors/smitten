@@ -87,7 +87,7 @@ var trainingSet = [
   {
     input: [0,1,0,0,0,0,0,0,0,0,0,0,0,0], //rush
     output: [1,0,0,0,0,0,0] //stressed
-  }
+  },
   {
     input: [1,0,0,0,0,0,0,0,0,0,0,0,0,0], //deadline
     output: [1,0,0,0,0,0,0] //stressed
@@ -173,6 +173,10 @@ var moodTranslator = function(input){
 
 console.log("mood translated is: " + moodTranslator(dailyMood));
 var currentMood = moodTranslator(dailyMood)
+
+module.exports = {
+  normWeeklyKeywords: normWeeklyKeywords
+};
 
 //Input (keywords)
 // var wordNorm = {
