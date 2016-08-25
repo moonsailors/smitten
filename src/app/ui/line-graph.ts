@@ -41,20 +41,20 @@ export class LineGraph {
   line = "line";
   msgs = [];
   data = { datasets: [{
-          label: 'Partner 1',
+          label: 'Jen',
           // data: ['positive', 'neutral', 'negative', 'positive', 'positive', 'positive', 'neutral'],
           data: [65, 59, 80, 81, 56, 55, 40]
           // fill: false,
           // borderColor: '#4bc0c0'
         },
         {
-          label: 'Partner 2',
+          label: 'Fontip',
           // data: ['negative', 'neutral', 'neutral', 'positive', 'positive', 'positive', 'neutral'],
           data: [28, 48, 40, 19, 86, 27, 90]
           // fill: false,
           // borderColor: '#565656'
         }] };
- labels =  ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+ labels =  ['8/25', '8/24', '8/23', '8/22', '8/21', '8/20', '8/19'];
 
   legend = true;
 
