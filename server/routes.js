@@ -1,6 +1,7 @@
 var requestHandler = require('./requestHandler.js');
 var postRequestHandler = require('./postsRequestHandler.js');
 var mixtapeRequestHandler = require('./request-handlers/mixtape.js');
+var sentimentRequestHandler = require('./sentimentRequestHandler.js');
 
 module.exports = function (app, express){
   app.get('/api/google/login', requestHandler.googleLogin);
@@ -23,6 +24,9 @@ module.exports = function (app, express){
   app.post('/api/get-playlist', mixtapeRequestHandler.getPlaylist);
   app.post('/api/soundcloud-search', mixtapeRequestHandler.searchSoundCloud);
   app.post('/api/delete-song', mixtapeRequestHandler.deleteSong);
+
+  /** sentiment **/
+  app.get('/api/sentiment', sentimentRequestHandler.sendBackData);
 
   //tester routes
   // app.post('/api/users', postRequestHandler.createUser);
