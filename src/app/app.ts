@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
-// import { Main } from './containers';
+import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router';
+import '../lib/chart.js/dist/Chart.bundle.min.js';
+
+import { LineGraph } from './ui/index';
 import { LoginService } from './services/loginService';
 import { MixtapePlayerComponent } from './mixtape/player/index';
-import { LineGraph } from './ui/index';
-import '../lib/chart.js/dist/Chart.bundle.min.js';
+import { PlaylistService } from './mixtape/shared/playlist.service';
+import { Store } from './store/store';
 
 @Component({
   selector: 'app',
@@ -62,6 +64,7 @@ import '../lib/chart.js/dist/Chart.bundle.min.js';
     MixtapePlayerComponent,
     LineGraph
   ],
+  providers: [PlaylistService],
   template: `
     <div class="wrapper" class="fade-in">
       <div [hidden]="!loggedIn" class="nav-container">
@@ -92,12 +95,37 @@ import '../lib/chart.js/dist/Chart.bundle.min.js';
     <player [hidden]="!loggedIn" class='fade-in'></player>
   `
 })
-export class App {
+export class App implements OnInit {
   loggedIn;
+
   constructor (private loginService: LoginService,
-              private router: Router) {
+               private router: Router,
+               private store: Store,
+               private playlistService: PlaylistService) {
     this.loggedIn = this.loginService.isLoggedIn;
-    console.log("loggedIn is ", this.loggedIn);
+  }
+
+  handleError(error) {
+    console.log('error: ', error);
+  }
+
+  handlePlaylist(playlist) {
+    const currentState = this.store.getState();
+    playlist = JSON.parse(playlist._body);
+
+    this.store.setState(
+      Object.assign({}, currentState, {
+        mixtape: {
+          playlist: playlist,
+          searchResults: currentState.mixtape.searchResults
+        }
+      })
+    );
+  }
+
+  ngOnInit() {
+    this.playlistService.getPlaylist()
+      .subscribe(this.handlePlaylist.bind(this), this.handleError);
   }
 
 }
