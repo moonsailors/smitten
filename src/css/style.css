@@ -33,6 +33,22 @@ a:hover {
   width: 100%;
 }
 
+.chart {
+  display: block;
+  width: 100%;
+}
+
+.ui-button,
+button.ui-button.ui-state-default,
+.ui-button.ui-state-default {
+  background-color: #91204D;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: regular;
+  border-radius: 5px;
+  text-transform: lowercase;
+  border: 0;
+}
+
 /* ------------------------------------------------- */
 /* fixed audio player */
 /* ------------------------------------------------- */
@@ -169,6 +185,3 @@ footer {
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
 }
-
-
-.chart {display: block; width: 100%;}
