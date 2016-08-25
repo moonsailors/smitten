@@ -36,7 +36,7 @@ import { Dialog } from 'primeng/primeng';
       </p-dialog>
     </div>
 
-    <iframe [src]="trustedUrl"
+    <iframe *ngIf="calLoaded" [src]="trustedUrl"
     style="border: 0"
     width="1024" height="600" frameborder="0" scrolling="no">
     </iframe>
@@ -47,6 +47,8 @@ export class Calendar {
   calSrc = "";
   trustedUrl;
   textsent: boolean = false;
+  calLoaded: boolean = false;
+
 
   loadCalendar() {
     this.calendarService.getCalendarId()
@@ -58,6 +60,7 @@ export class Calendar {
         window.localStorage.setItem("user", body["user"]);
         this.calSrc = "https://calendar.google.com/calendar/embed?src=" + body["calId"];
         this.trustedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.calSrc);
+        this.calLoaded = true;
      });
   }
 
