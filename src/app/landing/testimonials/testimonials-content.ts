@@ -3,14 +3,14 @@ export const TESTIMONIALS_CONTENT: Object = {
   testimonials: [
     {
       user: 'Kim Kardashian',
-      testimonial: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+      testimonial: `So, um, like, when yeezy said: "hey we are gonna get married,"
+                    I said ok, but we need an app. Hahahaha yeah.....`,
       image: 'app/landing/testimonials/images/smitten-kim.png'
     },
     {
       user: 'Kanye West',
-      testimonial: `Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+      testimonial: `That tha-tha-tha-that app smitten, is the shiz that helps me listen.
+                    makes our communication real nice, and helps us prevent dumb fights.`,
       image: 'app/landing/testimonials/images/smitten-kanye.png'
     }
   ]
