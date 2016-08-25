@@ -78,6 +78,10 @@ export class WishInput {
     title: "",
     description: "",
     photos: [ { source: "" } ],
+    coordinates: {
+      top: "40px",
+      left: "300px"  
+    }
   };
 
   onWishSubmit() {
