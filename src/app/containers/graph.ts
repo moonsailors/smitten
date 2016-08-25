@@ -8,7 +8,7 @@ import { LineGraph } from '../ui/index';
   ],
   styles: [],
   template: `
-    <div>
+    <div class="fade-in">
      <line-graph></line-graph>
     </div>
   `

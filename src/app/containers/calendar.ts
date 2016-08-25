@@ -12,15 +12,24 @@ import { Dialog } from 'primeng/primeng';
     TextInput,
     Dialog
   ],
-  styles: [],
+  styles: [`
+    ul {
+      margin: 15px 0 25px 30px;
+    }
+
+    li {
+      display: inline-block;
+    }
+  `],
   template: `
-    <div class="fade-in">
-    <p>
-    <span>
-    <calendar-input (emitAddition)="onEmitAddition($event)"></calendar-input>
-    <text-input (emitText)="onEmitText($event)"></text-input>
-    </span>
-    </p>
+    <div class="fade-in container">
+      <ul>
+        <li><calendar-input (emitAddition)="onEmitAddition($event)"></calendar-input>
+      </li>
+      <li>
+        <text-input (emitText)="onEmitText($event)"></text-input>
+      </li>
+      </ul>
     </div>
     <div>
      <p-dialog header="Your text has been sent!" [(visible)]="textsent" modal="modal" showEffect="fade">
