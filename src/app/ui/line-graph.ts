@@ -1,30 +1,40 @@
 // import { UIChart } from 'primeng/primeng';
 import { CHART_DIRECTIVES } from 'ng2-charts/ng2-charts';
 import { Component } from '@angular/core';
+import { CORE_DIRECTIVES,
+        FORM_DIRECTIVES,
+        NgClass } from '@angular/common';
 
 
 @Component({
   selector: 'line-graph',
-  directives: [ CHART_DIRECTIVES ],
+  directives: [ CHART_DIRECTIVES,
+              CORE_DIRECTIVES,
+              FORM_DIRECTIVES,
+              NgClass ],
   styles: [ `
-    .chart {display: block; width: 100%;}
+    .chart {display: block;
+            width: 800px;
+            height: 600px;}
   `],
   template: `
-    <div>hello from linegraph</div>
      <base-chart class="chart"
-                [datasets]="datasets"
-                [labels]="labels"
+                [datasets]="data.datasets"
                 [chartType]="line"
                 [options]="options"
-                [colors]="colors"
-                [legend]="legend"
+                [labels] = "labels"
+                [legend] = "legend"
                 ></base-chart>
     `
 })
 
 export class LineGraph {
   options = {animation: false,
-        responsive: false};
+        responsive: false,
+        title: {
+          fullWidth: true
+        }};
+  line = "line";
   msgs = [];
   data = { datasets: [{
           label: 'Partner 1',
@@ -39,9 +49,8 @@ export class LineGraph {
           data: [28, 48, 40, 19, 86, 27, 90]
           // fill: false,
           // borderColor: '#565656'
-        }],
-  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-  };
+        }] };
+ labels =  ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   colors = [{ // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
@@ -59,7 +68,7 @@ export class LineGraph {
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(77,83,96,1)'
     }];
-  legend = false;
+  legend = true;
 
   constructor() {
 
