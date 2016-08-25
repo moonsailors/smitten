@@ -15,7 +15,7 @@ import { CORE_DIRECTIVES,
   styles: [ `
     .chart {display: block;
             width: 800px;
-            height: 600px;}
+            height: 500px;}
   `],
   template: `
      <base-chart class="chart"
@@ -30,9 +30,13 @@ import { CORE_DIRECTIVES,
 
 export class LineGraph {
   options = {animation: false,
-        responsive: false,
+        responsive: true,
+        maintainAspectRatio: false,
         title: {
-          fullWidth: true
+          fullWidth: true,
+          display: true,
+          text: 'Our Moods',
+          fontSize: 16
         }};
   line = "line";
   msgs = [];
@@ -52,22 +56,6 @@ export class LineGraph {
         }] };
  labels =  ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-  colors = [{ // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    }];
   legend = true;
 
   constructor() {
@@ -85,9 +73,7 @@ export class LineGraph {
     //     position: 'bottom'
     //   }
     // };
-    // var ctx: any = el.nativeElement.getContext("line");
-    //     var Graph = new Chart(ctx);
-    //     Graph.Line(this.data, this.options);
+
   };
 
   // selectData(event) {
