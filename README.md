@@ -1,12 +1,12 @@
-# Project Name
+# Smitten
 
-> Pithy project description
+> Smitten is a relationship web app that is designed to streamline communication between partners, harnessing Angular2, Google Calendar's API, SMS messaging, RethinkDB, SoundClound API, NG2-Charts, SynapticJS, PrimeNG, and styled with Bootstrap.
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Connor Campbell
+  - __Scrum Master__: Heather Park
+  - __Development Team Members__: Jennica Goo, Karen Zapata
 
 ## Table of Contents
 
@@ -20,15 +20,12 @@
 
 ## Usage
 
-> Some usage instructions
+> Click Login from the front page to login through your Google account.  Once logged in, a new google calendar is created for you and your partner automatically.  You will then be prompted to link your partner's gmail address.  The interactive features include: The calendar/text reminders, The Post-it board to create photos and love notes, The Mixtape to create a mutual playlist, and The Sentiment tab which tracks and graphs moods over time via your post-it notes with a sentiment parser.
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node 6
+- NPM 3.9.5
 
 ## Development
 
@@ -36,15 +33,14 @@
 
 From within the root directory:
 
-```sh
-sudo npm install -g bower
-npm install
-bower install
-```
+-npm install
+-npm run build
+-node index.js -> navigate to localhost:3000
+
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://waffle.io/moonsailors/smitten)
 
 
 ## Contributing
