@@ -41,14 +41,14 @@ export class LineGraph {
   line = "line";
   msgs = [];
   data = { datasets: [{
-          label: 'Jen',
+          label: 'Partner 1',
           // data: ['positive', 'neutral', 'negative', 'positive', 'positive', 'positive', 'neutral'],
           data: [65, 59, 80, 81, 56, 55, 40]
           // fill: false,
           // borderColor: '#4bc0c0'
         },
         {
-          label: 'Fontip',
+          label: 'Partner 2',
           // data: ['negative', 'neutral', 'neutral', 'positive', 'positive', 'positive', 'neutral'],
           data: [28, 48, 40, 19, 86, 27, 90]
           // fill: false,
