@@ -62,7 +62,6 @@ import { Button } from 'primeng/primeng';
                  private loginService: LoginService) {
      this.loginService.logout()
      .subscribe(res => {
-      console.log("logged out");
     });
    }
 

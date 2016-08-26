@@ -31,6 +31,12 @@ import { Dialog } from 'primeng/primeng';
       </li>
       </ul>
     </div>
+
+    <div>
+     <p-dialog header="Your event has been added!" [(visible)]="eventmade" modal="modal" showEffect="fade">
+      </p-dialog>
+    </div>
+
     <div>
      <p-dialog header="Your text has been sent!" [(visible)]="textsent" modal="modal" showEffect="fade">
       </p-dialog>
@@ -47,16 +53,14 @@ export class Calendar {
   calSrc = "";
   trustedUrl;
   textsent: boolean = false;
+  eventmade: boolean = false;
   calLoaded: boolean = false;
 
 
   loadCalendar() {
     this.calendarService.getCalendarId()
     .subscribe(res => {
-        console.log("body ", res._body);
         var body = JSON.parse(res._body);
-        console.log("calendarId ", body["calId"]);
-        console.log("user ", body["user"]);
         window.localStorage.setItem("user", body["user"]);
         this.calSrc = "https://calendar.google.com/calendar/embed?src=" + body["calId"];
         this.trustedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.calSrc);
@@ -70,19 +74,16 @@ export class Calendar {
 
 
   onEmitAddition(event: Object) {
-    console.log("hit onEmitAddition");
     this.calendarService.addCalendarEvent(event)
     .subscribe(res => {
-      console.log("event added ", res._body);
       this.loadCalendar();
+      this.eventmade = true;
     });
   }
 
   onEmitText(event: Object) {
-    console.log("hit onEmitText");
     this.calendarService.addText(event)
     .subscribe(res => {
-      console.log("text sent ", res._body);
       this.textsent = true;
     });
   }

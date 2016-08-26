@@ -1,7 +1,6 @@
 export { App } from './app';
 export { routes } from './routes';
 export { Store } from './store';
-// export { WishService, CalendarService, ApiService } from './services/index';
 export { Wishes, Main, Calendar, Login } from './containers/index';
 export { PostCard, CalendarInput } from './ui/index';
 

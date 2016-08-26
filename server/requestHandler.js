@@ -2,6 +2,11 @@ var google = require('googleapis');
 var OAuth2 = google.auth.OAuth2;
 var plus = google.plus('v1');
 
+//ENV object will be used during production.  But, for development,
+//a client_secret.json file should be created with your own ID keys
+//and stored in the server folder.  Follow the structure of the ENV
+//variable for the client_secret.json file and export it.
+
 var ENV = {
   "web": {
     "client_id": process.env.GOOGLE_CLIENT_ID,
@@ -64,24 +69,21 @@ module.exports = {
       access_type: 'offline', // 'online' (default) or 'offline' (gets refresh_token)
       scope: scopes // If you only need one scope you can pass it as string
     });
-    console.log("url is ", url);
     res.status(200).send(url);
 
   },
 
   googleRedirect: function(req, res, next){
     //come here we get the redirect.  ask for a token to store.
-    //use req.params.code
-    console.log('code ', req.query.code);
+    //use req.query.code
 
     oauth2Client.getToken(req.query.code, function(err, tokens) {
     // Now tokens contains an access_token and an optional refresh_token. Save them.
       if(!err) {
         oauth2Client.setCredentials(tokens);
-        console.log("tokens are ", tokens);
 
         plus.people.get({ userId: 'me', auth: oauth2Client}, function(err, response){
-            console.log("plus res ", response);
+
             req.session.username = response.emails[0].value;
             // currentEmail = response.emails[0].value;
 
@@ -89,12 +91,12 @@ module.exports = {
               .then(function(user){
                   //if user doesn't exist, create new user
                   //and redirect to login
-                  console.log('returned user, ', user);
+
                 if(!user){
                   db.createUser(req.session.username, 'excited')
                     .then(function(user){
                       //redirect to create calendar
-                      console.log('created new user, ', user);
+
                       res.redirect('/api/calendar/create')
                     })
                     .catch(function(err){
@@ -105,16 +107,13 @@ module.exports = {
                   //redirect to '/'
                   if(user.relationshipId){
                     //save tokens
-                    //{route: aldkfoiefj}
-                    console.log('tokens are ', tokens);
+
                     db.User.get(user.id)
                     .update({token: tokens})
                     .run()
                     .then(function(user){
-                      console.log('updated user ', user);
                       res.redirect('/');
                     });
-
                   } else {
                   //if user does exist and doesn't have relationship
                   //redirect to login
@@ -130,65 +129,11 @@ module.exports = {
     }); //getToken
   },
 
-  calendarCreate: function(req, res, next){
-    //create a new Smitten calendar for the logged in google user
-    console.log("in calendarCreate");
-    calendar.calendars.insert({
-      auth: oauth2Client,
-      resource: {
-      summary: 'Smitten'
-      }
-    }, function(err, event){
-      if(err){
-        console.log("calendar error: ", err);
-      }
-      console.log("Smitten calendar created ", event);
-      //add calendarID "event.id" entry to Users table
-
-      //add the calendar id to a relationship
-      //attach that relationshipid to a user
-
-      db.createRelationship(event.id)
-      .then(function(relationship){
-        db.updateUser(req.session.username, {relationshipId: relationship.id});
-      });
-
-      //redirect to login
-      res.redirect(api_host + '/#/login');
-    });
-
-  },
-
-  calendarId: function(req,res,next){
-    db.getRelationshipByEmail(req.session.username)
-    .then(function(relationship){
-      console.log('calId is ', relationship.calendarId);
-      var body = {user: req.session.username, calId: relationship.calendarId};
-      bodyString =  JSON.stringify(body);
-      res.status(200).send(bodyString);
-    })
-  },
-
-  calendarText: function(req, res, next){
-    console.log("text body", req.body);
-    var time = req.body.time + '-07:00';
-    var UTC = Date.parse(time);
-    console.log("UTC ", UTC);
-    UTC = UTC/1000;
-    console.log("UTCsubstr ", UTC);
-
-    text.Messages.send({text: req.body.text, phones: req.body.phone, sendingTime: UTC}, function(err, response){
-        console.log('Messages.send()', err, response);
-        res.status(201).send(response);
-    });
-
-  },
-
+   //Add partner to link with
   googleJoin: function(req,res, next){
 
     //add partner to the user's Smitten calendar to read/write
     var calID;
-    console.log("req.body.email is ", req.body.email);
     //create new user with incoming email
     //connect them to a relationship
 
@@ -199,7 +144,6 @@ module.exports = {
     .then(function(relationship){
       db.updateUser(req.body.email, {relationshipId: relationship.id});
       calID = relationship.calendarId;
-      console.log("calID ", calID);
     })
     .then(function(){
 
@@ -219,8 +163,6 @@ module.exports = {
         if(err){
           console.log("calendar Join error: ", err);
         }
-        console.log("insert user");
-        console.log("calID after user permissions ", calID);
         res.status(201).send(calID);
 
       });
@@ -228,15 +170,69 @@ module.exports = {
     });
   },
 
+  googleLogout : function(req, res, next){
+    req.session.destroy();
+    res.status(200).send();
+  },
+
+  calendarCreate: function(req, res, next){
+    //create a new Smitten calendar for the logged in google user
+
+    calendar.calendars.insert({
+      auth: oauth2Client,
+      resource: {
+      summary: 'Smitten'
+      }
+    }, function(err, event){
+      if(err){
+        console.log("calendar error: ", err);
+      }
+
+      //add calendarID "event.id" entry to Users table
+      //add the calendar id to a relationship
+      //attach that relationshipid to a user
+
+      db.createRelationship(event.id)
+      .then(function(relationship){
+        db.updateUser(req.session.username, {relationshipId: relationship.id});
+      });
+
+      //redirect to login
+      res.redirect(api_host + '/#/login');
+    });
+
+  },
+
+  //redirected here when loading calendar page.
+  //retrieve ID from database and send back to front end
+  calendarId: function(req,res,next){
+    db.getRelationshipByEmail(req.session.username)
+    .then(function(relationship){
+      var body = {user: req.session.username, calId: relationship.calendarId};
+      bodyString =  JSON.stringify(body);
+      res.status(200).send(bodyString);
+    })
+  },
+
+  //redirected here to send a text message with Text Magic API
+  calendarText: function(req, res, next){
+    var time = req.body.time + '-07:00';
+    var UTC = Date.parse(time);
+    UTC = UTC/1000;
+
+    text.Messages.send({text: req.body.text, phones: req.body.phone, sendingTime: UTC}, function(err, response){
+        res.status(201).send(response);
+    });
+
+  },
+
   calendarEventAdd : function(req, res, next){
     //Add events to the Smitten Calendar
     var calId;
-    console.log("event ", req.body);
 
     db.getRelationshipByEmail(req.session.username)
     .then(function(relationship){
       calId = relationship.calendarId;
-      console.log("calId ", calId);
     })
     .then(function(){
       calendar.events.insert({
@@ -248,14 +244,10 @@ module.exports = {
           console.log('There was an error contacting the Calendar service: ' + err);
           return;
         }
-        console.log('Event created: %s', event.htmlLink);
         res.status(201).send(event.htmlLink);
       });
     });
-  },
-
-  googleLogout : function(req, res, next){
-    req.session.destroy();
-    res.status(200).send();
   }
+
+
 };

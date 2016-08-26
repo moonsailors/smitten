@@ -2,16 +2,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
 
-// export interface Note {
-//   color: string,
-//   title: string,
-//   value: string,
-//   id?: string | number,
-//   createdAt?: string,
-//   updatedAt?: string,
-//   userId?: string
-// }
-
 export interface Login {
   loggedIn: boolean;
   calendarId: string;
