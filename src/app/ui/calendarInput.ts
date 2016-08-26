@@ -72,7 +72,7 @@ export class CalendarInput {
 
   convertTime(datetime) {
     var newdate = datetime.replace(/ /i, 'T');
-    newdate = newdate + '-07:00';
+    newdate = newdate + '-00:00';
     return newdate;
   }
   addEvent() {
