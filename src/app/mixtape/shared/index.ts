@@ -1,5 +1,5 @@
 /** services **/
 export { PlaylistService } from './playlist.service';
 
-/** interfaces **/
-export { Song } from './song';
+/** models **/
+export { Song } from './song.model';
