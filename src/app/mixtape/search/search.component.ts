@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { SoundCloudSearchInputComponent } from './search-input.component';
-import { SoundCloudSearchResultsComponent } from './search-results.component';
+import { SoundCloudSearchInputComponent } from './input/index';
+import { SoundCloudSearchResultsComponent } from './results/index';
 
 @Component({
   selector: 'sc-search-container',

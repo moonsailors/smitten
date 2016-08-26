@@ -17,7 +17,7 @@ export const TEAM_CONTENT: Object = {
     },
     {
       name: 'Jennica Goo',
-      role: 'Developer | Executive Homey',
+      role: 'Developer | Executive Homie',
       image: 'app/landing/team/images/smitten-jennica.png',
       githubImg: 'app/landing/team/images/github-icon.png',
       githubLink: 'https://github.com/jmg2107'

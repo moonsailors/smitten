@@ -29,15 +29,19 @@ h2:after {
   margin-bottom: 15px;
 }
 
-.icon {
-  margin-top: 10px;
-  width: 22px;
-}
-
 .name {
   font-weight: 700;
 }
 
 .role {
-  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.fa-github {
+  font-size: 2em;
+  transition: color 0.4s;
+}
+
+.fa-github:hover {
+  color: #91204D;
 }

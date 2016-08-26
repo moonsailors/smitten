@@ -14,6 +14,7 @@
 .text {
   font-style: italic;
   margin-bottom: 25px;
+  text-transform: none;
   width: 470px;
 }
 
