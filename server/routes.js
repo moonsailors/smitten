@@ -4,16 +4,20 @@ var mixtapeRequestHandler = require('./request-handlers/mixtape.js');
 var sentimentRequestHandler = require('./sentimentRequestHandler.js');
 
 module.exports = function (app, express){
+
+  /** google routes **/
   app.get('/api/google/login', requestHandler.googleLogin);
   app.get('/googleOAuth/', requestHandler.googleRedirect);
   app.post('/api/google/join', requestHandler.googleJoin);
   app.get('/api/google/logout', requestHandler.googleLogout);
 
+  /** calendar routes **/
   app.get('/api/calendar/create', requestHandler.calendarCreate);
   app.post('/api/calendar/eventAdd', requestHandler.calendarEventAdd);
   app.get('/api/calendar/calId', requestHandler.calendarId);
   app.post('/api/calendar/text', requestHandler.calendarText);
 
+  /** post-it routes **/
   app.post('/api/posts/:email', postRequestHandler.createPost);
   app.get('/api/posts/relationship/:email', postRequestHandler.getRelationshipPosts);
   app.delete('/api/posts/:id', postRequestHandler.deletePost);
@@ -28,10 +32,5 @@ module.exports = function (app, express){
   /** sentiment **/
   app.get('/api/sentiment', sentimentRequestHandler.sendBackData);
 
-  //tester routes
-  // app.post('/api/users', postRequestHandler.createUser);
-  // app.put('/api/users', postRequestHandler.updateUser);
-  // app.post('/api/relationship/:calendarId', postRequestHandler.createRelationship);
-  // app.get('/api/relationship/:email', postRequestHandler.getRelationship);
 
 };

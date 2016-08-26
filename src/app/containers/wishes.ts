@@ -28,21 +28,17 @@ export class Wishes {
   private posts = [];
 
   constructor(private postService: PostService) {
-    console.log('constructor');
     this.postService.getRelationshipPosts(window.localStorage.getItem('user'))
       .subscribe(res => {
         let newPosts = res.json();
-        console.log(newPosts);
         newPosts.forEach(function(post, index){
           post.index = index;
-          console.log(post);
         });
         this.posts = newPosts;
       });
   }
 
   onCreatePost(post) {
-    console.log('old post', post);
     this.postService.createPost(window.localStorage.getItem('user'), post)
       .subscribe(res => {
         var post = res.json();
@@ -51,7 +47,6 @@ export class Wishes {
   }
 
   onPostCompletion(post) {
-    console.log('hit post completion');
     this.postService.deletePost(post.id)
       .subscribe(res => console.log(res));
     this.posts.splice(post.index, 1);

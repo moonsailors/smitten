@@ -10,18 +10,14 @@ export class  CalendarService {
   }
 
   addCalendarEvent(event: Object) {
-    console.log("hit add Calendar Event");
-    console.log("path is ", `${this.path}/eventAdd`);
       return this.apiService.post(`${this.path}/eventAdd`, event);
   };
 
   getCalendarId() {
-    console.log("hit get Calendar Id");
     return this.apiService.get(`${this.path}/calId`);
   };
 
   addText(event: Object) {
-    console.log("hit add text");
     return this.apiService.post(`${this.path}/text`, event);
   };
 

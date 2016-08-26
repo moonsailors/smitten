@@ -41,45 +41,18 @@ export class LineGraph {
   line = "line";
   msgs = [];
   data = { datasets: [{
-          label: 'Jen',
-          // data: ['positive', 'neutral', 'negative', 'positive', 'positive', 'positive', 'neutral'],
+          label: 'Partner 1',
           data: [65, 59, 80, 81, 56, 55, 40]
-          // fill: false,
-          // borderColor: '#4bc0c0'
         },
         {
-          label: 'Fontip',
-          // data: ['negative', 'neutral', 'neutral', 'positive', 'positive', 'positive', 'neutral'],
+          label: 'Partner 2',
           data: [28, 48, 40, 19, 86, 27, 90]
-          // fill: false,
-          // borderColor: '#565656'
         }] };
  labels =  ['8/25', '8/24', '8/23', '8/22', '8/21', '8/20', '8/19'];
 
   legend = true;
 
-  constructor() {
-
-      // yLabels: ['negative', 'neutral', 'positive'],
+  constructor() {};
 
 
-    // this.options = {
-    //   title: {
-    //     display: true,
-    //     text: 'Our Moods',
-    //     fontSize: 16
-    //   },
-    //   legend: {
-    //     position: 'bottom'
-    //   }
-    // };
-
-  };
-
-  // selectData(event) {
-  //   this.msgs.push({
-  //     severity: 'info',
-  //     summary: 'Data Selected',
-  //     'detail': this.data.datasets[event.element._datasetIndex].data[event.element._index]});
-  // }
 }

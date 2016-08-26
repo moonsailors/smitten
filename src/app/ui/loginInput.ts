@@ -109,14 +109,12 @@ export class LoginInput {
     hitLoginButton = false;
 
     loginUser() {
-      console.log("hit loginUser");
       this.hitLoginButton = true;
       this.emitLogin.next(this.user);
 
     };
 
     addPartner() {
-      console.log("partner email is ", this.partner.email);
       this.emitPartner.next(this.partner);
     };
 

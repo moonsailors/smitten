@@ -46,11 +46,14 @@ export class TextInput {
   display: boolean = false;
 
   addText() {
-    console.log("hit add text button");
-    console.log("event is ", this.event);
     this.emitText.next(this.event);
     this.display = false;
-  }
+    this.event = {
+                  phone: "",
+                  text: "",
+                  time: ""
+                };
+  };
 
   showDialog() {
     this.display = true;

@@ -19,12 +19,10 @@ import { LoginService } from '../services/index';
    constructor (private loginService: LoginService) {}
 
   onEmitLogin(event: Object) {
-    console.log("hit onEmitLogin");
     this.loginService.googleLogin(event);
   };
 
   onEmitPartner(event: Object) {
-    console.log("hit onEmitPartner");
     this.loginService.googlePartner(event);
   };
 
