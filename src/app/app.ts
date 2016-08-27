@@ -105,11 +105,15 @@ export class App implements OnInit {
     this.loggedIn = this.loginService.isLoggedIn;
   }
 
-  handleError(error) {
-    console.log('error: ', error);
+  ngOnInit() {
+    this.playlistService.getPlaylist()
+      .subscribe(
+        this.playlistHandler.bind(this),
+        error => console.log('error: ', error)
+      );
   }
 
-  handlePlaylist(playlist) {
+  playlistHandler(playlist) {
     const currentState = this.store.getState();
     playlist = JSON.parse(playlist._body);
 
@@ -122,10 +126,4 @@ export class App implements OnInit {
       })
     );
   }
-
-  ngOnInit() {
-    this.playlistService.getPlaylist()
-      .subscribe(this.handlePlaylist.bind(this), this.handleError);
-  }
-
 }

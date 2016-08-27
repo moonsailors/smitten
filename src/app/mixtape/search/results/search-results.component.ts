@@ -24,7 +24,8 @@ export class SoundCloudSearchResultsComponent {
       .pluck('mixtape', 'searchResults')
       .subscribe(
         (searchResults: Observable<Song[]>) => this.searchResults = searchResults,
-        error => console.log('error: ', error));
+        error => console.log('error: ', error)
+      );
   }
 
   // add song to playlist in database via POST request
@@ -33,7 +34,8 @@ export class SoundCloudSearchResultsComponent {
     this.playlistService.addToPlaylist(songData)
       .subscribe(
         this.addSongToPlaylistState.bind(this),
-        error => console.log('error: ', error));
+        error => console.log('error: ', error)
+      );
   }
 
   addSongToPlaylistState(song) {
@@ -48,7 +50,8 @@ export class SoundCloudSearchResultsComponent {
             ...currentState.mixtape.playlist,
             ...song
           ],
-          searchResults: currentState.mixtape.searchResults
+          searchResults: currentState.mixtape.searchResults,
+          nowPlaying: currentState.mixtape.nowPlaying
         }
       })
     );

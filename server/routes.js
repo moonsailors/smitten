@@ -32,5 +32,4 @@ module.exports = function (app, express){
   /** sentiment **/
   app.get('/api/sentiment', sentimentRequestHandler.sendBackData);
 
-
 };

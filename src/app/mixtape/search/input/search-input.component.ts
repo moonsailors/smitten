@@ -47,7 +47,8 @@ export class SoundCloudSearchInputComponent implements OnInit {
         mixtape: {
           playlist: currentState.mixtape.playlist,
           // update 'searchResults'
-          searchResults: results
+          searchResults: results,
+          nowPlaying: currentState.mixtape.nowPlaying
         }
       })
     );

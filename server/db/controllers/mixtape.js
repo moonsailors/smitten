@@ -1,7 +1,7 @@
 var db = require('../database.js');
 var PlaylistSong = db.PlaylistSong;
 
-exports.addSong = function(song, userEmail) {
+function addSong(song, userEmail) {
   return new PlaylistSong({
     relationshipId: userEmail,
     title: song.title,
@@ -17,29 +17,16 @@ exports.addSong = function(song, userEmail) {
     console.log('Cannot add song to DB');
     console.error(err);
   });
-};
+}
 
-exports.deleteSong = function(song, userEmail) {
+function deleteSong(song, userEmail) {
   return PlaylistSong.get(song.id)
     .then(function(song) {
       song.delete();
     });
-
-  // return PlaylistSong.filter({
-  //   // relationshipId: userEmail,
-  //   id: song.id
-  // }).run()
-  //   .then(function(song) {
-  //     console.log('deleted song: ', song);
-  //     return song.delete();
-  //   })
-  //   .error(function(err) {
-  //     console.log('Unable to delete song in DB');
-  //     console.error(err);
-  //   });
 };
 
-exports.getPlaylist = function(userEmail) {
+function getPlaylist(userEmail) {
   return PlaylistSong.filter({
     relationshipId: userEmail
   }).run()
@@ -51,4 +38,10 @@ exports.getPlaylist = function(userEmail) {
       console.log('Playlist not found in DB');
       console.error(err);
     });
+}
+
+module.exports = {
+  addSong: addSong,
+  deleteSong: deleteSong,
+  getPlaylist: getPlaylist
 };

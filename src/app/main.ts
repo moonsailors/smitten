@@ -10,9 +10,6 @@ import { providers } from './index';
 import { App } from './app';
 import { Store } from './store/store';
 
-console.log("App ", App);
-console.log("routes", routes);
-
 bootstrap(App, [
   ...HTTP_PROVIDERS,
   disableDeprecatedForms(),

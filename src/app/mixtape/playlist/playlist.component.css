@@ -5,18 +5,18 @@
 
 h2 {
   font-size: 1.5625em;
+  font-weight: 700;
   margin: 20px 0;
   text-transform: lowercase;
-  font-weight: 700;
 }
 
 h2:after {
+  background-color: #91204D;
   content: " ";
   display: block;
-  width: 30px;
   height: 2px;
-  background-color: #91204D;
   margin: 3px 0 0 0;
+  width: 30px;
 }
 
 ul {
