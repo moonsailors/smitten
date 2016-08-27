@@ -17,30 +17,25 @@ export class MixtapePlayerComponent implements OnInit {
   nowPlaying: Song;
   paused: boolean;
 
-  // TODO: refactor code
   constructor(private store: Store,
               private playerService: MixtapePlayerService) {
+    // subscribe to store for changes in 'playlist' state
     this.store
       .changes
       .pluck('mixtape', 'playlist')
       .subscribe(
-        (playlist: Observable<Array<Object>>) => {
-          this.playerService.playlist = Array.prototype.slice.call(playlist);
-
-          if (!this.nowPlaying && this.playerService.playlist.length) {
-            this.nowPlaying = this.playerService.playlist[0];
-            this.audio.src = this.nowPlaying.stream + '?client_id=' + this.clientId;
-          }
-        },
+        this.playlistHandler.bind(this),
         err => console.log('error: ', err));
 
+     // subscribe to store for changes in 'nowPlaying' state
+     // clicking the play button next to a song in the playlist will
+     // begin playing the song and start the playlist from that point
      this.store
       .changes
       .pluck('mixtape', 'nowPlaying')
       .subscribe(
         (song: Song) => {
           if (song) {
-            console.log('song change detected');
             this.paused = true;
             this.setSong(song);
             this.playerService.changeSongIndex(song);
@@ -59,7 +54,20 @@ export class MixtapePlayerComponent implements OnInit {
     this.playerService.currentSongIndex = 0;
   }
 
-  playNextPrevSong(direction) {
+  playlistHandler(playlist: Observable<Song[]>) {
+    // use slice method so collection can be treated as an array
+    this.playerService.playlist = Array.prototype.slice.call(playlist);
+
+    // assign first song in playlist as the song ready to be played (if nothing is assigned already)
+    if (!this.nowPlaying && this.playerService.playlist.length) {
+      this.nowPlaying = this.playerService.playlist[0];
+      // also sets audio elements source to stream URL of current song in 'nowPlaying'
+      // client ID is necessary in order to stream
+      this.audio.src = this.nowPlaying.stream + '?client_id=' + this.clientId;
+    }
+  }
+
+  playNextPrevSong(direction: string) {
     var nextSong;
 
     if (direction === 'forward') {
@@ -73,7 +81,8 @@ export class MixtapePlayerComponent implements OnInit {
     this.togglePlay();
   }
 
-  setSong(songData) {
+  // to display info for currently playing song
+  setSong(songData: Song) {
     this.nowPlaying = songData;
     this.audio.src = this.nowPlaying.stream + '?client_id=' + this.clientId;
   }

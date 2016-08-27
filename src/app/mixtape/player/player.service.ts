@@ -8,11 +8,11 @@ export class MixtapePlayerService {
   currentSongIndex: number;
   playlist: Array<Song>;
 
-  changeSongIndex(song) {
+  changeSongIndex(song: Song) {
     this.currentSongIndex = this.playlist.indexOf(song);
   }
 
-  nextPrev(direction) {
+  nextPrev(direction: string) {
     if (direction === 'forward') {
       if (this.currentSongIndex < this.playlist.length - 1) {
         this.currentSongIndex++;
