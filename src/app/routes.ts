@@ -1,10 +1,10 @@
 import { RouterConfig } from '@angular/router';
 import { Main,
-        Wishes,
-        Calendar,
-        Login,
-        Logout,
-        Graph } from './containers/index';
+         Wishes,
+         Calendar,
+         Login,
+         Logout,
+         Graph } from './containers/index';
 import { AuthGuard } from './services/index';
 import { MixtapeComponent } from './mixtape/index';
 import { LandingPageComponent } from './landing/index';
