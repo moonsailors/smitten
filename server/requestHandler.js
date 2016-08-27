@@ -34,7 +34,7 @@ var api_host;
 var redirect;
 if(process.env.PORT){
   client = ENV;
-  api_host = 'http://just-smitten.herokuapp.com:' + process.env.PORT;
+  api_host = 'http://just-smitten.herokuapp.com';
   redirect = ENV.web.redirect_uris[0];
 } else {
   client = require('./client_secret.json');
