@@ -11,33 +11,14 @@ import { Galleria, InputText, Button } from 'primeng/primeng';
 
 @Component({
   selector: 'post-card',
-  styles: [`
-    .drag-me{
-      position: fixed;
-    }
-  `],
+  styleUrls: ['app/ui/css/post-card.css'],
   directives: [
     Draggable,
     Galleria,
     Button,
     InputText
   ],
-  template: `
-  <div class="drag-me" [draggable] [style.top]="post.coordinates.top"
-  [style.left]="post.coordinates.left" (coordinateUpdate)="onDragEnd($event)">
-    <div><h4>{{post.title}}</h4></div>
-    <div *ngIf="post.type === 'note'">
-      <p>{{post.description}}</p>
-    </div>
-    <div *ngIf="post.type === 'photos'">
-      <p-galleria [images]="post.photos" panelWidth="500" panelHeight="313"></p-galleria>
-      <input type="text" pInputText [(ngModel)]="newPhotoLink" placeholder="paste in pic URL" />
-      <button pButton type="ui-button" (click)="addNewPhoto()" label="Add a photo"></button>
-    </div>
-     <button pButton type="ui-button" icon="fa-remove" (click)="onCompletion()"></button>
-  </div>
-
-  `
+  templateUrl: 'app/ui/templates/post-card.html'
 })
 
 export class PostCard {

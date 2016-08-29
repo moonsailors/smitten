@@ -1,0 +1,22 @@
+<div class="login-page">
+    <div
+      class="login-container"
+      [hidden]="hitLoginButton || loggedIn">
+      <p>welcome to smitten.</p>
+      <figure class="google-signin-button">
+        <img (click)="loginUser()" src="app/images/google-signin.png">
+      </figure>
+    </div>
+    <div
+        class="partner-link-container"
+        [hidden]="!loggedIn">
+        <p>please link your partner.</p>
+        <div class="input">
+          <input
+            type="text"
+            [(ngModel)]="partner.email"
+            placeholder="your partner's gmail address">
+        </div>
+        <a href="#" (click)="addPartner()">link</a>
+    </div>
+  </div>
