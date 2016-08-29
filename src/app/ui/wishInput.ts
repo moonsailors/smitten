@@ -14,31 +14,7 @@ import { Button, SelectButton, InputText, InputTextarea, Calendar } from 'primen
     InputTextarea,
     Calendar
   ],
-  template: `
-  <div>
-    <p-dialog header="Add a Post" [(visible)]="display" showEffect="fade">
-      <p-selectButton [options]="postTypes" [(ngModel)]="selectedType" (click)="toggleType()"></p-selectButton>
-      <div *ngIf="postInputNoteDisplay">
-        <h6>title</h6>
-        <input type="text" pInputText [(ngModel)]="post.title"/>
-        <h6>description</h6>
-        <textarea pInputTextarea [(ngModel)]="post.description"></textarea>
-      </div>
-      <div *ngIf="postInputPhotoDisplay">
-        <h6>album name</h6>
-        <input type="text" pInputText [(ngModel)]="post.title"/>
-        <h6>image title</h6>
-        <input type="text" pInputText [(ngModel)]="post.photos[0].title"/>
-        <h6>image</h6>
-        <input type="text" placeholder = "paste in pic URL" pInputText [(ngModel)]="post.photos[0].source"/>
-      </div>
-      <button (click)="onWishSubmit()" pButton label="Add Post-it!"></button>
-    </p-dialog>
-
-    <button (click)="showDialog()" pButton icon="fa-external-link-square" label="Add"></button>
-
-  </div>
-  `
+  templateUrl: 'app/ui/templates/wishInput.html'
 })
 
 export class WishInput {
@@ -80,7 +56,7 @@ export class WishInput {
     photos: [ { source: "" } ],
     coordinates: {
       top: "40px",
-      left: "300px"  
+      left: "300px"
     }
   };
 

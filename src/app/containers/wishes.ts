@@ -9,17 +9,7 @@ import { PostService } from '../services/index';
     WishInput
   ],
   styles: [],
-  template: `
-    <div class="fade-in">
-      <wish-input (createWish)="onCreatePost($event)"></wish-input>
-      <div>
-        <post-card
-          *ngFor="let post of posts; let i = index"
-          [post]="post"
-          (complete)="onPostCompletion($event)"></post-card>
-      </div>
-    </div>
-  `
+  templateUrl: 'app/containers/templates/wishes.html'
 
 })
 

@@ -12,20 +12,8 @@ import { CORE_DIRECTIVES,
               CORE_DIRECTIVES,
               FORM_DIRECTIVES,
               NgClass ],
-  styles: [ `
-    .chart {display: block;
-            width: 800px;
-            height: 500px;}
-  `],
-  template: `
-     <base-chart class="chart"
-                [datasets]="data.datasets"
-                [chartType]="line"
-                [options]="options"
-                [labels] = "labels"
-                [legend] = "legend"
-                ></base-chart>
-    `
+  styleUrls: ['app/ui/css/line-graph.css' ],
+  templateUrl: 'app/ui/templates/line-graph.html'
 })
 
 export class LineGraph {

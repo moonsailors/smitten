@@ -6,13 +6,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
   directives: [
     ...ROUTER_DIRECTIVES
   ],
-  template: `
-    <div>
-      <main class="main">
-        <router-outlet></router-outlet>
-      </main>
-    <div>
-  `
+  templateUrl: 'app/containers/templates/main.html'
 })
 
 export class Main {}

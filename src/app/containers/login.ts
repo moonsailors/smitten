@@ -7,12 +7,7 @@ import { LoginService } from '../services/index';
    directives: [
      LoginInput
    ],
-   template: `
-     <div class="fade-in">
-       <login-input (emitLogin)="onEmitLogin($event)"
-       (emitPartner)="onEmitPartner($event)"></login-input>
-     </div>
-   `
+   templateUrl: 'app/containers/templates/login.html'
  })
 
  export class Login {

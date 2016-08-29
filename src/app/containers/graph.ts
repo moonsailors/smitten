@@ -6,11 +6,7 @@ import { LineGraph } from '../ui/index';
   directives: [
     LineGraph
   ],
-  styles: [],
-  template: `
-    <div class="fade-in">
-     <line-graph></line-graph>
-    </div>
-  `
+  styleUrls: [],
+  templateUrl: 'app/containers/templates/graph.html'
 })
 export class Graph {}
